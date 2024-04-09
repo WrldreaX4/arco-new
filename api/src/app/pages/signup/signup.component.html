@@ -1,0 +1,29 @@
+<div class="parent">
+    <div class="login-box">
+        <img src="assets/Logo.png" alt="logo" class="logo">
+        <div class="login-header">
+            <header>Create Account</header>
+            <p class="desc">Please sign up and login to continue using our app.</p>
+        </div>
+        <form (ngSubmit)="onSignup()" method="POST"> <!-- Add form tag here -->
+            <div class="input-box">
+                <input type="username" class="input-field" name="username" [(ngModel)]="username"  placeholder="Username" required>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" name="email" placeholder="Email" [(ngModel)]="email" required>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" name="password" [(ngModel)]="password"  placeholder="Password" required>
+            </div>
+            <div class="forgot">
+               
+            </div>
+            <div class="input-submit">
+                <button class="submit-btn" type="submit" id="submit"></button>
+                <label for="submit">Signup</label>
+            </div>
+        </form> <!-- Close form tag here -->
+        <div class="sign-up-link">
+            <p>I have an account? <a href="/login">Sign In</a></p>
+        </div>
+    </div>
