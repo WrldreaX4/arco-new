@@ -14,11 +14,11 @@ export const routes: Routes = [
         component: LoginComponent
     },
     {
-        path: 'signup',
-        component: SignupComponent
+       path: 'signup',
+       component: SignupComponent
     },
     {
-        path: 'dashboard', // Route for the dashboard component
+        path: '', // Route for the dashboard component
         component: DashboardComponent
     },
     {
