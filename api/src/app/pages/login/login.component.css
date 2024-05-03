@@ -6,13 +6,21 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
 .container{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 98vh;
     height: 500px;
-    background: #efefef;
+    background-image: url("/assets/background.png");
+    background-repeat: no-repeat;
     overflow: hidden;
 }
 .login-box{
@@ -28,8 +36,8 @@
     margin: 20px 0 40px 0;
 }
 .login-header header{
-    color: #ffa54c;
-    font-size: 30px;
+    color: #484848;
+    font-size: 35px;
     font-weight: 700;
     margin-top: -50px;
 }
@@ -108,7 +116,7 @@ section a{
     margin-top: 20px;
 }
 .sign-up-link a{
-    color: #ff8615;
+    color: #707070;
     font-weight: 600;
 }
 

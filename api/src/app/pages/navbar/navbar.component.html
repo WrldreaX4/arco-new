@@ -1,0 +1,95 @@
+<nav class="sidebar locked">
+    <div class="logo_items flex">
+      <span class="nav_image">
+        <img src="/assets/Logo.png" alt="logo_img" />
+      </span>
+      <span class="logo_name">ARCO</span>
+      <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+      <i class="bx bx-x" id="sidebar-close"></i>
+    </div>
+
+    <div class="menu_container">
+      <div class="menu_items">
+        <ul class="menu_item">
+          <li class="item">
+            <a [routerLink]="['/dashboard']" class="link flex">
+              <i class="bx bx-home-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="item">
+            <a [routerLink]="['/create']" class="link flex">
+              <i class="bx bx-plus-circle"></i>
+              <span>Create</span>
+            </a>
+          </li>
+          <li class="item">
+            <a [routerLink]="['/collage']" class="link flex">
+              <i class="bx bx-square"></i>
+              <span>Collage</span>
+            </a>
+          </li>
+          <li class="item">
+            <a [routerLink]="['/summary']" class="link flex">
+              <i class="bx bx-grid-alt"></i>
+              <span>Summary</span>
+            </a>
+          </li>
+          <li class="item">
+            <a [routerLink]="['/flipbook']" class="link flex">
+              <i class="bx bx-book"></i>
+              <span>Flipbook</span>
+            </a>
+          </li>
+          <li class="item">
+            <a [routerLink]="['/profile']" class="link flex">
+              <i class="bx bx-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="item">
+            <a [routerLink]="['/report']" class="link flex">
+              <i class="bx bxs-report"></i>
+              <span>Report</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="menu_item">
+          <div class="menu_title flex">
+            <span class="title">Setting</span>
+            <span class="line"></span>
+          </div>
+          <li class="item">
+            <a href="#" class="link flex">
+              <i class="bx bx-flag"></i>
+              <span>Notice Board</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#" class="link flex">
+              <i class="bx bx-award"></i>
+              <span>Award</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="#" class="link flex">
+              <i class="bx bx-cog"></i>
+              <span>Setting</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar_profile flex">
+        <span class="nav_image">
+          <img src="/assets/user.png" alt="logo_img"/>
+        </span>
+        <div class="data_text">
+          <span class="name">Name User</span>
+          <span class="email">Useremail.com</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+

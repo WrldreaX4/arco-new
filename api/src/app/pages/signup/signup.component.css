@@ -6,13 +6,22 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
 .parent{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 98vh;
     height: 500px;
-    background: #efefef;
+    background-image: url("/assets/background.png");
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 .login-box{
     display: flex;
@@ -27,7 +36,7 @@
     margin: 20px 0 40px 0;
 }
 .login-header header{
-    color: #ffa54c;
+    color: #424242;
     font-size: 30px;
     font-weight: 700;
     margin-top: -50px;
