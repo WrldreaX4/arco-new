@@ -8,36 +8,28 @@
   </head>
   <body>
 <app-navbar></app-navbar>
-
     <section>
-    <div class="main-body">
+      <div class="main-body">
         <h2>Dashboard</h2>
-        <div class="promo_card">
+        <div class="promo_card"><!--Promo Card-->
           <h1>Welcome to ARCO</h1>
           <span>Annual Report with Pic Collage.</span>
           <button>Learn More</button>
         </div>
-      </div>
-
-      <div class="container">
-        <span class="title">Recent</span>
-      <div class="slide hi-slide">
-        <div class="hi-prev">
-          <div class="hi-next">
-            <ul>
-              <li><img src="">1</li>
-              <li><img src="">2</li>
-              <li><img src="">3</li>
-              <li><img src="">4</li>
-              <li><img src="">5</li>
-              <li><img src="">6</li>
-              <li><img src="">7</li>
-            </ul>
-          </div>
+        <div class="gallery">
+            <div class="gallery-container">
+                <img class="gallery-item gallery-item-1" src="/assets/orange.jpg" data-index="1">
+                <img class="gallery-item gallery-item-2" src="/assets/orange.jpg" data-index="2">
+                <img class="gallery-item gallery-item-3" src="/assets/orange.jpg" data-index="3">
+                <img class="gallery-item gallery-item-4" src="/assets/orange.jpg" data-index="4">
+                <img class="gallery-item gallery-item-5" src="/assets/orange.jpg" data-index="5">
+            </div>
+            <div class="gallery-controls"></div>
         </div>
-      </div>
     </div>
   </section>
+
+  <script src="/dashboard.js"></script>
   </body>
 </html>
 
