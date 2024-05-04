@@ -7,6 +7,7 @@ import { CreateformComponent } from './pages/createform/createform.component';
 import { FlipbookComponent } from './pages/flipbook/flipbook.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportComponent } from './pages/report/report.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
     {
