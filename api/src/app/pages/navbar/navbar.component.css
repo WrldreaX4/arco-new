@@ -8,7 +8,7 @@ body
 }
 
 .thisislogo{
-    
+
 }
 
 .header img {
@@ -120,7 +120,6 @@ width:55px;
 overflow:hidden;
 -webkit-transition:width .2s linear;
 transition:width .2s linear;
--webkit-transform:translateZ(0) scale(1,1);
 box-shadow: 1px 0 15px rgba(0, 0, 0, 0.07);
   opacity:1;
 }
@@ -148,7 +147,6 @@ border-spacing:0;
 color:#8a8a8a;
 font-size: 13px;
 text-decoration:none;
--webkit-transform:translateZ(0) scale(1,1);
 -webkit-transition:all .14s linear;
 transition:all .14s linear;
 font-family: "Poppins", sans-serif;
@@ -183,9 +181,6 @@ font-size: 18px;
 color: black;
 }
 
-.main-menu .share {
-}
-
 
 
 .main-menu .fb-like {
@@ -218,7 +213,6 @@ overflow:visible;
 
 
 .settings:hover, settings:focus {   
-  background:url( https://s17.postimg.org/74cl7s05b/logo_hover.jpg);
   -webkit-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
 -moz-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
 -o-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
@@ -226,7 +220,6 @@ transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
 }
 
 .settings:active, settings:focus {   
-  background:url( https://s3.postimg.org/bqfooag4z/startific.jpg);
   -webkit-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
 -moz-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
 -o-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
