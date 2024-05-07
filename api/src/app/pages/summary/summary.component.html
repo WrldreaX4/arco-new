@@ -1,1 +1,120 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <app-navbar></app-navbar>
+
+<div class="container">
+    <h4>User Summary</h4>
+</div>
+<div class="container box">
+    <div class="upper">
+        <h4 id="selected-range">Select Date Range</h4>
+        <div class="range">
+          <button (click)="setDayRange()">Day</button>
+          <button (click)="setWeekRange()">Week</button>
+          <button (click)="setMonthRange()">Month</button>
+          <button (click)="setYearRange()">Year</button>
+          <button id="date-range-icon" class="date-picker-button" aria-label="Select a date range">
+            <i class="fas fa-calendar-alt"></i> 
+          </button>
+        </div>
+      </div>
+    <div class="middle">
+        <div class="row activities">
+
+            <!-- //Event -->
+            <div *ngFor="let event of filteredEventReport" class="col-md-2">
+                    <div class="card-t">
+                        <div class="card">
+                            <div class="day">{{ formatDate(event.event_date) }}</div> 
+                            <div class="date">{{ formatDate1(event.event_date) }}</div> 
+                            <div class="activity">{{ event.event_name }}</div>
+
+                        </div>
+                    </div>
+            </div>
+            <div *ngIf="!eventReport">
+                <p>No event report data available.</p>
+              </div>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+    <div class="details">
+        <!-- Each row represents a single item with two columns (details and actions) -->
+        <div *ngFor="let annual of annualReport" class="laman row my-3">
+            <!-- Main details -->
+            <div class="col-md-9">
+                <div class="details-p">
+                    <h5>{{ annual.title }}</h5>
+                    <span>{{ formatDate2(annual.created_at) }}</span>
+                </div>
+                <p>{{ annual.executive_summary }}</p>
+            </div>
+
+            <!-- Edit button -->
+            <div class="col-md-3 text-right">
+                <button class="stylish-gray-button">Edit</button>
+            </div>
+        </div>
+
+        <!-- Event Report -->
+        <div *ngFor="let event of eventReport" class="laman row my-3">
+            <!-- Main details -->
+            <div class="col-md-9">
+                <div class="details-p">
+                    <h5>{{ event.event_name }}</h5>
+                    <span>{{ formatDate2(event.event_date) }}</span>
+                </div>
+                <p>{{ event.summary }}</p>
+            </div>
+
+            <!-- Edit button -->
+            <div class="col-md-3 text-right">
+                <button class="stylish-gray-button">Edit</button>
+            </div>
+        </div>
+
+     
+        <div *ngIf="!eventReport" class="row my-3">
+            <div class="col-12">
+                <p>No event report data available.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

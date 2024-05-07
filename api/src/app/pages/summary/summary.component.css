@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.box {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.upper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.range {
+    display: flex;
+    gap: 10px;
+}
+
+.range button {
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.activity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+.card-t {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    transform: translateY(20px);
+}
+
+/* The card itself */
+.card {
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 200px; /* Width of the card */
+    overflow: hidden; /* Prevent content overflow */
+    margin-top: 20px;
+}
+
+/* Top section for the day */
+.card .day {
+    background-color: gray; /* Gray background for the day */
+    color: white; /* White text */
+    text-align: center; /* Center the text */
+    padding: 10px; /* Padding */
+    font-weight: bold; /* Bold text */
+}
+
+/* Middle section for the date */
+.card .date {
+    background-color: white; /* White background for the date */
+    color: black; /* Black text */
+    text-align: center; /* Center the text */
+    padding: 10px; /* Padding */
+}
+
+/* Bottom section for the activity name */
+.card .activity {
+    background-color: #f5f5f5; /* Light gray background for the activity */
+    color: black; /* Black text */
+    text-align: center; /* Center the text */
+    padding: 10px; /* Padding */
+}
+
+.activities {
+    display: flex;
+    justify-content: center;
+}
+
+.details {
+    margin-top: 50px;
+}
+
+.details-p {
+    display: flex;
+    gap: 15px;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+}
+
+.content p {
+    background-color: #d6cfcf;
+    border-radius: 10px;
+    padding: 4px;
+}
+.form-control {
+    width: 100px;
+}
+.form-control::placeholder {
+    font-size: 14px
+}
+
+.laman {
+    display: flex;
+    border-top: 1px solid #ccc; /* Add a 2px border around the content */
+    border-bottom: 1px solid #ccc; /* Add a 2px border around the content */
+    padding: 10px; /* Padding inside the border */
+    margin: 10px 0; /* Space between bordered sections */
+}
+
+
+.stylish-gray-button {
+    background: linear-gradient(135deg, #9e9e9e, #b8b2b2); /* Gradient in gray tones */
+    border: none; /* No border */
+    border-radius: 8px; /* Rounded corners for a soft look */
+    color: #ffffff; /* White text for contrast */
+    padding: 10px 20px; /* Comfortable padding */
+    font-size: 16px; /* Readable font size */
+    font-weight: 600; /* Slightly bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.3s ease; /* Smooth transitions */
+  }
+  
+  .stylish-gray-button:hover {
+    background: linear-gradient(135deg, #757575, #424242); /* Darker on hover */
+    transform: translateY(-2px); /* Lift the button on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+  }
+  
+  .stylish-gray-button:active {
+    transform: translateY(0); /* Reset translation on click */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Return to original shadow */
+  }
+  
