@@ -1,97 +1,98 @@
-<nav class="sidebar locked">
-    <div class="logo_items flex">
-      <span class="nav_image">
-        <img src="./assets/Logo.png" alt="logo_img" />
-      </span>
-      <span class="logo_name">ARCO</span>
-      <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
-      <i class="bx bx-x" id="sidebar-close"></i>
-    </div>
+<head>
 
-    <div class="menu_container">
-      <div class="menu_items">
-        <ul class="menu_item">
-          <li class="item">
-            <a [routerLink]="['/dashboard']" class="link flex">
-              <i class="bx bx-home-alt"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li class="item">
-            <a [routerLink]="['/create']" class="link flex">
-              <i class="bx bx-plus-circle"></i>
-              <span>Create</span>
-            </a>
-          </li>
-          <li class="item">
-            <a [routerLink]="['/collage']" class="link flex">
-              <i class="bx bx-square"></i>
-              <span>Collage</span>
-            </a>
-          </li>
-          <li class="item">
-            <a [routerLink]="['/summary']" class="link flex">
-              <i class="bx bx-grid-alt"></i>
-              <span>Summary</span>
-            </a>
-          </li>
-          <li class="item">
-            <a [routerLink]="['/flipbook']" class="link flex">
-              <i class="bx bx-book"></i>
-              <span>Flipbook</span>
-            </a>
-          </li>
-          <li class="item">
-            <a [routerLink]="['/profile']" class="link flex">
-              <i class="bx bx-user"></i>
-              <span>Profile</span>
-            </a>
-          </li>
-          <li class="item">
-            <a [routerLink]="['/report']" class="link flex">
-              <i class="bx bxs-report"></i>
-              <span>Report</span>
-            </a>
-          </li>
-        </ul>
+<link rel="stylesheet" type="text/css" href="navbar.component.css">
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-        <ul class="menu_item">
-          <div class="menu_title flex">
-            <span class="title">Setting</span>
-            <span class="line"></span>
-          </div>
-          <li class="item">
-            <a href="#" class="link flex">
-              <i class="bx bx-flag"></i>
-              <span>Notice Board</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="#" class="link flex">
-              <i class="bx bx-award"></i>
-              <span>Award</span>
-            </a>
-          </li>
-          <li class="item">
-            <a href="#" class="link flex">
-              <i class="bx bx-cog"></i>
-              <span>Setting</span>
-            </a>
-          </li>
-        </ul>
-      </div>
 
-      <div class="sidebar_profile flex">
-        <span class="nav_image">
-          <img src="./assets/user.png" alt="logo_img"/>
-        </span>
-        <div class="data_text">
-          <span class="name">Name User</span>
-          <span class="email">Useremail.com</span>
-        </div>
-      </div>
-    </div>
-  </nav>
   
-  <script src="/pages/navbar/navbar.js"></script>
+ 
 
+
+
+</head>
+<body>
+
+    <!--<nav class="thisislogo"> the logo isnt working, need to fix it
+        <img src="/src/assets/Logo.png">
+    </nav>-->
+
+<nav class="main-menu">
+
+
+<div class="settings"></div>
+<div class="scrollbar" id="style-1">
+      
+<ul>
+  
+<li>                                   
+<a [routerLink]="['/dashboard']">
+<i class="fa fa-home"></i>
+<span class="nav-text">Dashboard</span>
+</a>
+</li>   
+   
+<li>                                 
+<a [routerLink]="['/create']">
+<i class="fa fa-plus-circle"></i>
+<span class="nav-text">Create</span>
+</a>
+</li>   
+
+    
+<li>                                 
+<a [routerLink]="['/collage']">
+<i class="fa fa-square-o"></i>
+<span class="nav-text">Collage</span>
+</a>
+</li>   
+  
+
+
+<li class="darkerlishadow">
+<a [routerLink]="['/summary']">
+<i class="fa fa-calendar"></i>
+<span class="nav-text">SUMMARY</span>
+</a>
+</li>
+  
+<li class="darkerli">
+<a [routerLink]="['/create']">
+<i class="fa fa-book"></i>
+<span class="nav-text">FLIPBOOK</span>
+</a>
+</li>
+  
+<li class="darkerli">
+<a [routerLink]="['/profile']">
+<i class="fa fa-user"></i>
+<span class="nav-text">PROFILE</span>
+</a>
+</li>
+  
+<li class="darkerli">
+<a [routerLink]="['/report']">
+<i class="fa fa-file"></i>
+ <span class="nav-text">REPORT</span>
+</a>
+</li>
+  
+<ul class="logout">
+<li>
+                   <a [routerLink]="['/settings']">
+                         <i class="fa fa-cog"></i>
+                        <span class="nav-text">
+                            SETTING
+                        </span>
+                        
+                    </a>
+</li>  
+</ul>
+
+  
+
+      
+  
+  

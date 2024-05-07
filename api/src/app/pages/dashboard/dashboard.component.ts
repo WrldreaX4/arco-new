@@ -8,6 +8,7 @@ import { FlipbookComponent } from '../flipbook/flipbook.component';
 import { ReportComponent } from '../report/report.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -35,5 +36,7 @@ export class DashboardComponent implements OnInit {
   }
     )
   }
+
+
   
 }
