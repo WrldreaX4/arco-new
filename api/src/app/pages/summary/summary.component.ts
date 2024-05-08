@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +13,7 @@ import  flatpickr  from 'flatpickr';
   styleUrl: './summary.component.css',
   providers: [DatePipe]
 })
-export class SummaryComponent implements AfterViewInit {
+export class SummaryComponent implements AfterViewInit, OnDestroy {
   private dateRangePicker: flatpickr.Instance | null = null; // Initialize with null
     filteredAnnualReport: any[] = [];
     filteredEventReport: any[] = [];
@@ -69,12 +69,7 @@ export class SummaryComponent implements AfterViewInit {
       return transformedDate !== null ? transformedDate : null;
     }
 
-
-
-    
-
     ngAfterViewInit() {
-      // Ensure this returns a single instance
       const pickerInstance = flatpickr('#date-range-icon', {
         mode: 'range',
         dateFormat: 'F j, Y',
@@ -82,10 +77,17 @@ export class SummaryComponent implements AfterViewInit {
           this.updateSelectedRangeText(selectedDates);
         },
       });
-  
-      // Assign the instance to dateRangePicker
       this.dateRangePicker = Array.isArray(pickerInstance) ? pickerInstance[0] : pickerInstance;
     }
+
+    ngOnDestroy() {
+      if (this.dateRangePicker) {
+        this.dateRangePicker.destroy();
+        this.dateRangePicker = null; // Ensures cleanup
+      }
+    }
+
+    
   
     private updateSelectedRangeText(selectedDates: Date[]) {
       const selectedRange = selectedDates
