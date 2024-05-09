@@ -205,6 +205,8 @@ body:not(.sidebar-hovered) .main-body {
 .main-body h2 {
   margin-bottom: 20px;
   color: #d99e6d;
+  font-size: 35px;
+  font-weight: 600;
 }
 
 .promo_card {
