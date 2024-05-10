@@ -97,11 +97,11 @@ main {
     padding-bottom: 15px;
 }
 
-.title h1{
+.title h1 {
     position: absolute; 
     display: flex;
     padding: 20px;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 1000px;
     color: #4F4A45;
     font-size: 35px;
@@ -123,30 +123,25 @@ main {
     margin-left: 40vh;
     padding-bottom: 30px;
 }
-.imgUps {
-    position: absolute;
-    top: 55%; /* Position from the top */
-    left: 29%; /* Position from the left */
-    transform: translate(-50%, -50%); /* Translate back by half of its own width and height */
-    display: grid;
+.imgUps{
     grid-template-columns: repeat(8, 1fr); 
     grid-template-rows: repeat(8, 1fr); 
-    gap: 5px; /* Adjust the gap between grid items */
-    column-gap: 50px;
-    border: 1px solid black; /* Add border */
-    border-radius: 20px; /* Add border radius */
-    width: 300px; /* Adjust the width of the container */
-    height: 265px; /* Adjust the height of the container */
-    padding: 5px; /* Add padding to the container */
-    box-sizing:content-box; /* Include border and padding in the width and height */
+    column-gap: 2px;
+    row-gap: 2px;
+    border: 2px solid #4F4A45; 
+    border-radius: 10px; 
+    width: 200px; 
+    height: 300px; 
+    padding: 5px; 
 }
 
 .imgUps img {
     max-width: 100%; /* Adjust this value to set the maximum width of the displayed images */
     max-height: 100%; /* Adjust this value to set the maximum height of the displayed images */
     object-fit: fill; /* Ensure the entire image fits within the grid cell */
-    border-radius: 10px; /* Optional: Add border radius to the images */
+    border-radius: 3px; /* Optional: Add border radius to the images */
     transition: opacity 1s ease; /* Add transition effect */
+
 }
 
 .imgUps img:hover {
@@ -161,7 +156,12 @@ main {
 }
 
 .imgUps.collage img {
-    width: 250%; /* Use the full width of the grid cell */
-    height: 200%; /* Maintain aspect ratio */
-    object-fit: cover; 
+    width: 300%; /* Use the full width of the grid cell */
+    height: 250%; /* Maintain aspect ratio */
+    image-resolution: 1920, 1080px;
+    object-fit: cover;
+
+}
+.container light-style flex-grow-1 container-p-y {
+    font-family: 'Poppins', sans-serif;
 }
