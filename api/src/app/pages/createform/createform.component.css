@@ -1,0 +1,17 @@
+.cardy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.gitna {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
