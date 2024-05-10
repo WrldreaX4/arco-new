@@ -10,8 +10,11 @@ body{
 }
 
 .createf{
-    margin-top: 5px;
+    font-weight: 600;
+    font-size: 40px;
+    margin-top: 12px;
     margin-left: 90px;
+    box-sizing: border-box;
     color: #d99e6d;
 }
 
