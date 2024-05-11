@@ -82,9 +82,6 @@ background-color: #BFBFBF;
 }
 /* Scrollbar End */ 
 
-
-
-
 .fa-lg {
 font-size: 1em;
   
@@ -103,10 +100,10 @@ color:  rgb(236, 168, 113);
 
 
 .main-menu:hover, nav.main-menu.expanded {
+
 width:250px;
 overflow:hidden;
 opacity:1;
-
 }
 
 .main-menu {
@@ -275,8 +272,6 @@ box-shadow:         inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
 }
 
 /* Darker element side menu End*/
-
-
 
 
 .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {

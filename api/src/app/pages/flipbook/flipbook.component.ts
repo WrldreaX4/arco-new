@@ -13,5 +13,5 @@ import { ProfileComponent } from '../profile/profile.component';
   styleUrl: './flipbook.component.css'
 })
 export class FlipbookComponent {
-
+  
 }
