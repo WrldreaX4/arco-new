@@ -7,12 +7,12 @@ import { CreateformComponent } from './pages/createform/createform.component';
 import { FlipbookComponent } from './pages/flipbook/flipbook.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportComponent } from './pages/report/report.component';
-import { AdminComponent } from './pages/admin/admin.component';
+import { ProjectReportStatusComponent } from './pages/projectreportstatus/projectreportstatus.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: '/login',
         pathMatch: 'full'
     },
     {
@@ -20,31 +20,35 @@ export const routes: Routes = [
         component: LoginComponent
     },
     {
-       path: 'signup',
-       component: SignupComponent
+        path: 'signup',
+        component: SignupComponent
     },
     {
-        path: 'dashboard', 
+        path: 'dashboard',
         component: DashboardComponent
     },
     {
-        path: 'create', 
+        path: 'create',
         component: CreateformComponent
-    },    
+    },
     {
-        path: 'summary', 
+        path: 'summary',
         component: SummaryComponent
-    },    
+    },
     {
-        path: 'flipbook', 
+        path: 'flipbook',
         component: FlipbookComponent
-    },  
+    },
     {
-        path: 'profile', 
+        path: 'profile',
         component: ProfileComponent
-    },   
+    },
     {
-        path: 'report', 
+        path: 'report',
         component: ReportComponent
-    },     
+    },
+    {
+        path: 'projectreportstatus',
+        component: ProjectReportStatusComponent
+    },
 ];

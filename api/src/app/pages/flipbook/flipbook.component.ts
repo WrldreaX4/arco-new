@@ -8,7 +8,7 @@ import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: 'app-flipbook',
   standalone: true,
-  imports: [SummaryComponent, NavbarComponent, RouterLink, RouterOutlet, RouterModule, ReportComponent, ProfileComponent],
+  imports: [SummaryComponent, NavbarComponent, RouterLink, RouterOutlet, RouterModule, ReportComponent, ProfileComponent,NavbarComponent],
   templateUrl: './flipbook.component.html',
   styleUrl: './flipbook.component.css'
 })
