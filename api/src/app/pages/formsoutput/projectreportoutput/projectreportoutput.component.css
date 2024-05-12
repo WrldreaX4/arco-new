@@ -47,7 +47,7 @@ h2 {
     margin-bottom: -5px;
 }
 
-.project-Details .form-group input {
+.project-Details .form-group p {
     flex: 2; /* Take up 2/3 of the space */
     margin-left: 10px; /* Add some space between label and input */
     border: 1px solid #ddd;
@@ -62,13 +62,13 @@ img {
     height: auto;
 }
 
-input {
+p {
     border: none;
     outline: none;
     text-align: center;
 }
 
-input:hover {
+p:hover {
     border: none;
     outline: none;
 }
@@ -134,7 +134,7 @@ th {
     margin-bottom: -5px;
 }
 
-.status-progress .form-group input {
+.status-progress .form-group p {
     flex: 2; /* Take up 2/3 of the space */
     margin-left: 10px; /* Add some space between label and input */
     border: 1px solid #ddd;

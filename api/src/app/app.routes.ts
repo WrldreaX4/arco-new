@@ -12,6 +12,8 @@ import { FinancialreportComponent } from './pages/forms/financialreport/financia
 import { EventformComponent } from './pages/forms/eventform/eventform.component';
 import { AnnualreportoutputComponent } from './pages/formsoutput/annualreportoutput/annualreportoutput.component';
 import { EventreportoutputComponent } from './pages/formsoutput/eventreportoutput/eventreportoutput.component';
+import { ProjectReportStatusComponent } from './pages/forms/projectreportstatus/projectreportstatus.component';
+import { ProjectreportoutputComponent } from './pages/formsoutput/projectreportoutput/projectreportoutput.component';
 
 export const routes: Routes = [
 
@@ -73,11 +75,11 @@ export const routes: Routes = [
         component: ProfileComponent
     },
     {
-        path: 'report',
-        component: ReportComponent
+        path: 'formsoutput/projectreportoutput',
+        component: ProjectreportoutputComponent
     },
-    // {
-    //     path: 'projectreportstatus',
-    //     component: ProjectReportStatusComponent
-    // },
+     {
+         path: 'forms/projectreportstatus',
+        component: ProjectReportStatusComponent
+     },
 ];

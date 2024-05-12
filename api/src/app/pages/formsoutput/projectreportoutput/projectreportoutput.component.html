@@ -1,28 +1,29 @@
 <div class="body">
     <app-navbar></app-navbar>
-    <form [formGroup]="projectStatusReport" (ngSubmit)="submitAndNavigate()">
+    <form>
         <div class="container">
             <img src="/assets/header.png" alt="Project Header">
+            
             <h1>Project Status Report</h1>
             <div class="date-column">
                 <div class="form-group">
                     <label for="start-date">Start Date:</label>
-                    <input type="date" id="start-date" formControlName="startDate" class="form-control" required [ngModel]="formatDate(projectStatusReport.get('startDate')?.value)">
+                    <p>{{ this.startDate }}</p>
                 </div>
                 <div class="form-group">
                     <label for="end-date">End Date:</label>
-                    <input type="date" id="end-date" formControlName="endDate" class="form-control" required>
+                    <p>{{ this.endDate }}</p>
                 </div>
             </div>
             <div class="project-Details">
             <h2>Project Details :</h2>
             <div class="form-group">
                 <label for="project-name">Project Name :</label>
-                <input type="text" id="project-name" formControlName="projectName" class="form-control" required>
+                <p>{{ this.projectName }}</p>
             </div>
             <div class="form-group">
                 <label for="project-manager">Project Manager :</label>
-                <input type="text" id="project-manager" formControlName="projectManager" class="form-control" required>
+                <p>{{ this.projectManager }}</p>
             </div>
             
         </div>
@@ -30,11 +31,11 @@
                 <h2>Overall Progress Details :</h2>
                 <div class="form-group">
                     <label for="status">Status :</label>
-                    <input type="text" id="status" class="form-control" formControlName="statusDesc" required>
+                    <p>{{ this.statusDesc }}</p>
                 </div>
                 <div class="form-group">
                     <label for="overall-progress">Overall Progress :</label>
-                    <input type="text" id="overall-progress" formControlName="overallProgress" class="form-control" required>
+                    <p>{{ this.overallProgress }}</p>
                 </div>
             </div>
             <div class="milestones">
@@ -45,8 +46,8 @@
                         <th>Completion Date</th>
                     </tr>
                     <tr>
-                        <td><input type="text" [formControlName]="'milestoneDesc'" class="form-control"></td>
-                        <td><input type="date" [formControlName]="'compeDate'" class="form-control"></td>
+                        <td><p>{{ this.milestoneDesc }}</p></td>
+                        <td><p>{{ this.compeDate }}</p></td>
                     </tr>
                 </table>
             </div>
@@ -58,8 +59,8 @@
                         <th>Status</th>
                     </tr>
                     <tr>
-                        <td><input type="text" [formControlName]="'taskDesc'" class="form-control"></td>
-                        <td><input type="text" [formControlName]="'stat'" class="form-control"></td>
+                        <td><p>{{ this.taskDesc }}</p></td>
+                        <td><p>{{ this.stat }}</p></td>
                     </tr>
                 </table>
             </div>
@@ -71,13 +72,13 @@
                         <th>Priority</th>
                     </tr>
                     <tr>
-                        <td><input type="text" [formControlName]="'issuesName'" class="form-control"></td>
-                        <td><input type="text" [formControlName]="'issuesPrio'" class="form-control"></td>
+                        <td><p>{{ this.issuesName }}</p></td>
+                        <td><p>{{ this.issuesPrio }}</p></td>
                     </tr>
                 </table>
             </div>
             <div class="button-container">
-                <button type="submit">Submit</button>
+                <button (click)="downloadPDF()">Download as PDF</button>
             </div>
         </div>
     </form>
