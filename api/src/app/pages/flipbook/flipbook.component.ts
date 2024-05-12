@@ -10,10 +10,10 @@ import { CollageComponent } from '../collage/collage.component';
 @Component({
   selector: 'app-flipbook',
   standalone: true,
-  imports: [SummaryComponent, NavbarComponent, RouterLink, RouterOutlet, RouterModule, ReportComponent, ProfileComponent, DashboardComponent, CollageComponent],
+  imports: [SummaryComponent, NavbarComponent, RouterLink, RouterOutlet, RouterModule, ReportComponent, ProfileComponent,NavbarComponent],
   templateUrl: './flipbook.component.html',
   styleUrl: './flipbook.component.css'
 })
 export class FlipbookComponent {
-
+  
 }

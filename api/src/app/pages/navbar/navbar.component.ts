@@ -9,7 +9,7 @@ import { ReportComponent } from '../report/report.component';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterOutlet, CreateformComponent, SummaryComponent, ProfileComponent,FlipbookComponent, ReportComponent],
+  imports: [RouterLink, RouterModule, RouterOutlet],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
