@@ -1,9 +1,56 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+
+
+
+body{
+    background-color: #eeeeee;
+    font-family: "Poppins", sans-serif;
+}
+
+.createf{
+    font-weight: 600;
+    font-size: 40px;
+    margin-top: 12px;
+    margin-left: 90px;
+    box-sizing: border-box;
+    color: #d99e6d;
+}
+
+.button{
+    padding: 1.25rem 1.5rem; /* 20px top/bottom, 24px left/right */
+    font-size: 1rem; /* 16px */
+    width: 100px;
+    font-weight: 500; /* medium */
+    text-align: center;
+    color: #ffffff; /* white */
+    transition: all 0.5s ease-in-out;
+    transform-origin: center;
+    background-color: #d99e6d; /* orange */
+    border-radius: 2rem; /* 12px */
+}
+
+.button:hover{
+    background-color: #d0884d;
+}
+
 .cardy {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    
+}
+
+.cardy p-6{
+    box-shadow: #000000;
+}
+
+
+.cardy mt-4{
+  background-color: #d99e6d;
 }
 
 .title {
@@ -14,4 +61,29 @@
     display: flex;
     align-items: center;
     height: 100vh;
+}
+
+@media (min-width: 1024px) {
+
+  
+  .rounded-xl {
+    border-radius: 1.5rem; /* 24px */
+  }
+  
+  .hover\:bg-gray-600:hover {
+    background-color: #d0884d; /* gray */
+  }
+  
+  .focus\:outline-none:focus {
+    outline: none;
+  }
+  
+  .focus\:ring-2:focus {
+    box-shadow: 0 0 0 2px rgba(255, 81, 0, 0.5); /* blue */
+  }
+  
+  .focus\:ring-offset-2:focus {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+  }
+
 }

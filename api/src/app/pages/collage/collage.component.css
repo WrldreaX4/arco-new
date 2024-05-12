@@ -1,0 +1,150 @@
+/* Style for the container div */
+body{
+    background-image:url(/src/app/assets/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Style for header section */
+header {
+    padding: 20px;
+    margin: 0; /* Reset margin */
+    font-family: "Poppins", sans-serif;
+    font-weight: 1000px;
+}
+
+/* Style for main content section */
+main {
+    padding: 20px;
+    text-align: center; /* Center text content within main */
+    margin: 0; /* Reset margin */
+}
+
+/* Style for image thumbnails */
+.thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center thumbnails horizontally */
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add margin-bottom */
+}
+
+.thumbnails img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 0 10px 10px 0; /* Adjust margin as needed */
+}
+
+#fileInputLabel{
+    position: absolute;
+    font-family: "Poppins", sans-serif;
+    font-weight: 1000px;
+    font-size: 20px;
+    background-color: rgba(245, 245, 245, 0.116);
+    color: #4F4A45;
+    border: none;
+    cursor: pointer;
+    border-radius:30px;
+    margin: -20vh auto;
+    left: 43vh;
+
+}
+
+.title h1 {
+    position: absolute; 
+    display: flex;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 1000px;
+    color: #4F4A45;
+    font-size: 35px;
+    text-align: left;
+    margin-left: 37vh;
+    bottom: 70vh;
+}
+
+.title2 h2{
+    position:absolute;
+    display: flex;
+    text-align: left;
+    font-size: 35px;
+    bottom: 55vh;
+    color: #4F4A45;
+    font-family: "Poppins", sans-serif;
+    font-weight: 1000px;
+    margin-left: 40vh;
+    padding-bottom: 30px;
+}
+.imgUps{
+    grid-template-columns: repeat(8, 1fr); 
+    grid-template-rows: repeat(8, 1fr); 
+    column-gap: 2px;
+    row-gap: 2px;
+    border: 2px solid #4F4A45; 
+    border-radius: 10px; 
+    width: 200px; 
+    height: 300px; 
+    padding: 5px; 
+    margin: 44vh auto; 
+    margin-left: 40vh; 
+    
+}
+
+.imgUps img {
+    max-width: 100%; /* Adjust this value to set the maximum width of the displayed images */
+    max-height: 100%; /* Adjust this value to set the maximum height of the displayed images */
+    object-fit: fill; /* Ensure the entire image fits within the grid cell */
+    border-radius: 3px; /* Optional: Add border radius to the images */
+    transition: opacity 1s ease; /* Add transition effect */
+
+}
+
+.imgUps img:hover {
+    opacity: 0.3;
+}
+
+/* Update the gap property to reduce vertical spacing between images */
+.imgUps.collage {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 4 columns in the grid */
+    gap: 10px; /* Reduce the gap size to make the vertical spaces smaller */
+}
+
+.imgUps.collage img {
+    width: 300%; /* Use the full width of the grid cell */
+    height: 250%; /* Maintain aspect ratio */
+    image-resolution: 1920, 1080px;
+    object-fit: cover;
+
+}
+
+#cancel-btn {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: whitesmoke; 
+    border-radius: 100px;
+    color: #4F4A45;
+    font-weight: 1000px;
+    font-family: "Poppins", sans-serif;
+}
+
+#create-btn{
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 1000px;
+    background-color: #ED7D31;
+    color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 100px;
+}
+
+.buttons{
+    position: absolute;
+    margin: 10vh auto;
+    top: 78vh;
+    margin-left: 40vh;   
+}

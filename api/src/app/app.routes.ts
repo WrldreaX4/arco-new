@@ -7,7 +7,6 @@ import { CreateformComponent } from './pages/createform/createform.component';
 import { FlipbookComponent } from './pages/flipbook/flipbook.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportComponent } from './pages/report/report.component';
-import { AdminComponent } from './pages/admin/admin.component';
 import { AnnualreportComponent } from './pages/forms/annualreport/annualreport.component';
 import { FinancialreportComponent } from './pages/forms/financialreport/financialreport.component';
 import { EventformComponent } from './pages/forms/eventform/eventform.component';
@@ -15,30 +14,26 @@ import { AnnualreportoutputComponent } from './pages/formsoutput/annualreportout
 import { EventreportoutputComponent } from './pages/formsoutput/eventreportoutput/eventreportoutput.component';
 
 export const routes: Routes = [
-    // {
-    //     path: '',
-    //     redirectTo: 'login',
-    //     pathMatch: 'full'
-    // },
-        {
+
+      {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: '/login',
         pathMatch: 'full'
-    },
+      },
     {
         path: 'login',
         component: LoginComponent
     },
     {
-       path: 'signup',
-       component: SignupComponent
+        path: 'signup',
+        component: SignupComponent
     },
     {
-        path: 'dashboard', 
+        path: 'dashboard',
         component: DashboardComponent
     },
     {
-        path: 'create', 
+        path: 'create',
         component: CreateformComponent
     },
     {
@@ -66,19 +61,23 @@ export const routes: Routes = [
         component: FinancialreportComponent
     },      
     {
-        path: 'summary', 
+        path: 'summary',
         component: SummaryComponent
-    },    
+    },
     {
-        path: 'flipbook', 
+        path: 'flipbook',
         component: FlipbookComponent
-    },  
+    },
     {
-        path: 'profile', 
+        path: 'profile',
         component: ProfileComponent
-    },   
+    },
     {
-        path: 'report', 
+        path: 'report',
         component: ReportComponent
-    },     
+    },
+    // {
+    //     path: 'projectreportstatus',
+    //     component: ProjectReportStatusComponent
+    // },
 ];

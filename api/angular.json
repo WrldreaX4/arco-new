@@ -28,8 +28,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/app/pages/navbar/navbar.js",
-              "src/app/pages/dashboard/dashboard.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
