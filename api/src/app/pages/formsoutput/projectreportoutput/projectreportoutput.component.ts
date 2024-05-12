@@ -13,46 +13,21 @@ import jsPDF from 'jspdf';
 })
 export class ProjectreportoutputComponent {
 
-    projectStatusReport: any = {};
-    data: any;
+    projectStatusReport: any[]=[];
+    data : any;
   
     constructor(private http: HttpClient){
     }
-  
-    projectManager: any[] = [];
-    projectName: any[] = [];
-    startDate: any[] = [];
-    endDate: any[] = [];
-    statusDesc: any[] = [];
-    overallProgress: any[] = [];
-    milestoneDesc: any[] = [];
-    compeDate: any[] = [];
-    taskDesc: any[] = [];
-    stat: any[] = [];
-    issuesName: any[] = [];
-    issuesPrio: any[] = [];
-
     ngOnInit(): void {
       this.retrieveProjectStatusReport()
     }
   
     retrieveProjectStatusReport(){
       this.http.get('http://localhost/arco/api/get_project_report/17').subscribe(
-        (resp: any) => {
+        (resp:any) => {
           console.log(resp);
-          this.data = resp.payload;
-          this.projectManager = resp.data;
-          this.projectName = resp.data;
-          this.startDate = resp.data;
-          this.endDate = resp.data;
-          this.statusDesc = resp.data;
-          this.overallProgress = resp.data;
-          this.milestoneDesc = resp.data;
-          this.compeDate = resp.data;
-          this.taskDesc = resp.data;
-          this.stat = resp.data;
-          this.issuesName = resp.data;
-          this.issuesPrio = resp.data;
+          this.projectStatusReport = resp.data;
+          
         }, (error) => {
           console.error('Error fetching data:', error);
         }
