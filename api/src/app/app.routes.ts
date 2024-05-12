@@ -8,6 +8,11 @@ import { FlipbookComponent } from './pages/flipbook/flipbook.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportComponent } from './pages/report/report.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AnnualreportComponent } from './pages/forms/annualreport/annualreport.component';
+import { FinancialreportComponent } from './pages/forms/financialreport/financialreport.component';
+import { EventformComponent } from './pages/forms/eventform/eventform.component';
+import { AnnualreportoutputComponent } from './pages/formsoutput/annualreportoutput/annualreportoutput.component';
+import { EventreportoutputComponent } from './pages/formsoutput/eventreportoutput/eventreportoutput.component';
 
 export const routes: Routes = [
     // {
@@ -15,6 +20,11 @@ export const routes: Routes = [
     //     redirectTo: 'login',
     //     pathMatch: 'full'
     // },
+        {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+    },
     {
         path: 'login',
         component: LoginComponent
@@ -30,7 +40,31 @@ export const routes: Routes = [
     {
         path: 'create', 
         component: CreateformComponent
-    },    
+    },
+    {
+        path: 'create/annualreport', 
+        component: AnnualreportComponent
+    },
+    {
+        path: 'create/eventreport', 
+        component: EventformComponent 
+    },  
+    {
+        path: 'create/financialreport',  
+        component: FinancialreportComponent
+    },
+    {
+        path: 'create/annualreport/view',  
+        component: AnnualreportoutputComponent
+    },   
+    {
+        path: 'create/eventreport/view',  
+        component: EventreportoutputComponent
+    }, 
+    {
+        path: 'create/financialreport/view',  
+        component: FinancialreportComponent
+    },      
     {
         path: 'summary', 
         component: SummaryComponent
