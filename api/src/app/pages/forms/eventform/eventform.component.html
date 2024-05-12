@@ -1,0 +1,135 @@
+<app-navbar></app-navbar>
+
+
+
+<div class="formbold-main-wrapper" >
+    <div class="formbold-form-wrapper">
+        <form [formGroup]="eventForm" (ngSubmit)="submitAndNavigate()">
+  
+            <div class="formbold-input-flex">
+                <div>
+                    <input
+                        type="text"
+                        name="report_title"
+                        id="report_title"
+                        placeholder="Arco Report"
+                        class="formbold-form-input"
+                        style="width: 100%;"
+                        formControlName="event_name"
+                    />
+                    <div *ngIf="eventForm.get('eventname')?.invalid && eventForm.get('eventname')?.touched" class="text-danger">
+                      Event name is required.
+                    </div>
+                    <label for="report_title" class="formbold-form-label">Event Name</label>
+                </div>
+  
+                <div>
+                  <input
+                      type="date"
+                      name="start_date"
+                      id="start_date"
+                      class="formbold-form-input"
+                      formControlName="event_date"
+                  />
+                  <div *ngIf="eventForm.get('eventdate')?.invalid && eventForm.get('eventdate')?.touched" class="text-danger">
+                    Please enter a valid date (YYYY-MM-DD).
+                  </div>
+                  <label for="start_date" class="formbold-form-label">Event Date</label>
+              </div>
+            </div>
+  
+            <div class="formbold-input-flex">
+              <div>
+               <input
+                   type="text"
+                   name="prepared_by"
+                   id="prepared_by"
+                   placeholder="Arco"
+                   class="formbold-form-input"
+                   formControlName="event_title"
+               />
+               <div *ngIf="eventForm.get('eventtitle')?.invalid && eventForm.get('eventtitle')?.touched" class="text-danger">
+                Event title is required.
+              </div>
+               <label for="prepared_by" class="formbold-form-label">Event Title</label>
+           </div>
+       </div>
+  
+       <div class="formbold-input-flex">
+        <div>
+         <input
+             type="text"
+             name="prepared_by"
+             id="prepared_by"
+             placeholder="#8394 example"
+             class="formbold-form-input"
+             formControlName="address"
+         />
+         <div *ngIf="eventForm.get('address')?.invalid && eventForm.get('address')?.touched" class="text-danger">
+          Address is required.
+        </div>
+         <label for="prepared_by" class="formbold-form-label">Event Address</label>
+     </div>
+  </div>
+  
+  
+            <div class="formbold-input-flex">
+                
+                <div>
+                    <input
+                        type="number"
+                        name="end_date"
+                        id="end_date"
+                        class="formbold-form-input"
+                        placeholder="Enter the expected"
+                        formControlName="expected_participants"
+                    />
+                    <div *ngIf="eventForm.get('expectedparticipants')?.invalid && eventForm.get('expectedparticipants')?.touched" class="text-danger">
+                      Please enter a valid number.
+                    </div>
+                    <label for="end_date" class="formbold-form-label">Expected No. of Participants</label>
+                </div>
+            </div>
+  
+            <div class="formbold-input-flex">
+                   <div>
+                    <input
+                        type="number"
+                        name="Total"
+                        id="Enter the total"
+                        placeholder="Prepared By"
+                        class="formbold-form-input"
+                        formControlName="total_participants"
+                    />
+                    <div *ngIf="eventForm.get('totalparticipants')?.invalid && eventForm.get('totalparticipants')?.touched" class="text-danger">
+                      Please enter a valid number.
+                    </div>
+                    <label for="prepared_by" class="formbold-form-label">Total Participants</label>
+                </div>
+            </div>
+  
+  
+  
+  
+  
+  
+  
+            <div class="formbold-textarea">
+                <textarea
+                    rows="6"
+                    name="executive_summary"
+                    id="executive_summary"
+                    placeholder="Summary"
+                    class="formbold-form-input"
+                    formControlName="summary"
+                ></textarea>
+                <div *ngIf="eventForm.get('summary')?.invalid && eventForm.get('summary')?.touched" class="text-danger">
+                  Summary is required.
+                </div>
+                <label for="executive_summary" class="formbold-form-label">Summary</label>
+            </div>
+  
+            <button class="formbold-btn" type="submit"  [disabled]="!eventForm.valid">Submit</button>
+        </form>
+    </div>
+  </div>

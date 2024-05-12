@@ -4,6 +4,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import  flatpickr  from 'flatpickr';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-summary',
@@ -11,22 +12,26 @@ import  flatpickr  from 'flatpickr';
   imports: [RouterLink,RouterModule, RouterOutlet, NavbarComponent, NgFor, NgIf, DatePipe],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.css',
-  providers: [DatePipe]
+  providers: [DatePipe, JsonPipe]
 })
 export class SummaryComponent implements AfterViewInit, OnDestroy {
   private dateRangePicker: flatpickr.Instance | null = null; // Initialize with null
     filteredAnnualReport: any[] = [];
     filteredEventReport: any[] = [];
+    filteredFinancialReport: any[] = [];
     showMoreItems = false;
     annualReport: any = {};
     eventReport: any = {}
+    financialReport: any = {}
 
     constructor(private http: HttpClient, private datePipe: DatePipe) {
       this.annualReport = [];
       this.eventReport = [];
+      this.financialReport = [];
 
       this.retrieveAnnualReport();
       this.retrieveEventReport();
+      this.retrieveFinancialReport();
     }
 
     retrieveAnnualReport(){
@@ -47,6 +52,17 @@ export class SummaryComponent implements AfterViewInit, OnDestroy {
           this.eventReport = resp.data;
         }
       )
+    }
+
+    retrieveFinancialReport(){
+      this.http.get('http://localhost/arco2/arco/api/financialreportall/2').subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.financialReport = resp.data;
+        }, (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
     }
 
 
@@ -109,6 +125,12 @@ export class SummaryComponent implements AfterViewInit, OnDestroy {
       this.filteredAnnualReport = this.annualReport.filter((report: any) => {
         const reportDate = new Date(report.created_at);
         return reportDate >= start && reportDate <= end;
+      });
+
+      // Filter eventReport
+      this.filteredFinancialReport = this.financialReport.filter((finance: any) => {
+        const financeDate = new Date(finance.start_date); // Adjust the property name as needed
+        return financeDate >= start && financeDate <= end;
       });
     
         // Filter eventReport
