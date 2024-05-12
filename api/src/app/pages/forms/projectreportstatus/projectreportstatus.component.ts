@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 import * as jspdf from 'jspdf';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../../navbar/navbar.component';
 
 @Component({
   selector: 'app-projectreportstatus',
