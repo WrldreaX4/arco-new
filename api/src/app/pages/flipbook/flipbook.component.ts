@@ -4,14 +4,16 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { ReportComponent } from '../report/report.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { CollageComponent } from '../collage/collage.component';
 
 @Component({
   selector: 'app-flipbook',
   standalone: true,
-  imports: [SummaryComponent, NavbarComponent, RouterLink, RouterOutlet, RouterModule, ReportComponent, ProfileComponent,NavbarComponent],
+  imports: [SummaryComponent, NavbarComponent, RouterLink, RouterOutlet, RouterModule, ReportComponent, ProfileComponent, DashboardComponent, CollageComponent],
   templateUrl: './flipbook.component.html',
   styleUrl: './flipbook.component.css'
 })
 export class FlipbookComponent {
-  
+
 }
