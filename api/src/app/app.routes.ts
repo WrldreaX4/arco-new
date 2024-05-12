@@ -7,77 +7,44 @@ import { CreateformComponent } from './pages/createform/createform.component';
 import { FlipbookComponent } from './pages/flipbook/flipbook.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportComponent } from './pages/report/report.component';
-import { AnnualreportComponent } from './pages/forms/annualreport/annualreport.component';
-import { FinancialreportComponent } from './pages/forms/financialreport/financialreport.component';
-import { EventformComponent } from './pages/forms/eventform/eventform.component';
-import { AnnualreportoutputComponent } from './pages/formsoutput/annualreportoutput/annualreportoutput.component';
-import { EventreportoutputComponent } from './pages/formsoutput/eventreportoutput/eventreportoutput.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
-
-      {
+    {
         path: '',
-        redirectTo: '/login',
+        redirectTo: 'login',
         pathMatch: 'full'
-      },
+    },
     {
         path: 'login',
         component: LoginComponent
     },
     {
-        path: 'signup',
-        component: SignupComponent
+       path: 'signup',
+       component: SignupComponent
     },
     {
-        path: 'dashboard',
+        path: 'dashboard', 
         component: DashboardComponent
     },
     {
-        path: 'create',
+        path: 'create', 
         component: CreateformComponent
-    },
+    },    
     {
-        path: 'create/annualreport', 
-        component: AnnualreportComponent
-    },
+        path: 'summary', 
+        component: SummaryComponent
+    },    
     {
-        path: 'create/eventreport', 
-        component: EventformComponent 
+        path: 'flipbook', 
+        component: FlipbookComponent
     },  
     {
-        path: 'create/financialreport',  
-        component: FinancialreportComponent
-    },
-    {
-        path: 'create/annualreport/view',  
-        component: AnnualreportoutputComponent
+        path: 'profile', 
+        component: ProfileComponent
     },   
     {
-        path: 'create/eventreport/view',  
-        component: EventreportoutputComponent
-    }, 
-    {
-        path: 'create/financialreport/view',  
-        component: FinancialreportComponent
-    },      
-    {
-        path: 'summary',
-        component: SummaryComponent
-    },
-    {
-        path: 'flipbook',
-        component: FlipbookComponent
-    },
-    {
-        path: 'profile',
-        component: ProfileComponent
-    },
-    {
-        path: 'report',
+        path: 'report', 
         component: ReportComponent
-    },
-    // {
-    //     path: 'projectreportstatus',
-    //     component: ProjectReportStatusComponent
-    // },
+    },     
 ];
