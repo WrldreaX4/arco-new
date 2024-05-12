@@ -3,7 +3,6 @@ body{
     background-image:url(/src/app/assets/background.png);
     background-size: cover;
     background-repeat: no-repeat;
-    display: column;
 }
 
 /* Style for header section */
@@ -37,64 +36,19 @@ main {
     margin: 0 10px 10px 0; /* Adjust margin as needed */
 }
 
-/* Style for buttons */
-#cancel-btn {
-    font-size: 20px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 1000px;
-    background-color: whitesmoke; 
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    outline: none;
-    border-radius: 80px;
-    margin-top: 20px; /* Adjust margin as needed */
-    position: absolute;
-    display: flex;
-    margin-left: 110vh;
-    bottom: 20vh;
-    color: #4F4A45;
-    font-family: "Poppins", sans-serif;
-    font-weight: 1000px;
-    right: 139vh;
-}
-
-#create-btn{
-    font-size: 20px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 1000px;
-    background-color: #ED7D31;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    outline: none;
-    border-radius: 80px;
-    margin-top: 20px; /* Adjust margin as needed */
-    position: absolute;
-    display: flex;
-    margin-left: 98vh;
-    bottom: 20vh;
-    right: 152vh;
-}
-    
-
 #fileInputLabel{
-    position:fixed;
+    position: absolute;
     font-family: "Poppins", sans-serif;
     font-weight: 1000px;
     font-size: 20px;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.116);
     color: #4F4A45;
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
-    outline: none;
     border-radius:30px;
-    margin-top: 20px;
-    bottom:68vh;
-    margin-left: -60vh;
-    padding-bottom: 15px;
+    margin: -20vh auto;
+    left: 43vh;
+
 }
 
 .title h1 {
@@ -106,7 +60,6 @@ main {
     color: #4F4A45;
     font-size: 35px;
     text-align: left;
-    padding-bottom: -1%;
     margin-left: 37vh;
     bottom: 70vh;
 }
@@ -133,6 +86,9 @@ main {
     width: 200px; 
     height: 300px; 
     padding: 5px; 
+    margin: 44vh auto; 
+    margin-left: 40vh; 
+    
 }
 
 .imgUps img {
@@ -162,6 +118,33 @@ main {
     object-fit: cover;
 
 }
-.container light-style flex-grow-1 container-p-y {
-    font-family: 'Poppins', sans-serif;
+
+#cancel-btn {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: whitesmoke; 
+    border-radius: 100px;
+    color: #4F4A45;
+    font-weight: 1000px;
+    font-family: "Poppins", sans-serif;
+}
+
+#create-btn{
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 1000px;
+    background-color: #ED7D31;
+    color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 100px;
+}
+
+.buttons{
+    position: absolute;
+    margin: 10vh auto;
+    top: 78vh;
+    margin-left: 40vh;   
 }
