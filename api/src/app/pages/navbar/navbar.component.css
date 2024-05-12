@@ -7,9 +7,6 @@ body
 
 }
 
-.thisislogo{
-
-}
 
 .header img {
   width: 50px;
@@ -17,9 +14,6 @@ body
 }
 
 
-.logo{
-  
-}
 
 .settings {
   
@@ -111,7 +105,7 @@ opacity:1;
 
 .main-menu {
 background:white;
-position:absolute;
+position:fixed;
 top:0;
 bottom:0;
 height:100%;
