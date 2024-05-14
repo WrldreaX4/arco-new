@@ -8,60 +8,117 @@
 
 body {
   min-height: 100vh;
-  background: #eeeeee;
+  background-color: #eeeeee;
   transition: all 0.4s ease; /* Add transition for body movement */
 }
 
-.relative.items-center.w-full.px-5.py-12.mx-auto.md\:px-12.lg\:px-24.max-w-7xl {
-  position: relative;
-  align-items: center;
-  width: 100%;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  margin-left: auto;
-  margin-right: auto;
+.grid {
+  object-position: center;
+  border: none; /* Remove any existing border */
+  height: 500px;
+  text-align: center;
+  display: flex; /* Use flexbox layout */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-left: 60px;
 }
 
+.card img {
+  object-position: center; 
+  width: 40px;
+  height: 250px; 
+  margin-bottom: 8px;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
 .createf{
+  font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 40px;
-    margin-top: 12px;
+    margin-top: 15px;
     margin-left: 90px;
     box-sizing: border-box;
     color: #d99e6d;
 }
 
-.button{
-    padding: 1.25rem 1.5rem; /* 20px top/bottom, 24px left/right */
-    font-size: 1rem; /* 16px */
-    width: 100px;
-    font-weight: 500; /* medium */
-    text-align: center;
-    color: #ffffff; /* white */
-    transition: all 0.5s ease-in-out;
-    transform-origin: center;
-    background-color: #d99e6d; /* orange */
-    border-radius: 2rem; /* 12px */
+
+.card {
+  border: transparent;
+  background-color: white;
+  width: 220px;
+  margin-right: 50px; /* Adjust the right margin to control spacing */
+  
 }
 
-.button:hover{
-    background-color: #d0884d;
+.card img {
+  width: 100%;
 }
 
-.cardy {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
+.title {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  top: -20px;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
-.cardy p-6{
-    box-shadow: #000000;
+.desc {
+  margin-top: -20px;
+  font-size: 1rem;
 }
+
+.button {
+  margin-top: 20px;
+  padding: 15px 45px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #d99e6d;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  background-color: #d0884d;
+  transform: scale(1.05); /* Scale up the button on hover */
+}
+
+
+
+.title{
+  font-family: "Poppins", sans-serif;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 10px; /* Equivalent to mb-8 */
+  font-size: 1.5rem; /* Equivalent to text-2xl */
+  font-weight: 600; /* Equivalent to font-semibold */
+  line-height: 1; /* Equivalent to leading-none */
+  letter-spacing: -0.025em; /* Equivalent to tracking-tighter */
+}
+
+.full-container {
+  position: relative;
+  width: 100%;
+  max-width: 80rem; /* Equivalent to max-w-7xl */
+  margin-left: auto; /* Equivalent to mx-auto */
+  margin-right: auto; /* Equivalent to mx-auto */
+  padding-left: 1.25rem; /* Equivalent to px-5 */
+  padding-right: 1.25rem; /* Equivalent to px-5 */
+  padding-top: 3rem; /* Equivalent to py-12 */
+  padding-bottom: 3rem; /* Equivalent to py-12 */
+}
+
 
 
 .cardy mt-4{
@@ -73,12 +130,15 @@ body {
 }
 
 .gitna {
-    display: flex;
-    align-items: center;
-    height: 80vh;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 @media (min-width: 1024px) {
-
+  .full-container {
+    padding-left: 6rem; /* Equivalent to lg:px-24 */
+    padding-right: 6rem; /* Equivalent to lg:px-24 */
+  }
   
   .rounded-xl {
     border-radius: 1.5rem; /* 24px */
@@ -100,6 +160,13 @@ body {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
   }
 
+  .relative.items-center.w-full.px-5.py-12.mx-auto.md\:px-12.lg\:px-24.max-w-7xl {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+  .title{
+  font-size: 1.875rem;
+}
 }
 
 @media (min-width: 768px) {
@@ -107,15 +174,25 @@ body {
     padding-left: 3rem;
     padding-right: 3rem;
   }
-}
-
-@media (min-width: 1024px) {
-  .relative.items-center.w-full.px-5.py-12.mx-auto.md\:px-12.lg\:px-24.max-w-7xl {
-    padding-left: 6rem;
-    padding-right: 6rem;
+  .full-container {
+    padding-left: 3rem; /* Equivalent to md:px-12 */
+    padding-right: 3rem; /* Equivalent to md:px-12 */
   }
 }
 
+
 .max-w-7xl {
   max-width: 80rem; /* Adjust as needed */
+}
+
+@media (min-width: 768px) {
+  .picture {
+    height: 12rem; /* Equivalent to lg:h-48 */
+  }
+}
+
+@media (min-width: 640px) {
+  .picture {
+    height: 9rem; /* Equivalent to md:h-36 */
+  }
 }

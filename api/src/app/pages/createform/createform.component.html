@@ -1,6 +1,5 @@
 <app-navbar></app-navbar>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <link rel="stylesheet" href="createform.component.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -8,50 +7,41 @@
 <h2 class="createf">Create Form</h2>
 
 <section class="gitna">
-    <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
-        <div class="grid w-full grid-cols-1 gap-10 mx-auto lg:grid-cols-4">
-            <div class="cardy p-6">
-                <img class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl" src="../../assets/asset.png" alt="blog">
-
-                <h1 class="mx-auto mb-8 text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl">Annual Report</h1>
-                <p class="mx-auto text-base leading-relaxed text-gray-500">Quick and simple Annual Report Template</p>
-
-                <div class="mt-4">
-                    <button class="px-5 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-gray-500 lg:px-10 rounded-xl hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" [routerLink]="['annualreport']">Select</button>
-                </div>
-            </div>
-            <div class="cardy p-6">
-                <img class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl" src="../../assets/asset.png" alt="blog">
-
-                <h1 class="mx-auto mb-8 text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl">Event Report</h1>
-                <p class="mx-auto text-base leading-relaxed text-gray-500">Quick and simple Annual Report Template</p>
-
-                <div class="cardy mt-4">
-                    <button class="px-5 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-gray-500 lg:px-10 rounded-xl hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" [routerLink]="['eventreport']">Select</button>
-                </div>
-            </div>
-            <div class="cardy p-6">
-                <img class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl" src="../../assets/asset.png" alt="blog">
-
-                <h1 class="mx-auto mb-8 text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl">Financial Report</h1>
-                <p class="mx-auto text-base leading-relaxed text-gray-500">Quick and simple Annual Report Template</p>
-
-                <div class="mt-4">
-                    <button class="px-5 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-gray-500 lg:px-10 rounded-xl hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" [routerLink]="['financialreport']">Select</button>
-
-                </div>
-            </div>
-
-             <div class="cardy p-6">
-                <img class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl" src="../../assets/asset.png" alt="blog">
-
-                <h1 class="mx-auto mb-8 text-2xl font-semibold leading-none tracking-tighter text-neutral-600 text-3xl">Project Report</h1>
-                <p class="mx-auto text-base leading-relaxed text-gray-500">Quick and simple Annual Report Template</p>
-
-                <div class="mt-4">
-                    <button class="px-5 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-gray-500 lg:px-10 rounded-xl hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" [routerLink]="['create']">Select</button>
-                </div>
-            </div>
+  <div class="full-container">
+    <div class="grid">
+      <div class="card">
+        <img class="picture" src="../../assets/asset.png" alt="blog">
+        <h1 class="title">Annual Report</h1>
+        <p class="desc">Quick and simple Annual Report Template</p>
+        <div class="mt-4">
+          <button class="button" [routerLink]="['annualreport']">Select</button>
         </div>
+      </div>
+      <div class="card">
+        <img class="picture" src="../../assets/asset.png" alt="blog">
+        <h1 class="title">Event Report</h1>
+        <p class="desc">Quick and simple Event Report Template</p>
+        <div class="mt-4">
+          <button class="button" [routerLink]="['eventreport']">Select</button>
+        </div>
+      </div>
+      <div class="card">
+        <img class="picture" src="../../assets/asset.png" alt="blog">
+        <h1 class="title">Finance Report</h1>
+        <p class="desc">Quick and simple Finance Report Template</p>
+        <div class="mt-4">
+          <button class="button" [routerLink]="['financialreport']">Select</button>
+        </div>
+      </div>
+      <div class="card">
+        <img class="picture" src="../../assets/asset.png" alt="blog">
+        <h1 class="title">Annual Report</h1>
+        <p class="desc">Quick and simple Annual Report Template</p>
+        <div class="mt-4">
+          <button class="button" [routerLink]="['create']">Select</button>
+        </div>
+      </div>
+      <!-- Repeat for other cards -->
     </div>
+  </div>
 </section>
