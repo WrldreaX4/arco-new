@@ -99,12 +99,6 @@ body {
 .formbold-filename svg {
   cursor: pointer;
 }
-.titlebox {
-  margin-bottom: 20px;
-  color: #d99e6d;
-  font-size: 35px;
-  font-weight: 600;
-}
 
 .formbold-btn {
   font-size: 16px;
@@ -180,6 +174,13 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+.titlebox {
+    margin-left: 100px;
+    margin-bottom: 20px;
+    color: #d99e6d;
+    font-size: 35px;
+    font-weight: 600;
 }
 
 .formbold-add-btn:hover, .formbold-remove-btn:hover {

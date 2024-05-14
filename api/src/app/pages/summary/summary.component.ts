@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import  flatpickr  from 'flatpickr';
 import { JsonPipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -14,7 +15,7 @@ import { JsonPipe } from '@angular/common';
   styleUrl: './summary.component.css',
   providers: [DatePipe, JsonPipe]
 })
-export class SummaryComponent implements AfterViewInit, OnDestroy {
+export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
   private dateRangePicker: flatpickr.Instance | null = null; // Initialize with null
     filteredAnnualReport: any[] = [];
     filteredEventReport: any[] = [];
@@ -24,7 +25,7 @@ export class SummaryComponent implements AfterViewInit, OnDestroy {
     eventReport: any = {}
     financialReport: any = {}
 
-    constructor(private http: HttpClient, private datePipe: DatePipe) {
+    constructor(private http: HttpClient, private datePipe: DatePipe, private route: ActivatedRoute) {
       this.annualReport = [];
       this.eventReport = [];
       this.financialReport = [];
@@ -34,6 +35,9 @@ export class SummaryComponent implements AfterViewInit, OnDestroy {
       this.retrieveFinancialReport();
     }
 
+
+    ngOnInit(): void {
+}
     retrieveAnnualReport(){
       this.http.get('http://localhost/arco2/arco/api/annualreportall/2').subscribe(
         (resp: any) => {

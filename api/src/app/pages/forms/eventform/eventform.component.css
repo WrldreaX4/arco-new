@@ -114,6 +114,12 @@ body {
 .formbold-btn:hover {
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
 }
+.titlebox {
+  margin-bottom: 20px;
+  color: #d99e6d;
+  font-size: 35px;
+  font-weight: 600;
+}
 
 
 
