@@ -41,37 +41,6 @@
                 <p>No event report data available.</p>
               </div>
 
-
-
-              <!-- summary.component.html -->
-
-<!-- Display Financial Report -->
-<div *ngIf="filteredFinancialReport.length > 0">
-    <h2>Filtered Financial Reports</h2>
-    <div class="row">
-      <div *ngFor="let finance of filteredFinancialReport" class="col-md-4">
-        <div class="card">
-          <!-- Display date created -->
-          <div>Date Created: {{ formatDate(finance.date_created) }}</div> 
-          <!-- Display report title -->
-          <div>Report Title: {{ finance.report_title }}</div> 
-          <!-- Display prepared by -->
-          <div>Prepared By: {{ finance.prepared_by }}</div>
-          <!-- Display start and end date -->
-          <div>Start Date: {{ finance.start_date }}</div>
-          <div>End Date: {{ finance.end_date }}</div>
-          <div>Executive Summary: {{ finance.executive_summary }}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- If no financial report data available -->
-  <div *ngIf="!filteredFinancialReport || filteredFinancialReport.length === 0">
-    <p>No financial report data available.</p>
-  </div>
-  
-
    
             
 
@@ -88,35 +57,38 @@
 
     <div class="details">
         <!-- Each row represents a single item with two columns (details and actions) -->
-        <!-- <div *ngFor="let annual of annualReport" class="laman row my-3">
+        <div *ngFor="let annual of annualReport" class="laman row my-3">
             <div class="col-md-9">
                 <div class="details-p">
                     <h5>{{ annual.title }}</h5>
                     <span>{{ formatDate2(annual.created_at) }}</span>
                 </div>
                 <p>{{ annual.executive_summary }}</p>
+                <p> {{ annual.report_id }}</p>
             </div>
 
             
             <div class="col-md-3 text-right">
-                <button class="stylish-gray-button">Edit</button>
+                <button class="stylish-gray-button" [routerLink]="['annualreport', annual.report_id]">Edit</button>
             </div>
-        </div> -->
+        </div>
 
         <!-- Event Report -->
-        <!-- <div *ngFor="let event of eventReport" class="laman row my-3">
+        <div *ngFor="let event of eventReport" class="laman row my-3">
             <div class="col-md-9">
                 <div class="details-p">
                     <h5>{{ event.event_name }}</h5>
                     <span>{{ formatDate2(event.event_date) }}</span>
                 </div>
                 <p>{{ event.summary }}</p>
+                <!-- <p>{{ event.event_id }}</p> -->
+
             </div>
 
             <div class="col-md-3 text-right">
-                <button class="stylish-gray-button">Edit</button>
+                <button class="stylish-gray-button" [routerLink]="['eventreport', event.event_id]">Edit</button>
             </div>
-        </div> -->
+        </div>
 
 
                 <div *ngFor="let entry of financialReport" class="laman row my-3">
@@ -126,10 +98,11 @@
                     <span>{{ formatDate2(entry.date_created) }}</span>
                 </div>
                 <p>{{ entry.executive_summary }}</p>
+                <!-- <p>{{ entry.financialreport_id }}</p> -->
             </div>
 
             <div class="col-md-3 text-right">
-                <button class="stylish-gray-button">Edit</button>
+                <button class="stylish-gray-button" [routerLink]="['financialreport', entry.financialreport_id]">Edit</button>
             </div>
         </div>
 

@@ -7,6 +7,12 @@
 body {
   font-family: "Inter", sans-serif;
 }
+.titlebox {
+  margin-bottom: 20px;
+  color: #d99e6d;
+  font-size: 35px;
+  font-weight: 600;
+}
 .formbold-main-wrapper {
   display: flex;
   align-items: center;

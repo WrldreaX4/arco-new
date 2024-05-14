@@ -52,7 +52,7 @@ body {
   color: #536387;
 }
 .formbold-form-input:focus {
-  border-color: #d99e6d;
+  border-color: #d99e6d;;
 }
 .formbold-form-label {
   color: #07074D;
@@ -98,12 +98,6 @@ body {
 }
 .formbold-filename svg {
   cursor: pointer;
-}
-.titlebox {
-  margin-bottom: 20px;
-  color: #d99e6d;
-  font-size: 35px;
-  font-weight: 600;
 }
 
 .formbold-btn {
@@ -171,7 +165,13 @@ body {
 .formbold-form-input:focus {
   border-color: #6a64f1;
 }
-
+.titlebox {
+    margin-left: 100px;
+    margin-bottom: 20px;
+    color: #d99e6d;
+    font-size: 35px;
+    font-weight: 600;
+}
 .formbold-add-btn, .formbold-remove-btn {
   background: #6a64f1;
   color: white;
