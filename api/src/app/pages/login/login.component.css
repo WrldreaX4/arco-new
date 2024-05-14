@@ -6,6 +6,8 @@
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
+
+
 .wave{
 	position: fixed;
 	bottom: 0;
@@ -14,14 +16,18 @@
 	z-index: -1;
 }
 .container{
+    width: 100%;
     display: flex;
+    position: absolute;
     justify-content: center;
     align-items: center;
     min-height: 98vh;
     height: 500px;
-    background-image: url("/assets/background.png");
+    background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    left: 13%;
+    background-image: url("/assets/background.png");
 }
 .login-box{
     display: flex;
@@ -131,3 +137,9 @@ section a{
         width: 140px; /* Adjust width for smaller screens if necessary */
     }
 }
+
+    @media screen and (max-width: 580px){
+        .container{
+            left: 0%;
+        }
+    }

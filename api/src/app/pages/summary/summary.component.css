@@ -1,16 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+
+
+
 * {
+    font-family: "Poppins", sans-serif;
     box-sizing: border-box;
 }
 
+.body{
+    background-color: #eeeeee;
+}
 .container {
     margin-top: 30px;
 }
 
 .titlebox {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 90px;
     color: #d99e6d;
     font-size: 35px;
     font-weight: 600;
+}
+
+h4 {
+ color: #d99e6d;
 }
 
 .box {
@@ -33,13 +47,23 @@
 }
 
 .range button {
+    color: white;
+    background-color: #d99e6d;
     border: 0;
     outline: 0;
     border-radius: 10px;
     padding-right: 10px;
     padding-left: 10px;
-}
-
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition for smooth animation */
+  }
+  
+  .range button:hover {
+    background-color: #c4844a; /* Change to a darker shade on hover */
+    transform: scale(1.1); /* Slightly scale up on hover */
+  }
 .activity {
     display: flex;
     justify-content: center;
