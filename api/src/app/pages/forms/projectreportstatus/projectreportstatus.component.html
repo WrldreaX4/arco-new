@@ -2,7 +2,6 @@
     <app-navbar></app-navbar>
     <form [formGroup]="projectStatusReport" (ngSubmit)="submitAndNavigate()">
         <div class="container">
-            <img src="/assets/header.png" alt="Project Header">
             <h1>Project Status Report</h1>
             <div class="date-column">
                 <div class="form-group">
@@ -76,9 +75,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="button-container">
-                <button type="submit">Submit</button>
-            </div>
+            <button class="formbold-btn" type="submit">Submit</button>
         </div>
     </form>
 </div>

@@ -9,7 +9,7 @@ import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: 'app-createform',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterOutlet, NavbarComponent, CreateformComponent, SummaryComponent, ProfileComponent,FlipbookComponent, ReportComponent],
+  imports: [RouterLink, RouterModule, RouterOutlet, NavbarComponent],
   templateUrl: './createform.component.html',
   styleUrl: './createform.component.css'
 })

@@ -3,181 +3,186 @@ import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
-import  flatpickr  from 'flatpickr';
+import flatpickr from 'flatpickr';
 import { JsonPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [RouterLink,RouterModule, RouterOutlet, NavbarComponent, NgFor, NgIf, DatePipe],
+  imports: [RouterLink, RouterModule, RouterOutlet, NavbarComponent, NgFor, NgIf, DatePipe],
   templateUrl: './summary.component.html',
-  styleUrl: './summary.component.css',
+  styleUrls: ['./summary.component.css'], // Corrected from styleUrl to styleUrls
   providers: [DatePipe, JsonPipe]
 })
 export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
   private dateRangePicker: flatpickr.Instance | null = null; // Initialize with null
-    filteredAnnualReport: any[] = [];
-    filteredEventReport: any[] = [];
-    filteredFinancialReport: any[] = [];
-    showMoreItems = false;
-    annualReport: any = {};
-    eventReport: any = {}
-    financialReport: any = {}
+  filteredAnnualReport: any[] = [];
+  filteredEventReport: any[] = [];
+  filteredFinancialReport: any[] = [];
+  showMoreItems = false;
+  annualReport: any[] = []; // Initialized as arrays
+  eventReport: any[] = [];  // Initialized as arrays
+  financialReport: any[] = [];  // Initialized as arrays
+  projectReportSatus: any = {};
 
-    constructor(private http: HttpClient, private datePipe: DatePipe, private route: ActivatedRoute) {
-      this.annualReport = [];
-      this.eventReport = [];
-      this.financialReport = [];
+  constructor(private http: HttpClient, private datePipe: DatePipe, private route: ActivatedRoute) {}
 
-      this.retrieveAnnualReport();
-      this.retrieveEventReport();
-      this.retrieveFinancialReport();
+  ngOnInit(): void {
+    this.retrieveAnnualReport();
+    this.retrieveEventReport();
+    this.retrieveFinancialReport();
+    this.retrieveProjectStatusReport();
+  }
+
+  retrieveAnnualReport() {
+    this.http.get('http://localhost/arco2/arco/api/annualreportall/2').subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.annualReport = resp.data;
+      }, (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+
+  retrieveEventReport() {
+    this.http.get('http://localhost/arco2/arco/api/eventreportall/2').subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.eventReport = resp.data;
+      }, (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+
+  retrieveFinancialReport() {
+    this.http.get('http://localhost/arco2/arco/api/financialreportall/2').subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.financialReport = resp.data;
+      }, (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+
+  retrieveProjectStatusReport() {
+    this.http.get('http://localhost/arco/api/get_projectReport').subscribe(
+      (data: any) => {
+        console.log(data);
+        this.projectReportSatus = data.data; // Changed from this.data to this.projectReportSatus
+      }, (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+
+  toggleMoreItems() {
+    this.showMoreItems = !this.showMoreItems; // Toggle the visibility
+  }
+
+  formatDate(date: string): string | null {
+    const transformedDate = this.datePipe.transform(date, 'EEEE'); // Output like "Sunday"
+    return transformedDate !== null ? transformedDate : null;
+  }
+
+  formatDate1(date: string): string | null {
+    const transformedDate = this.datePipe.transform(date, 'd');  // Output like "17"
+    return transformedDate !== null ? transformedDate : null;
+  }
+
+  formatDate2(date: string): string | null {
+    const transformedDate = this.datePipe.transform(date, 'MMMM d');  // Output like "May 17"
+    return transformedDate !== null ? transformedDate : null;
+  }
+
+  ngAfterViewInit() {
+    const pickerInstance = flatpickr('#date-range-icon', {
+      mode: 'range',
+      dateFormat: 'F j, Y',
+      onChange: (selectedDates: Date[]) => {
+        this.updateSelectedRangeText(selectedDates);
+      },
+    });
+    this.dateRangePicker = Array.isArray(pickerInstance) ? pickerInstance[0] : pickerInstance;
+  }
+
+  ngOnDestroy() {
+    if (this.dateRangePicker) {
+      this.dateRangePicker.destroy();
+      this.dateRangePicker = null; // Ensures cleanup
     }
+  }
 
-
-    ngOnInit(): void {
-}
-    retrieveAnnualReport(){
-      this.http.get('http://localhost/arco2/arco/api/annualreportall/2').subscribe(
-        (resp: any) => {
-          console.log(resp);
-          this.annualReport = resp.data;
-        }, (error) => {
-          console.error('Error fetching data:', error);
-        }
-      );
-    }
-
-    retrieveEventReport(){
-      this.http.get('http://localhost/arco2/arco/api/eventreportall/2').subscribe(
-        (resp: any) => {
-          console.log(resp);
-          this.eventReport = resp.data;
-        }
+  private updateSelectedRangeText(selectedDates: Date[]) {
+    const selectedRange = selectedDates
+      .map((date) =>
+        date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
       )
+      .join(' to ');
+
+    const selectedRangeElement = document.getElementById('selected-range');
+    if (selectedRangeElement) {
+      selectedRangeElement.textContent = ` ${selectedRange}`;
     }
 
-    retrieveFinancialReport(){
-      this.http.get('http://localhost/arco2/arco/api/financialreportall/2').subscribe(
-        (resp: any) => {
-          console.log(resp);
-          this.financialReport = resp.data;
-        }, (error) => {
-          console.error('Error fetching data:', error);
-        }
-      );
-    }
+    if (selectedDates.length === 2) {
+      const [start, end] = selectedDates;
 
-
-    toggleMoreItems() {
-      this.showMoreItems = !this.showMoreItems; // Toggle the visibility
-    }
-
-    formatDate(date: string): string | null {
-      const transformedDate = this.datePipe.transform(date, 'EEEE'); // Output like "Sunday, May 17, 2023"
-      return transformedDate !== null ? transformedDate : null;
-    }
-
-    formatDate1(date: string): string | null {
-      const transformedDate = this.datePipe.transform(date, 'd');  // Output like "Sunday, May 17, 2023"
-      return transformedDate !== null ? transformedDate : null;
-    }
-
-    formatDate2(date: string): string | null {
-      const transformedDate = this.datePipe.transform(date, 'MMMM d');  // Output like "Sunday, May 17, 2023"
-      return transformedDate !== null ? transformedDate : null;
-    }
-
-    ngAfterViewInit() {
-      const pickerInstance = flatpickr('#date-range-icon', {
-        mode: 'range',
-        dateFormat: 'F j, Y',
-        onChange: (selectedDates: Date[]) => {
-          this.updateSelectedRangeText(selectedDates);
-        },
-      });
-      this.dateRangePicker = Array.isArray(pickerInstance) ? pickerInstance[0] : pickerInstance;
-    }
-
-    ngOnDestroy() {
-      if (this.dateRangePicker) {
-        this.dateRangePicker.destroy();
-        this.dateRangePicker = null; // Ensures cleanup
-      }
-    }
-
-    
-  
-    private updateSelectedRangeText(selectedDates: Date[]) {
-      const selectedRange = selectedDates
-        .map((date) =>
-          date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-        )
-        .join(' to ');
-    
-      const selectedRangeElement = document.getElementById('selected-range');
-      if (selectedRangeElement) {
-        selectedRangeElement.textContent = ` ${selectedRange}`;
-      }
-    
-      if (selectedDates.length === 2) {
-        const [start, end] = selectedDates;
-    
-        // Filter annualReport
-
+      // Filter annualReport
       this.filteredAnnualReport = this.annualReport.filter((report: any) => {
         const reportDate = new Date(report.created_at);
         return reportDate >= start && reportDate <= end;
       });
 
-      // Filter eventReport
+      // Filter financialReport
       this.filteredFinancialReport = this.financialReport.filter((finance: any) => {
         const financeDate = new Date(finance.start_date); // Adjust the property name as needed
         return financeDate >= start && financeDate <= end;
       });
-    
-        // Filter eventReport
-        this.filteredEventReport = this.eventReport.filter((event: any) => {
-          const eventDate = new Date(event.event_date); // Adjust the property name as needed
-          return eventDate >= start && eventDate <= end;
-        });
-      }
-    }
-  
-    setDayRange() {
-      if (this.dateRangePicker) {
-        const today = new Date();
-        this.dateRangePicker.setDate([today, today]);
-        this.updateSelectedRangeText([today]);
-      }
-    }
-  
-    setWeekRange() {
-      if (this.dateRangePicker) {
-        const start = new Date();
-        const end = new Date(start.getTime() + 6 * 24 * 60 * 60 * 1000);
-        this.dateRangePicker.setDate([start, end]);
-        this.updateSelectedRangeText([start, end]);
-      }
-    }
-  
-    setMonthRange() {
-      if (this.dateRangePicker) {
-        const start = new Date();
-        const end = new Date(start.getFullYear(), start.getMonth() + 1, 0);
-        this.dateRangePicker.setDate([start, end]);
-        this.updateSelectedRangeText([start, end]);
-      }
-    }
-  
-    setYearRange() {
-      if (this.dateRangePicker) {
-        const start = new Date();
-        const end = new Date(start.getFullYear() + 1, 0, 0);
-        this.dateRangePicker.setDate([start, end]);
-        this.updateSelectedRangeText([start, end]);
-      }
+
+      // Filter eventReport
+      this.filteredEventReport = this.eventReport.filter((event: any) => {
+        const eventDate = new Date(event.event_date); // Adjust the property name as needed
+        return eventDate >= start && eventDate <= end;
+      });
     }
   }
 
+  setDayRange() {
+    if (this.dateRangePicker) {
+      const today = new Date();
+      this.dateRangePicker.setDate([today, today]);
+      this.updateSelectedRangeText([today]);
+    }
+  }
+
+  setWeekRange() {
+    if (this.dateRangePicker) {
+      const start = new Date();
+      const end = new Date(start.getTime() + 6 * 24 * 60 * 60 * 1000);
+      this.dateRangePicker.setDate([start, end]);
+      this.updateSelectedRangeText([start, end]);
+    }
+  }
+
+  setMonthRange() {
+    if (this.dateRangePicker) {
+      const start = new Date();
+      const end = new Date(start.getFullYear(), start.getMonth() + 1, 0);
+      this.dateRangePicker.setDate([start, end]);
+      this.updateSelectedRangeText([start, end]);
+    }
+  }
+
+  setYearRange() {
+    if (this.dateRangePicker) {
+      const start = new Date();
+      const end = new Date(start.getFullYear() + 1, 0, 0);
+      this.dateRangePicker.setDate([start, end]);
+      this.updateSelectedRangeText([start, end]);
+    }
+  }
+}

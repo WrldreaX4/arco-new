@@ -22,7 +22,7 @@ body {
 #carousel {
   position: relative;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 180px;
   height: 30vh;
   width: 90%;
  margin-left: 80px;
@@ -33,7 +33,6 @@ body {
 #carousel div {
   position: absolute;
   transition: transform 400ms, left 400ms, opacity 400ms, z-index 0s;
-
   opacity: 1;
 }
 #carousel div img {
@@ -241,7 +240,7 @@ body:not(.sidebar-hovered) .main-body {
   margin-bottom: 20px;
   margin-left: 20px;
   color: #d99e6d;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 600;
 }
 
