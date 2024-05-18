@@ -174,9 +174,16 @@ h4 {
     transform: translateY(-2px); /* Lift the button on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
   }
-  
+    
   .stylish-gray-button:active {
     transform: translateY(0); /* Reset translation on click */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Return to original shadow */
   }
+
+  .displaybutton  {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
   

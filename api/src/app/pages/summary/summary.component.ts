@@ -38,6 +38,53 @@ export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
 
     ngOnInit(): void {
 }
+
+deleteReport(reportId: number): void {
+  const confirmed = confirm('Are you sure you want to delete this report?');
+  if (confirmed) {
+    this.http.post(`http://localhost/arco2/arco/api/delete_annualreport/${reportId}`, {})
+     .subscribe(
+        () => {
+          this.annualReport = this.annualReport.filter((report: any) => report.report_id!== reportId);
+        },
+        error => {
+          console.error('Error deleting report:', error);
+        }
+      );
+  }
+}
+deleteEvent(eventId: number): void {
+  const confirmed = confirm('Are you sure you want to delete this event?');
+  if (confirmed) {
+    this.http.post(`http://localhost/arco3/api/delete_event/${eventId}`, {})
+      .subscribe(
+        () => {
+          this.eventReport = this.eventReport.filter((event: any) => event.event_id !== eventId);
+        },
+        error => {
+          console.error('Error deleting event:', error);
+        }
+      );
+  }
+}
+
+deleteFinancialReport(financialReportId: number): void {
+  const confirmed = confirm('Are you sure you want to delete this financial report?');
+  if (confirmed) {
+    this.http.post(`http://localhost/arco3/api/delete_financialreport/${financialReportId}`, {})
+      .subscribe(
+        () => {
+          this.financialReport = this.financialReport.filter((entry: any) => entry.financialreport_id !== financialReportId);
+        },
+        error => {
+          console.error('Error deleting financial report:', error);
+        }
+      );
+  }
+}
+
+
+
     retrieveAnnualReport(){
       this.http.get('http://localhost/arco2/arco/api/annualreportall/2').subscribe(
         (resp: any) => {

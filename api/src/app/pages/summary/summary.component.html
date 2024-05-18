@@ -68,8 +68,9 @@
             </div>
 
             
-            <div class="col-md-3 text-right">
+            <div class="displaybutton col-md-3 text-right">
                 <button class="stylish-gray-button" [routerLink]="['annualreport', annual.report_id]">Edit</button>
+                <button class="stylish-gray-button" (click)="deleteReport(annual.report_id)">Delete</button>
             </div>
         </div>
 
@@ -85,8 +86,9 @@
 
             </div>
 
-            <div class="col-md-3 text-right">
+            <div class="displaybutton col-md-3 text-right">
                 <button class="stylish-gray-button" [routerLink]="['eventreport', event.event_id]">Edit</button>
+                <button class="stylish-gray-button" (click)="deleteEvent(event.event_id)">Delete</button>
             </div>
         </div>
 
@@ -101,8 +103,9 @@
                 <!-- <p>{{ entry.financialreport_id }}</p> -->
             </div>
 
-            <div class="col-md-3 text-right">
+            <div class="displaybutton col-md-3 text-right">
                 <button class="stylish-gray-button" [routerLink]="['financialreport', entry.financialreport_id]">Edit</button>
+                <button class="stylish-gray-button" (click)="deleteFinancialReport(entry.financialreport_id)">Delete</button>
             </div>
         </div>
 
