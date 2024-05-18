@@ -26,20 +26,41 @@
     <div class="middle">
         <div class="row activities">
 
-            <!-- //Event -->
-            <div *ngFor="let event of filteredEventReport" class="col-md-2">
-                    <div class="card-t">
-                        <div class="card">
-                            <div class="day">{{ formatDate(event.event_date) }}</div> 
-                            <div class="date">{{ formatDate1(event.event_date) }}</div> 
-                            <div class="activity">{{ event.event_name }}</div>
 
-                        </div>
-                    </div>
-            </div>
-            <div *ngIf="!eventReport">
-                <p>No event report data available.</p>
-              </div>
+<div *ngFor="let report of filteredAnnualReport" class="col-md-2">
+    <div class="card-t">
+        <div class="card">
+            <div class="day"> {{ report.created_at | date: 'MMMM d, y' }}</div>
+            <div class="date"> {{ report.report_id }}</div>
+            <div class="activity"> {{ report.title }}</div>
+            <button class="stylish-gray-button" (click)="deleteReport(report.report_id)">Edit</button>
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let event of filteredEventReport" class="col-md-2">
+    <div class="card-t">
+        <div class="card">
+            <div class="day"> {{ event.event_date | date: 'MMMM d, y' }}</div>
+            <div class="date"> {{ event.event_id }}</div>
+            <div class="activity"> {{ event.event_name }}</div>
+            <button class="stylish-gray-button" (click)="deleteEvent(event.event_id)">Edit</button>
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let finance of filteredFinancialReport" class="col-md-2">
+    <div class="card-t">
+        <div class="card">
+            <div class="day"> {{ finance.start_date | date: 'MMMM d, y' }}</div>
+            <div class="date"> {{ finance.financialreport_id }}</div>
+            <div class="activity"> {{ finance.report_title }}</div>
+            <button class="stylish-gray-button" (click)="deleteFinancialReport(finance.financialreport_id)">Edit</button>
+            
+        </div>
+    </div>
+</div>
+
 
    
             
@@ -82,7 +103,6 @@
                     <span>{{ formatDate2(event.event_date) }}</span>
                 </div>
                 <p>{{ event.summary }}</p>
-                <!-- <p>{{ event.event_id }}</p> -->
 
             </div>
 
@@ -93,6 +113,7 @@
         </div>
 
 
+        <!-- Financial Report -->
                 <div *ngFor="let entry of financialReport" class="laman row my-3">
             <div class="col-md-9">
                 <div class="details-p">
@@ -100,7 +121,6 @@
                     <span>{{ formatDate2(entry.date_created) }}</span>
                 </div>
                 <p>{{ entry.executive_summary }}</p>
-                <!-- <p>{{ entry.financialreport_id }}</p> -->
             </div>
 
             <div class="displaybutton col-md-3 text-right">

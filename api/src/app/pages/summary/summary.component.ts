@@ -7,6 +7,24 @@ import  flatpickr  from 'flatpickr';
 import { JsonPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
+interface Report {
+  report_id: number;
+  created_at: string;
+  title: string;
+}
+
+interface Event {
+  event_id: number;
+  event_date: string;
+  event_name: string;
+}
+
+interface FinancialReport {
+  financialreport_id: number;
+  start_date: string;
+  report_title: string;
+}
+
 @Component({
   selector: 'app-summary',
   standalone: true,
@@ -17,10 +35,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
   private dateRangePicker: flatpickr.Instance | null = null; // Initialize with null
-    filteredAnnualReport: any[] = [];
-    filteredEventReport: any[] = [];
-    filteredFinancialReport: any[] = [];
-    showMoreItems = false;
+    filteredAnnualReport: Report[] = [];
+    filteredEventReport: Event[] = [];
+    filteredFinancialReport: FinancialReport[] = [];
     annualReport: any = {};
     eventReport: any = {}
     financialReport: any = {}
@@ -117,11 +134,7 @@ deleteFinancialReport(financialReportId: number): void {
       );
     }
 
-
-    toggleMoreItems() {
-      this.showMoreItems = !this.showMoreItems; // Toggle the visibility
-    }
-
+  
     formatDate(date: string): string | null {
       const transformedDate = this.datePipe.transform(date, 'EEEE'); // Output like "Sunday, May 17, 2023"
       return transformedDate !== null ? transformedDate : null;
@@ -136,8 +149,7 @@ deleteFinancialReport(financialReportId: number): void {
       const transformedDate = this.datePipe.transform(date, 'MMMM d');  // Output like "Sunday, May 17, 2023"
       return transformedDate !== null ? transformedDate : null;
     }
-
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
       const pickerInstance = flatpickr('#date-range-icon', {
         mode: 'range',
         dateFormat: 'F j, Y',
@@ -147,7 +159,7 @@ deleteFinancialReport(financialReportId: number): void {
       });
       this.dateRangePicker = Array.isArray(pickerInstance) ? pickerInstance[0] : pickerInstance;
     }
-
+  
     ngOnDestroy() {
       if (this.dateRangePicker) {
         this.dateRangePicker.destroy();
@@ -157,75 +169,72 @@ deleteFinancialReport(financialReportId: number): void {
 
     
   
-    private updateSelectedRangeText(selectedDates: Date[]) {
-      const selectedRange = selectedDates
-        .map((date) =>
-          date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-        )
-        .join(' to ');
-    
-      const selectedRangeElement = document.getElementById('selected-range');
-      if (selectedRangeElement) {
-        selectedRangeElement.textContent = ` ${selectedRange}`;
-      }
-    
-      if (selectedDates.length === 2) {
-        const [start, end] = selectedDates;
-    
-        // Filter annualReport
+   
+  private updateSelectedRangeText(selectedDates: Date[]): void {
+    const selectedRange = selectedDates
+      .map(date => date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }))
+      .join(' to ');
 
-      this.filteredAnnualReport = this.annualReport.filter((report: any) => {
+    const selectedRangeElement = document.getElementById('selected-range');
+    if (selectedRangeElement) {
+      selectedRangeElement.textContent = `${selectedRange}`;
+    }
+
+    if (selectedDates.length === 2) {
+      const [start, end] = selectedDates;
+
+      this.filteredAnnualReport = this.annualReport.filter((report: Report) => {
         const reportDate = new Date(report.created_at);
         return reportDate >= start && reportDate <= end;
       });
 
-      // Filter eventReport
-      this.filteredFinancialReport = this.financialReport.filter((finance: any) => {
-        const financeDate = new Date(finance.start_date); // Adjust the property name as needed
+      this.filteredFinancialReport = this.financialReport.filter((finance: FinancialReport) => {
+        const financeDate = new Date(finance.start_date);
         return financeDate >= start && financeDate <= end;
       });
-    
-        // Filter eventReport
-        this.filteredEventReport = this.eventReport.filter((event: any) => {
-          const eventDate = new Date(event.event_date); // Adjust the property name as needed
-          return eventDate >= start && eventDate <= end;
-        });
-      }
-    }
-  
-    setDayRange() {
-      if (this.dateRangePicker) {
-        const today = new Date();
-        this.dateRangePicker.setDate([today, today]);
-        this.updateSelectedRangeText([today]);
-      }
-    }
-  
-    setWeekRange() {
-      if (this.dateRangePicker) {
-        const start = new Date();
-        const end = new Date(start.getTime() + 6 * 24 * 60 * 60 * 1000);
-        this.dateRangePicker.setDate([start, end]);
-        this.updateSelectedRangeText([start, end]);
-      }
-    }
-  
-    setMonthRange() {
-      if (this.dateRangePicker) {
-        const start = new Date();
-        const end = new Date(start.getFullYear(), start.getMonth() + 1, 0);
-        this.dateRangePicker.setDate([start, end]);
-        this.updateSelectedRangeText([start, end]);
-      }
-    }
-  
-    setYearRange() {
-      if (this.dateRangePicker) {
-        const start = new Date();
-        const end = new Date(start.getFullYear() + 1, 0, 0);
-        this.dateRangePicker.setDate([start, end]);
-        this.updateSelectedRangeText([start, end]);
-      }
+
+      this.filteredEventReport = this.eventReport.filter((event: Event) => {
+        const eventDate = new Date(event.event_date);
+        return eventDate >= start && eventDate <= end;
+      });
     }
   }
-
+  
+  setDayRange(): void {
+    if (this.dateRangePicker) {
+      const today = new Date();
+      this.dateRangePicker.setDate([today, today]);
+      this.updateSelectedRangeText([today]);
+    }
+  }
+  
+  setWeekRange(): void {
+    if (this.dateRangePicker) {
+      const today = new Date();
+      const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
+      const endOfWeek = new Date(today.setDate(startOfWeek.getDate() + 6));
+      this.dateRangePicker.setDate([startOfWeek, endOfWeek]);
+      this.updateSelectedRangeText([startOfWeek, endOfWeek]);
+    }
+  }
+  
+  setMonthRange(): void {
+    if (this.dateRangePicker) {
+      const today = new Date();
+      const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+      this.dateRangePicker.setDate([startOfMonth, endOfMonth]);
+      this.updateSelectedRangeText([startOfMonth, endOfMonth]);
+    }
+  }
+  
+  setYearRange(): void {
+    if (this.dateRangePicker) {
+      const today = new Date();
+      const startOfYear = new Date(today.getFullYear(), 0, 1);
+      const endOfYear = new Date(today.getFullYear(), 11, 31);
+      this.dateRangePicker.setDate([startOfYear, endOfYear]);
+      this.updateSelectedRangeText([startOfYear, endOfYear]);
+    }
+  }
+}
