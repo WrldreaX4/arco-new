@@ -1,29 +1,29 @@
 <div class="body">
     <app-navbar></app-navbar>
     <form>
-        <div class="container">
+        <div id="reportContainer" class="container">
             <img src="/assets/header.png" alt="Project Header">
             
             <h1>Project Status Report</h1>
             <div class="date-column">
                 <div class="form-group">
                     <label for="start-date">Start Date:</label>
-                    <p>{{ data }}</p>
+                    <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.startDate }}</p>
                 </div>
                 <div class="form-group">
                     <label for="end-date">End Date:</label>
-                    <p>{{ data }}</p>
+                    <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.endDate }}</p>
                 </div>
             </div>
             <div class="project-Details">
             <h2>Project Details :</h2>
             <div class="form-group">
                 <label for="project-name">Project Name :</label>
-                <p>{{ data }}</p>
+                <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.projectName }}</p>
             </div>
             <div class="form-group">
                 <label for="project-manager">Project Manager :</label>
-                <p>{{ data }}</p>
+                <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.projectManager }}</p>
             </div>
             
         </div>
@@ -31,11 +31,11 @@
                 <h2>Overall Progress Details :</h2>
                 <div class="form-group">
                     <label for="status">Status :</label>
-                    <p>{{ data }}</p>
+                    <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.statusDesc }}</p>
                 </div>
                 <div class="form-group">
                     <label for="overall-progress">Overall Progress :</label>
-                    <p>{{ data }}</p>
+                    <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.overallProgress }}</p>
                 </div>
             </div>
             <div class="milestones">
@@ -45,9 +45,9 @@
                         <th>Milestone</th>
                         <th>Completion Date</th>
                     </tr>
-                    <tr>
-                        <td><p>{{ data }}</p></td>
-                        <td><p>{{ data }}</p></td>
+                    <tr *ngFor="let data of data" [attr.data-data-id]="data.id">
+                        <td><p>{{ data.milestoneDesc }}</p></td>
+                        <td><p>{{ data.compeDate }}</p></td>
                     </tr>
                 </table>
             </div>
@@ -58,9 +58,9 @@
                         <th>Task</th>
                         <th>Status</th>
                     </tr>
-                    <tr>
-                        <td><p>{{ data }}</p></td>
-                        <td><p>{{ data }}</p></td>
+                    <tr *ngFor="let data of data" [attr.data-data-id]="data.id">
+                        <td><p>{{ data.taskDesc }}</p></td>
+                        <td><p>{{ data.stat }}</p></td>
                     </tr>
                 </table>
             </div>
@@ -71,15 +71,16 @@
                         <th>Issue</th>
                         <th>Priority</th>
                     </tr>
-                    <tr>
-                        <td><p>{{ data }}</p></td>
-                        <td><p>{{ data }}</p></td>
+                    <tr *ngFor="let data of data" [attr.data-data-id]="data.id">
+                        <td><p>{{ data.issuesName }}</p></td>
+                        <td><p>{{ data.issuesPrio }}</p></td>
                     </tr>
                 </table>
             </div>
-            <div class="button-container">
-                <button (click)="downloadPDF()">Download as PDF</button>
-            </div>
+        </div>
+        <div class="button-container">
+            <button class="formbold-btn" (click)="downloadPDF()">Download as PDF</button>
+            <button class="formbold-btn">Edit</button>
         </div>
     </form>
 </div>

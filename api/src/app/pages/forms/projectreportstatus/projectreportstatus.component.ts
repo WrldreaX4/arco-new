@@ -43,11 +43,11 @@ export class ProjectReportStatusComponent implements OnInit {
     if (this.projectStatusReport.valid) {
       const reportData = this.projectStatusReport.value;
 
-      this.http.post('http://localhost/arco/api/project_status_report', reportData)
+      this.http.post('http://localhost/arco/api/projectReport/', reportData)
         .subscribe(
           (resp: any) => {
             console.log('Project Status Report submitted:', resp);
-            this.router.navigate(['/formsoutput/projectreportouput']);
+            this.router.navigate(['create/projectreportstatus/view']);
           },
           (error: any) => {
             console.error('Error submitting project status report:', error);

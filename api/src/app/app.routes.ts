@@ -18,6 +18,7 @@ import { EditfinancialreportComponent } from './pages/edit/editfinancialreport/e
 import { EditannualreportComponent } from './pages/edit/editannualreport/editannualreport.component';
 import { ProjectReportStatusComponent } from './pages/forms/projectreportstatus/projectreportstatus.component';
 import { ProjectreportoutputComponent } from './pages/formsoutput/projectreportoutput/projectreportoutput.component';
+import { EditprojectreportComponent } from './pages/edit/editprojectreport/editprojectreport.component';
 
 export const routes: Routes = [
 
@@ -55,6 +56,10 @@ export const routes: Routes = [
         component: FinancialreportComponent
     },
     {
+        path: 'create/projectreportstatus',
+        component: ProjectReportStatusComponent
+    },
+    {
         path: 'create/annualreport/view',  
         component: AnnualreportoutputComponent
     },   
@@ -67,6 +72,10 @@ export const routes: Routes = [
         component: FinancialreportoutputComponent
     },
     {
+        path: 'create/projectreportstatus/view',  
+        component: ProjectreportoutputComponent
+    },
+    {
         path: 'summary/eventreport/:id',        //dito done
         component: EditeventreportComponent
     },  
@@ -77,7 +86,11 @@ export const routes: Routes = [
     {
         path: 'summary/annualreport/:id',      //dito           
         component: EditannualreportComponent
-    },      
+    }, 
+    {
+        path: 'summary/projectreportstatus/:id',      //dito           
+        component: EditprojectreportComponent
+    },     
     {
         path: 'summary',
         component: SummaryComponent
@@ -91,15 +104,7 @@ export const routes: Routes = [
         component: ProfileComponent
     },
     {
-        path: 'formsoutput/projectreportoutput',
-        component: ProjectreportoutputComponent
+        path: 'report',
+        component: ReportComponent
     },
-    {
-        path: 'projectreportstatus',
-        component: ProjectReportStatusComponent
-    },
-     {
-         path: 'forms/projectreportstatus',
-        component: ProjectReportStatusComponent
-     },
 ];
