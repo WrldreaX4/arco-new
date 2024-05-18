@@ -56,7 +56,7 @@ deleteReport(reportId: number): void {
 deleteEvent(eventId: number): void {
   const confirmed = confirm('Are you sure you want to delete this event?');
   if (confirmed) {
-    this.http.post(`http://localhost/arco3/api/delete_event/${eventId}`, {})
+    this.http.post(`http://localhost/arco3/api/delete_eventreport/${eventId}`, {})
       .subscribe(
         () => {
           this.eventReport = this.eventReport.filter((event: any) => event.event_id !== eventId);
@@ -67,6 +67,7 @@ deleteEvent(eventId: number): void {
       );
   }
 }
+
 
 deleteFinancialReport(financialReportId: number): void {
   const confirmed = confirm('Are you sure you want to delete this financial report?');
