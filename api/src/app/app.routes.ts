@@ -104,7 +104,11 @@ export const routes: Routes = [
         component: ProfileComponent
     },
     {
-        path: 'report',
-        component: ReportComponent
+        path: 'formsoutput/projectreportoutput',
+        component: ProjectreportoutputComponent
     },
+    {
+        path: 'edit/editprojectreport',
+        component: EditprojectreportComponent
+    }
 ];

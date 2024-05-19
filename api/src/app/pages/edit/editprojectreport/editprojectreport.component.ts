@@ -3,23 +3,25 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarComponent } from '../../navbar/navbar.component';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-editprojectreport',
   standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule, NgIf],
+  imports: [NavbarComponent, ReactiveFormsModule, NgFor],
   templateUrl: './editprojectreport.component.html',
   styleUrl: './editprojectreport.component.css'
 })
 export class EditprojectreportComponent {
   projectForm: FormGroup;
   projectReportStatus: any = {};
+  data: any[] = [];
+
 
   @ViewChild('formContent')
   formContent!: ElementRef;
 
-  reportId: number = 0;
+  projectID: number = 0;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute) {
     this.projectForm = this.fb.group({
@@ -40,15 +42,15 @@ export class EditprojectreportComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.reportId = parseInt(params.get('id')!, 10);
-      if (!isNaN(this.reportId)) {
-        this.retrieveProjectStatusReport(this.reportId);
+      this.projectID = parseInt(params.get('id')!, 10);
+      if (!isNaN(this.projectID)) {
+        this.retrieveProjectStatusReport(this.projectID);
       }
     });
   }
 
-  retrieveProjectStatusReport(reportId: number) {
-    this.http.get(`http://localhost/arco/api/get_projectReport/${reportId}`).subscribe(
+  retrieveProjectStatusReport(projectID: number) {
+    this.http.get(`http://localhost/arco/api/projectreport/59`).subscribe(
       (data: any) => {
         console.log(data);
         // Assign data to the form controls

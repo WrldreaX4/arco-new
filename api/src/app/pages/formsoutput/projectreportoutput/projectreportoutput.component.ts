@@ -5,11 +5,13 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { EditprojectreportComponent } from '../../edit/editprojectreport/editprojectreport.component';
 
 @Component({
   selector: 'app-projectreportoutput',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, HttpClientModule, FormsModule],
+  imports: [NavbarComponent, CommonModule, HttpClientModule, FormsModule, RouterLink, EditprojectreportComponent],
   templateUrl: './projectreportoutput.component.html',
   styleUrls: ['./projectreportoutput.component.css']
 })
@@ -25,7 +27,7 @@ export class ProjectreportoutputComponent implements OnInit {
   }
 
   retrieveProjectStatusReport() {
-    this.http.get('http://localhost/arco/api/get_projectReport/53').subscribe(
+    this.http.get('http://localhost/arco/api/projectreport/59').subscribe(
       (data: any) => {
         console.log(data);
         this.data = data.data;

@@ -22,13 +22,17 @@ body {
 #carousel {
   position: relative;
   justify-content: center;
-  margin-top: 180px;
-  height: 30vh;
+  margin-top: 230px;
+  height: 40vh;
   width: 90%;
  margin-left: 80px;
   transform: translateY(-50%);
   overflow: hidden;
 
+}
+iframe{
+  height: 350px;
+  width: 450px;
 }
 #carousel div {
   position: absolute;

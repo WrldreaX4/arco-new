@@ -1,12 +1,12 @@
 <div class="body">
     <app-navbar></app-navbar>
-    <!----<form [formGroup]="projectForm" (ngSubmit)="submitAndNavigate()">
+    <form [formGroup]="projectForm" (ngSubmit)="submitAndNavigate(projectID)">
         <div class="container">
             <h1>Project Status Report</h1>
             <div class="date-column">
                 <div class="form-group">
                     <label for="start-date">Start Date:</label>
-                    <input type="date" id="start-date" formControlName="startDate" class="form-control" required>
+                    <input type="date" id="start-date" formControlName="startDate" class="form-control" *ngFor="let data of data"[attr.data-data-id]="data.id" value="{{data.startDate}}" required>
                 </div>
                 <div class="form-group">
                     <label for="end-date">End Date:</label>
@@ -89,4 +89,4 @@
             <button class="formbold-btn" type="submit">Submit</button>
         </div>
     </form>
-</div>----->
+</div>
