@@ -1,0 +1,116 @@
+
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img img {
+    width: 10vw;
+}
+
+
+.header {
+    color: #e29e6a;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 15px;
+    color: #000;
+}
+
+
+.input .form-control,
+.inputdata .form-control,
+.summarydata textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+.tabledata {
+    margin-top: 20px;
+}
+
+.table thead th {
+    background-color: #e29e6a;
+    color: white;
+}
+
+.table td,
+.table th {
+    text-align: center;
+}
+
+
+.summary {
+    margin-top: 40px;
+    text-align: center;  
+}
+
+.summary h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.summarydata textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.download-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e29e6a;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #cf7c4d;
+}

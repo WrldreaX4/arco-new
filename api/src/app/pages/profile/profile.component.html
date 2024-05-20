@@ -3,18 +3,11 @@
 <body style="font-family: 'Poppins', sans-serif;">
     <app-navbar></app-navbar>
 
-    <div class="container light-style flex-grow-1 container-p-y">
-        <h4 class="font-weight-bold py-3 mb-4" style="color: #ED7D31;">Profile Page</h4>
-        <div class="card overflow-hidden">
-            <div class="row no-gutters row-bordered row-border-light">
-                <div class="col-md-3 pt-0">
-                    <div class="list-group list-group-flush account-setting-links">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a> 
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info">Info</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-social-links">Social links</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-connections">Connections</a>
-                    </div>
+    <div class="container">
+        <h2 class="title">Profile Page</h2>
+        <div class="card">
+            <div class="card-container">
+                <div class="card-container-container">
                 </div>
                 <div class="col-md-9">
                     <div class="tab-content">
@@ -33,11 +26,16 @@
                                     <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                 </div>
                             </div>
-                            <hr class="border-light m-0">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="form-label">Username</label>
-                                    <input type="text" class="form-control mb-1" value="">
+                                    <input type="text" class="form" value="">
+                                    <label class="form-label">Current Password</label>
+                                    <input type="text" class="form" value="">
+                                    <label class="form-label">New Password</label>
+                                    <input type="text" class="form" value="">
+                                    <label class="form-label">Confirm New Password</label>
+                                    <input type="text" class="form" value="">
                                 </div>
                                 <!-- Remaining form fields -->
                             </div>
@@ -47,9 +45,9 @@
                 </div>
             </div>
         </div>
-        <div class="text-right mt-3">
-            <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-            <button type="button" class="btn btn-default">Cancel</button>
+        <div class="button-container">
+            <button type="button" class="buttons">Save changes</button>&nbsp;
+            <button type="button" class="buttons-cancel">Cancel</button>
         </div>
     </div>
 
