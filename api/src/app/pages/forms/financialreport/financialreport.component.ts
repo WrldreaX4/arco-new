@@ -8,7 +8,7 @@ import { NgFor, NgIf } from '@angular/common';
 @Component({
   selector: 'app-financialreport',
   standalone: true,
-  imports: [NavbarComponent, NgIf, NgFor, FormsModule, ReactiveFormsModule],
+  imports: [NavbarComponent, NgIf, ReactiveFormsModule],
   templateUrl: './financialreport.component.html',
   styleUrl: './financialreport.component.css'
 })
