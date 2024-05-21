@@ -4,10 +4,11 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-eventreportoutput',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, FormsModule],
   templateUrl: './eventreportoutput.component.html',
   styleUrl: './eventreportoutput.component.css'
 })
@@ -54,4 +55,5 @@ export class EventreportoutputComponent implements OnInit {
       console.error('The report data container was not found.');
     }
   }
-}
+}import { FormsModule } from '@angular/forms';
+

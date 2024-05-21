@@ -11,26 +11,27 @@
 }
 
 
-
 body {
   min-height: 100vh;
-  transition: all 0.4s ease; /* Add transition for body movement */
+  transition: all 0.4s ease;
   background-image: url("/assets/background.png");
-  overflow: hidden;
+  overflow-x: hidden; /* Changed from "overflow: hidden;" */
 }
 /**---------------------------------carousel------------------------------**/
 
 #carousel {
   position: relative;
+  display: flex;
   justify-content: center;
-  margin-top: 230px;
+  align-items: center;
+  margin: 125px auto 0;
   height: 40vh;
   width: 90%;
- margin-left: 80px;
-  transform: translateY(-50%);
-  overflow: hidden;
-
+  overflow-x: hidden; /* Changed from "overflow: hidden;" */
+  overflow-y: hidden;
+  border-radius: 5px;
 }
+
 iframe{
   height: 350px;
   width: 450px;
@@ -39,7 +40,9 @@ iframe{
   position: absolute;
   transition: transform 400ms, left 400ms, opacity 400ms, z-index 0s;
   opacity: 1;
+  border-radius: 5px;
 }
+
 #carousel div img {
   width: 200px;
   transition: width 400ms;
@@ -87,6 +90,7 @@ iframe{
   z-index: 10;
   left: 50%;
   transform: translateY(0px) translateX(-50%);
+  border-radius: 10px;
 }
 #carousel div.next {
   z-index: 5;
@@ -109,15 +113,14 @@ iframe{
 /*previous or next buttons css*/
 
 .buttons {
-  height: 60px;
-  position: fixed;
+  position: absolute; /* Change from "fixed" to "absolute" */
   left: 50%;
-  transform: translateX(-50%);
   bottom: 50px;
+  transform: translateX(-50%);
   display: grid;
   grid-auto-flow: column;
-  column-gap: 10px; /* Adds 10px of space between each button */
-
+  column-gap: 10px;
+  z-index: 999; /* Ensure buttons are above other content */
 }
 
 .button-82-pushable {
