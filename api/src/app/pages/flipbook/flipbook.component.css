@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-    background: #eeeeee;
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -11,11 +10,11 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-.coverR{
+.coverR {
     position: absolute;
     background-color: #d99e6d;
     color: #d99e6d;
-    margin-left: -25px;
+    margin-left: 380px;
     top: 73px;
     width: 750px;
     height: 550px;
@@ -26,16 +25,16 @@ body {
 
 .cover-image {
     width: 300px;
-    height: auto; 
+    height: auto;
 }
 
-.title{
+.title {
     font-family: "Poppins", sans-serif;
     position: absolute;
     top: 12px;
     left: 100px;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 30px;
     color: #d99e6d;
     z-index: -5;
 }
@@ -47,12 +46,14 @@ input {
 img {
     width: 100%;
     height: 100%;
-    box-shadow: 10px 0px 10px rgba(0.2, 0.2, 0.2, 0.2)
+    box-shadow: 10px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
 }
 
 .book {
-
+    position: absolute;
     display: flex;
+    margin-left: 410px;
+    margin-top: 95px;
 }
 
 #cover {
@@ -95,8 +96,7 @@ p {
     background-color: #fff;
     box-sizing: border-box;
     padding: 0 13px;
-    box-shadow: -10px 0px 10px rgba(0.2, 0.2, 0.2, 0.2)
-    
+    box-shadow: -10px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
 }
 
 .back {

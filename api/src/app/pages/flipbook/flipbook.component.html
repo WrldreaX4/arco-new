@@ -1,57 +1,44 @@
 <app-navbar></app-navbar>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Flip book</title>
-    <link rel="stylesheet" href="flipbook.component.css">
-</head>
-<body>
-
-    <h2 class="title">Flipbook</h2>
-    <p class="coverR">p</p>
-    <div class="book">
-        <input type="checkbox" id="c1">
-        <input type="checkbox" id="c2">
-        <input type="checkbox" id="c3">
-        <div id="cover"><img src="/src/assets/orange.jpg" alt="Orange"></div>
-        <div class="flip-book">
-
-            <div class="flip" id="p1">
-                <div class="back">
-                    <img src="/src/assets/orange.jpg" alt="Orange">
-                    <label class="back-btn" for="c1">Back</label>
-                </div>
-                <div class="front">
-                    <h2>Apple</h2>
-                    <p>Lorem Ipsum</p>
-                    <label class="next-btn" for="c1">Next</label>
-                </div>
+<h2 class="title">Flipbook</h2>
+<p class="coverR">p</p>
+<div class="book">
+    <input type="checkbox" id="c1">
+    <input type="checkbox" id="c2">
+    <input type="checkbox" id="c3">
+    <div id="cover"><img src="assets/orange.jpg" alt="Orange"></div>
+    <div class="flip-book">
+        <div class="flip" id="p1">
+            <div class="back">
+                <img src="assets/orange.jpg" alt="Orange">
+                <label class="back-btn" for="c1">Back</label>
             </div>
-
-            <div class="flip" id="p2">
-                <div class="back">
-                    <img src="/src/assets/orange.jpg">
-                    <label class="back-btn" for="c2">Back</label>
-                </div>
-                <div class="front">
-                    <h2>Strawberry</h2>
-                    <p>Lorem Ipsum</p>
-                    <label class="next-btn" for="c2">Next</label>
-                </div>
+            <div class="front">
+                <h2>Apple</h2>
+                <p>Lorem Ipsum</p>
+                <label class="next-btn" for="c1">Next</label>
             </div>
-
-            <div class="flip" id="p3">
-                <div class="back">
-                    <img src="/src/assets/orange.jpg">
-                    <label class="back-btn" for="c3">Back</label>
-                </div>
-                <div class="front">
-                    <h2>Pineapple</h2>
-                    <p>Lorem Ipsum</p>
-                    <label class="next-btn" for="c3">Next</label>
-                </div>
+        </div>
+        <div class="flip" id="p2">
+            <div class="back">
+                <img src="assets/orange.jpg">
+                <label class="back-btn" for="c2">Back</label>
+            </div>
+            <div class="front">
+                <h2>Strawberry</h2>
+                <p>Lorem Ipsum</p>
+                <label class="next-btn" for="c2">Next</label>
+            </div>
+        </div>
+        <div class="flip" id="p3">
+            <div class="back">
+                <img src="assets/orange.jpg">
+                <label class="back-btn" for="c3">Back</label>
+            </div>
+            <div class="front">
+                <h2>Pineapple</h2>
+                <p>Lorem Ipsum</p>
+                <label class="next-btn" for="c3">Next</label>
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
