@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthService {
   
-  private baseUrl = 'http://localhost/arco2/arco/api'; // Remove '/login' from the base URL
+  private baseUrl = 'http://localhost/arco/api'; // Remove '/login' from the base URL
 
   constructor(private http: HttpClient) { }
 
