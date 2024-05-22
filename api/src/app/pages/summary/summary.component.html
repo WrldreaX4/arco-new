@@ -33,7 +33,7 @@
             <div class="day"> {{ report.created_at | date: 'MMMM d, y' }}</div>
             <div class="date"> {{ report.report_id }}</div>
             <div class="activity"> {{ report.title }}</div>
-            <button class="stylish-gray-button" (click)="deleteReport(report.report_id)">Edit</button>
+            <button class="stylish-gray-button" (click)="deleteReport(report.report_id)">View</button>
         </div>
     </div>
 </div>
@@ -44,7 +44,8 @@
             <div class="day"> {{ event.event_date | date: 'MMMM d, y' }}</div>
             <div class="date"> {{ event.event_id }}</div>
             <div class="activity"> {{ event.event_name }}</div>
-            <button class="stylish-gray-button" (click)="deleteEvent(event.event_id)">Edit</button>
+            <button class="stylish-gray-button" (click)="deleteEvent(event.event_id)">View</button>
+            <button class="stylish-gray-button" [routerLink]="['annualreport', event.event_id]">Edit</button>
         </div>
     </div>
 </div>
@@ -55,7 +56,7 @@
             <div class="day"> {{ finance.start_date | date: 'MMMM d, y' }}</div>
             <div class="date"> {{ finance.financialreport_id }}</div>
             <div class="activity"> {{ finance.report_title }}</div>
-            <button class="stylish-gray-button" (click)="deleteFinancialReport(finance.financialreport_id)">Edit</button>
+            <button class="stylish-gray-button" (click)="deleteFinancialReport(finance.financialreport_id)">View</button>
             
         </div>
     </div>
