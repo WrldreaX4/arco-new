@@ -1,41 +1,41 @@
 <div class="body">
     <app-navbar></app-navbar>
     <form>
-        <div id="reportContainer" class="container">
+        <div class="reportdata container">
             <img src="/assets/header.png" alt="Project Header">
             
             <h1>Project Status Report</h1>
             <div class="date-column">
                 <div class="form-group">
-                    <label for="start-date">Start Date:</label>
-                    <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.startDate }}</p>
+                    <label for="startDate">Start Date:</label>
+                    <p>{{ projectStatusReport.startDate }}</p>
                 </div>
                 <div class="form-group">
-                    <label for="end-date">End Date:</label>
-                    <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.endDate }}</p>
+                    <label for="endDate">End Date:</label>
+                    <p>{{ projectStatusReport.endDate }}</p>
                 </div>
             </div>
             <div class="project-Details">
             <h2>Project Details :</h2>
             <div class="form-group">
-                <label for="project-name">Project Name :</label>
-                <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.projectName }}</p>
+                <label for="projectName">Project Name :</label>
+                <p>{{ projectStatusReport.projectName }}</p>
             </div>
             <div class="form-group">
-                <label for="project-manager">Project Manager :</label>
-                <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.projectManager }}</p>
+                <label for="projectManager">Project Manager :</label>
+                <p>{{ projectStatusReport.projectManager }}</p>
             </div>
             
         </div>
             <div class="status-progress">
                 <h2>Overall Progress Details :</h2>
                 <div class="form-group">
-                    <label for="status">Status :</label>
-                    <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.statusDesc }}</p>
+                    <label for="statusDesc">Status :</label>
+                    <p>{{ projectStatusReport.statusDesc }}</p>
                 </div>
                 <div class="form-group">
-                    <label for="overall-progress">Overall Progress :</label>
-                    <p *ngFor="let data of data" [attr.data-data-id]="data.id">{{ data.overallProgress }}</p>
+                    <label for="overallProgress">Overall Progress :</label>
+                    <p>{{ projectStatusReport.overallProgress }}</p>
                 </div>
             </div>
             <div class="milestones">
@@ -45,9 +45,9 @@
                         <th>Milestone</th>
                         <th>Completion Date</th>
                     </tr>
-                    <tr *ngFor="let data of data" [attr.data-data-id]="data.id">
-                        <td><p>{{ data.milestoneDesc }}</p></td>
-                        <td><p>{{ data.compeDate }}</p></td>
+                    <tr>
+                        <td><p>{{ projectStatusReport.milestoneDesc }}</p></td>
+                        <td><p>{{ projectStatusReport.compeDate }}</p></td>
                     </tr>
                 </table>
             </div>
@@ -58,9 +58,9 @@
                         <th>Task</th>
                         <th>Status</th>
                     </tr>
-                    <tr *ngFor="let data of data" [attr.data-data-id]="data.id">
-                        <td><p>{{ data.taskDesc }}</p></td>
-                        <td><p>{{ data.stat }}</p></td>
+                    <tr>
+                        <td><p>{{ projectStatusReport.taskDesc }}</p></td>
+                        <td><p>{{ projectStatusReport.stat }}</p></td>
                     </tr>
                 </table>
             </div>
@@ -71,16 +71,15 @@
                         <th>Issue</th>
                         <th>Priority</th>
                     </tr>
-                    <tr *ngFor="let data of data" [attr.data-data-id]="data.id">
-                        <td><p>{{ data.issuesName }}</p></td>
-                        <td><p>{{ data.issuesPrio }}</p></td>
+                    <tr>
+                        <td><p>{{ projectStatusReport.issuesName }}</p></td>
+                        <td><p>{{ projectStatusReport.issuesPrio }}</p></td>
                     </tr>
                 </table>
             </div>
         </div>
-        <div class="button-container">
-            <a class="formbold-btn" [routerLink]="['/edit/editprojectreport']">Edit</a>
-            <button class="formbold-btn" (click)="downloadPDF()">Download as PDF</button>
-        </div>
+
+            <button class="formbold-btn"  (click)="downloadPDF()">Download as PDF</button>
+
     </form>
 </div>

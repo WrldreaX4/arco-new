@@ -115,23 +115,7 @@ export const routes: Routes = [
         component: ProfileComponent
     },
     {
-        path: 'formsoutput/projectreportoutput',
-        component: ProjectreportoutputComponent
+        path: 'report',
+        component: ReportComponent
     },
-    {
-        path: 'edit/editprojectreport',
-        component: EditprojectreportComponent
-    },  
-    {
-        path: 'uploadfiles',
-        component: UploadfilesComponent
-    },
-    {
-        path: 'flipbookplus',
-        component: FlipbookplusComponent
-    },
-    {
-        path: 'flipbooknew',
-        component: FlipbooknewComponent
-    }
 ];

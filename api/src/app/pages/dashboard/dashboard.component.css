@@ -36,6 +36,7 @@ iframe{
   height: 350px;
   width: 450px;
 }
+
 #carousel div {
   position: absolute;
   transition: transform 400ms, left 400ms, opacity 400ms, z-index 0s;
@@ -49,7 +50,9 @@ iframe{
    -webkit-user-drag: none;
    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
    border-radius: 10px;
+   overflow: hidden;
 }
+
 #carousel div.hideLeft {
   left: 0%;
   opacity: 0;
@@ -109,6 +112,23 @@ iframe{
 #carousel div.nextRightSecond img {
   width: 200px;
 }
+
+.buttonL{
+  position: absolute;
+  text-align: center;
+  align-items: left;
+  object-position: left;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: large;
+  padding: 18px 28px;
+  background-color: white;
+  color: #d99e6d;
+  border: solid 3px #d99e6d;
+  border-radius: 30px;
+  margin-top: 30px;
+  left: 100px;
+  }
 
 /*previous or next buttons css*/
 
@@ -261,7 +281,9 @@ body:not(.sidebar-hovered) .main-body {
   height: 220px;
   padding: 1.5rem;
   margin-left: 400px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
 }
+
 .promo_card span {
   margin-bottom: 10px;
   align-items: center;

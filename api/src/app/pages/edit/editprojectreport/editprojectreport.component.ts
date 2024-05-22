@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarComponent } from '../../navbar/navbar.component';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-editprojectreport',
@@ -15,28 +15,23 @@ import { NgFor, NgIf } from '@angular/common';
 export class EditprojectreportComponent {
   projectForm: FormGroup;
   projectReportStatus: any = {};
-  data: any[] = [];
-
-
-  @ViewChild('formContent')
-  formContent!: ElementRef;
 
   projectID: number = 0;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute) {
-    this.projectForm = this.fb.group({
-      projectName: ['', Validators.required],
-      projectManager: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      statusDesc: ['', Validators.required],
-      overallProgress: ['', Validators.required],
-      milestoneDesc: ['', Validators.required],
-      compeDate: ['', Validators.required],
-      taskDesc: ['', Validators.required],
-      stat: ['', Validators.required],
-      issuesName: ['', Validators.required],
-      issuesPrio: ['', Validators.required]
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+    this.projectForm = new FormGroup({
+      projectName: new FormControl('', Validators.required),
+      projectManager: new FormControl('', Validators.required),
+      startDate: new FormControl('', Validators.required),
+      endDate: new FormControl('', Validators.required),
+      statusDesc: new FormControl('', Validators.required),
+      overallProgress: new FormControl('', Validators.required),
+      milestoneDesc: new FormControl('', Validators.required),
+      compeDate: new FormControl('', Validators.required),
+      taskDesc: new FormControl('', Validators.required),
+      stat: new FormControl('', Validators.required),
+      issuesName: new FormControl('', Validators.required),
+      issuesPrio: new FormControl('', Validators.required)
     });
   }
 
@@ -49,37 +44,40 @@ export class EditprojectreportComponent {
     });
   }
 
-  retrieveProjectStatusReport(projectID: number) {
-    this.http.get(`http://localhost/arco/api/projectreport/59`).subscribe(
-      (data: any) => {
-        console.log(data);
-        // Assign data to the form controls
-        this.projectForm.patchValue(data.data);
+  retrieveProjectStatusReport(projectID: number): void {
+    this.http.get(`http://localhost/arco2/arco/api/projectreportonly/${projectID}`).subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.projectReportStatus = resp.data;
+        this.projectForm.patchValue(this.projectReportStatus); // Populate form with retrieved data
       },
-      (error) => {
-        console.error('Error fetching data:', error);
+      error => {
+        console.error('Error fetching project report:', error);
       }
     );
   }
 
-  submitAndNavigate(id: number): void {
+submitAndNavigate(id: number): void {
     if (this.projectForm.valid) {
-      const reportData = this.projectForm.value;
+      const reportData = this.projectForm.value; // Use annualForm to extract values
+
+      // Post data to the specified endpoint
       this.http.post(`http://localhost/arco2/arco/api/edit_projectreport/${id}`, reportData)
         .subscribe(
           (resp) => {
             console.log('Updated:', resp);
-            // Navigate to the appropriate route upon success
-            // this.router.navigate(['create/annualreport/view']);
+            // Navigate to the collage creation route upon success
+            // this.router.navigate(['create/annualreport/view']); 
           },
           (error) => {
-            console.error('Error Submitting Report', error);
+            console.error('Error Submitting Report', error); // Handle errors
           }
         );
     } else {
       console.warn('Form is not valid. Check required fields.');
     }
   }
+
 
   formatDate(date: Date): string {
     if (!date) {
