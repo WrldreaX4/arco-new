@@ -19,6 +19,9 @@ import { EditannualreportComponent } from './pages/edit/editannualreport/editann
 import { ProjectReportStatusComponent } from './pages/forms/projectreportstatus/projectreportstatus.component';
 import { ProjectreportoutputComponent } from './pages/formsoutput/projectreportoutput/projectreportoutput.component';
 import { EditprojectreportComponent } from './pages/edit/editprojectreport/editprojectreport.component';
+import { UploadfilesComponent } from './pages/uploadfiles/uploadfiles.component';
+import { FlipbookplusComponent } from './pages/flipbookplus/flipbookplus.component';
+import { FlipbooknewComponent } from './pages/flipbooknew/flipbooknew.component';
 
 export const routes: Routes = [
 
@@ -52,6 +55,10 @@ export const routes: Routes = [
         component: EventformComponent 
     },  
     {
+        path: 'create/eventreport/uploadmedia', 
+        component: UploadfilesComponent
+    },  
+    {
         path: 'create/financialreport',  
         component: FinancialreportComponent
     },
@@ -64,7 +71,11 @@ export const routes: Routes = [
         component: AnnualreportoutputComponent
     },   
     {
-        path: 'create/eventreport/view',  
+        path: 'create/eventreport/uploadmedia/view',  
+        component: EventreportoutputComponent
+    }, 
+    {
+        path: 'eventoutputview',  
         component: EventreportoutputComponent
     }, 
     {
@@ -110,5 +121,17 @@ export const routes: Routes = [
     {
         path: 'edit/editprojectreport',
         component: EditprojectreportComponent
+    },  
+    {
+        path: 'uploadfiles',
+        component: UploadfilesComponent
+    },
+    {
+        path: 'flipbookplus',
+        component: FlipbookplusComponent
+    },
+    {
+        path: 'flipbooknew',
+        component: FlipbooknewComponent
     }
 ];
