@@ -25,6 +25,13 @@ interface FinancialReport {
   report_title: string;
 }
 
+interface ProjectStatusReport {
+  startDate: string | number | Date;
+  financialreport_id: number;
+  start_date: string;
+  report_title: string;
+}
+
 @Component({
   selector: 'app-summary',
   standalone: true,
@@ -34,22 +41,27 @@ interface FinancialReport {
   providers: [DatePipe, JsonPipe]
 })
 export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
+[x: string]: any;
   private dateRangePicker: flatpickr.Instance | null = null; // Initialize with null
     filteredAnnualReport: Report[] = [];
     filteredEventReport: Event[] = [];
     filteredFinancialReport: FinancialReport[] = [];
+    filteredProjectReport: ProjectStatusReport[] = [];
     annualReport: any = {};
     eventReport: any = {}
     financialReport: any = {}
+    projectStatusReport: any ={}
 
     constructor(private http: HttpClient, private datePipe: DatePipe, private route: ActivatedRoute) {
       this.annualReport = [];
       this.eventReport = [];
       this.financialReport = [];
+      this.projectStatusReport = [];
 
       this.retrieveAnnualReport();
       this.retrieveEventReport();
       this.retrieveFinancialReport();
+      this.retrieveProjectStatusReport();
     }
 
 
@@ -101,6 +113,20 @@ deleteFinancialReport(financialReportId: number): void {
   }
 }
 
+deleteprojectStatusReport(projectID: number): void {
+  const confirmed = confirm('Are you sure you want to delete this Project report?');
+  if (confirmed) {
+    this.http.post(`http://localhost/arco2/arco/api/delete_projectreport/${projectID}`, {})
+      .subscribe(
+        () => {
+          this.projectStatusReport = this.projectStatusReport.filter((entry: any) => entry.projectID !== projectID);
+        },
+        error => {
+          console.error('Error deleting Projecct report:', error);
+        }
+      );
+  }
+}
 
 
     retrieveAnnualReport(){
@@ -134,6 +160,16 @@ deleteFinancialReport(financialReportId: number): void {
       );
     }
 
+    retrieveProjectStatusReport() {
+      this.http.get('http://localhost/arco2/arco/api/projectreportall/115').subscribe(
+        (data: any) => {
+          console.log(data);
+          this.projectStatusReport = data.data;
+        }, (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+    }
   
     formatDate(date: string): string | null {
       const transformedDate = this.datePipe.transform(date, 'EEEE'); // Output like "Sunday, May 17, 2023"
@@ -197,7 +233,14 @@ deleteFinancialReport(financialReportId: number): void {
         const eventDate = new Date(event.event_date);
         return eventDate >= start && eventDate <= end;
       });
-    }
+
+      this.filteredProjectReport = this.projectStatusReport.filter((project: ProjectStatusReport) => {
+        const startDate = new Date(project.startDate);
+        return startDate >= start && startDate <= end;
+      });
+      
+      }
+      
   }
   
   setDayRange(): void {
