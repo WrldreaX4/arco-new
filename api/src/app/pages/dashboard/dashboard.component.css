@@ -113,16 +113,19 @@ iframe{
 .buttonL{
   position: absolute;
   text-align: center;
+  align-items: left;
+  object-position: left;
   text-decoration: none !important;
   font-weight: 600;
   font-size: large;
   padding: 18px 28px;
   background-color: white;
   color: #d99e6d;
-  border: solid 3px transparent;
+  border: solid 3px #d99e6d;
   border-radius: 30px;
   margin-top: 30px;
-  margin-left: -840px}
+  left: 100px;
+  }
 
 /*previous or next buttons css*/
 
