@@ -5,23 +5,45 @@
             <h1>Project Status Report</h1>
             <div class="date-column">
                 <div class="form-group">
-                    <label for="start-date">Start Date:</label>
-                    <input type="date" id="start-date" formControlName="startDate" class="form-control" *ngFor="let data of data"[attr.data-data-id]="data.id" value="{{data.startDate}}" required>
+                    <label for="startDate">Start Date:</label>
+                    <input 
+                        type="date" 
+                        name="startDate"
+                        id="startDate" 
+                        formControlName="startDate" 
+                        class="form-control"  
+                        required>
                 </div>
                 <div class="form-group">
-                    <label for="end-date">End Date:</label>
-                    <input type="date" id="end-date" formControlName="endDate" class="form-control" required>
+                    <label for="endDate">End Date:</label>
+                    <input 
+                        type="date" 
+                        id="endDate" 
+                        name="endDate"
+                        formControlName="endDate" 
+                        class="form-control" 
+                        required>
                 </div>
             </div>
             <div class="project-Details">
                 <h2>Project Details :</h2>
                 <div class="form-group">
-                    <label for="project-name">Project Name :</label>
-                    <input type="text" id="project-name" formControlName="projectName" class="form-control" required>
+                    <label for="projectName">Project Name :</label>
+                    <input 
+                        type="text" 
+                        name="projectName" 
+                        id="projectName" 
+                        formControlName="projectName" 
+                        class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="project-manager">Project Manager :</label>
-                    <input type="text" id="project-manager" formControlName="projectManager" class="form-control" required>
+                    <input 
+                        type="text" 
+                        id="projectManager" 
+                        name="projectManager" 
+                        formControlName="projectManager" 
+                        class="form-control" required>
                 </div>
             </div>
             <div class="status-progress">

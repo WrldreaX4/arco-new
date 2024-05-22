@@ -17,20 +17,23 @@ import { EditprojectreportComponent } from '../../edit/editprojectreport/editpro
 })
 export class ProjectreportoutputComponent implements OnInit {
 
-  httpClient = Inject(HttpClient);
-  data: any[] = [];
+  projectStatusReport: any = {};
+  data: any;
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient){
+  }
 
   ngOnInit(): void {
     this.retrieveProjectStatusReport();
   }
 
   retrieveProjectStatusReport() {
-    this.http.get('http://localhost/arco/api/projectreport/59').subscribe(
-      (data: any) => {
-        console.log(data);
-        this.data = data.data;
+    this.http.get('http://localhost/arco2/arco/api/projectreport/115').subscribe(
+      (resp: any) => {
+        console.log(resp);
+        this.data = resp.payload;
+        this.projectStatusReport = resp.data;
       }, (error) => {
         console.error('Error fetching data:', error);
       }
@@ -38,27 +41,28 @@ export class ProjectreportoutputComponent implements OnInit {
   }
 
   downloadPDF() {
-    const reportContainer = document.getElementById('reportContainer') as HTMLElement;
+    // Use type assertion to ensure the element is an HTMLElement
+    const reportData = document.querySelector('.reportdata') as HTMLElement;
 
-    if (reportContainer) {
-      html2canvas(reportContainer, { scale: 2, useCORS: true }).then((canvas) => {
-        const pdfWidth = canvas.width + 40; // Additional space to prevent cutting
-        const pdfHeight = canvas.height + 40;
+    if (reportData) {
+      html2canvas(reportData, { scale: 2, useCORS: true }).then((canvas) => {
+        const pdfWidth = canvas.width + 80; // Additional space to prevent cutting
+        const pdfHeight = canvas.height + 80;
 
         const pdf = new jsPDF({
           orientation: 'portrait',
           unit: 'px',
-          format: [pdfWidth, pdfHeight] // Ensure ample space to avoid cutting
+          format: [pdfWidth, pdfHeight], // Ensure ample space to avoid cutting
         });
 
-        const margin = 20; // Margin for padding around the content
+        const margin = 40; // Margin for padding around the content
         const imgData = canvas.toDataURL('image/png');
 
         pdf.addImage(imgData, 'PNG', margin, margin, canvas.width, canvas.height);
         pdf.save('Project_Report.pdf');
       });
     } else {
-      console.error('The report container was not found.');
+      console.error('The report data container was not found.');
     }
   }
 }

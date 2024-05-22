@@ -6,19 +6,22 @@
     <h2>Dashboard</h2>
     <div class="promo_card"><!--Promo Card-->
       <h1 class="title">Welcome to ARCO.</h1>
-      <span>Annual Report with Pic Collage.</span>
-      <button>Learn More</button>
+      <span>
+        Check out our annual report, which features a cool pic collage!
+        It gives an easy-to-understand overview of our company's year, including our big wins,
+        financial highlights, eco-friendly efforts, and plans for the future, all with lots of great photos to keep it interesting..</span>
+      <a [routerLink]="['/create']" class="buttonL">Start Create!</a>
     </div>
   </div> <!-- Added missing closing div tag -->
 </section>
 
 <div id="carousel" class="carousel">
   <div id='item_1' class="hideLeft">
-    <iframe src="/assets/orange.jpg"></iframe>
+    <iframe src="./assets/orange.jpg"></iframe>
   </div>
 
   <div id='item_2' class="prevLeftSecond">
-    <iframe src="/assets/orange.jpg"></iframe>
+    <iframe src="./assets/orange.jpg"></iframe>
   </div>
 
   <div id='item_3' class="prev">

@@ -160,7 +160,8 @@ th {
     color: white;
     cursor: pointer;
     margin-top: 25px;
-    margin-left: 800px;
+    margin-left: 250px;
+    margin-bottom: 20px;
   }
   .formbold-btn:hover {
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
