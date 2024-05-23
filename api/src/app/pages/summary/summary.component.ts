@@ -68,13 +68,13 @@ export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
     ngOnInit(): void {
 }
 
-deleteReport(reportId: number): void {
+deleteReport(report_id: number): void {
   const confirmed = confirm('Are you sure you want to delete this report?');
   if (confirmed) {
-    this.http.post(`http://localhost/arco2/arco/api/delete_annualreport/${reportId}`, {})
+    this.http.post(`http://localhost/arco2/arco/api/delete_annualreport/${report_id}`, {})
      .subscribe(
         () => {
-          this.annualReport = this.annualReport.filter((report: any) => report.report_id!== reportId);
+          this.annualReport = this.annualReport.filter((report: any) => report.report_id!== report_id);
         },
         error => {
           console.error('Error deleting report:', error);
@@ -82,13 +82,13 @@ deleteReport(reportId: number): void {
       );
   }
 }
-deleteEvent(eventId: number): void {
+deleteEvent(event_id: number): void {
   const confirmed = confirm('Are you sure you want to delete this event?');
   if (confirmed) {
-    this.http.post(`http://localhost/arco3/api/delete_eventreport/${eventId}`, {})
+    this.http.post(`http://localhost/arco2/api/delete_eventreport/${event_id}`, {})
       .subscribe(
         () => {
-          this.eventReport = this.eventReport.filter((event: any) => event.event_id !== eventId);
+          this.eventReport = this.eventReport.filter((event: any) => event.event_id !== event_id);
         },
         error => {
           console.error('Error deleting event:', error);
@@ -98,13 +98,13 @@ deleteEvent(eventId: number): void {
 }
 
 
-deleteFinancialReport(financialReportId: number): void {
+deleteFinancialReport(financialreport_id: number): void {
   const confirmed = confirm('Are you sure you want to delete this financial report?');
   if (confirmed) {
-    this.http.post(`http://localhost/arco3/api/delete_financialreport/${financialReportId}`, {})
+    this.http.post(`http://localhost/arco2/api/delete_financialreport/${financialreport_id}`, {})
       .subscribe(
         () => {
-          this.financialReport = this.financialReport.filter((entry: any) => entry.financialreport_id !== financialReportId);
+          this.financialReport = this.financialReport.filter((entry: any) => entry.financialreport_id !== financialreport_id);
         },
         error => {
           console.error('Error deleting financial report:', error);
@@ -129,11 +129,12 @@ deleteprojectStatusReport(projectID: number): void {
 }
 
 viewProjectStatusReport(projectID: number): void {
+  console.log('viewProjectStatusReport called with ID:', projectID); // Debug log
   this.http.get(`http://localhost/arco2/arco/api/projectreport/${projectID}`)
     .subscribe(
       (data: any) => {
-        this.projectStatusReport = [data];
-        this['router'].navigate(['/projectreportoutput', projectID]);
+        console.log('Project report data:', data); // Debug log
+        this['router'].navigate(['formsoutput/projectreportoutput', projectID]);
       },
       error => {
         console.error('Error fetching Project report:', error);
@@ -142,11 +143,12 @@ viewProjectStatusReport(projectID: number): void {
 }
 
 viewReport(reportId: number): void {
+  console.log('viewReport called with ID:', reportId); // Debug log
   this.http.get(`http://localhost/arco2/arco/api/annualreports/${reportId}`)
     .subscribe(
       (data: any) => {
-        this.annualReport = [data];
-        this['router'].navigate(['/annualreportoutput', reportId]);
+        console.log('Annual report data:', data); // Debug log
+        this['router'].navigate(['formsoutput/annualreportoutput', reportId]);
       },
       error => {
         console.error('Error fetching Annual report:', error);
@@ -155,11 +157,12 @@ viewReport(reportId: number): void {
 }
 
 viewEvent(eventId: number): void {
+  console.log('viewEvent called with ID:', eventId); // Debug log
   this.http.get(`http://localhost/arco2/arco/api/eventreports/${eventId}`)
     .subscribe(
       (data: any) => {
-        this.eventReport = [data];
-        this['router'].navigate(['/eventreportoutput', eventId]);
+        console.log('Event report data:', data); // Debug log
+        this['router'].navigate(['formsoutput/eventreportoutput', eventId]);
       },
       error => {
         console.error('Error fetching Event report:', error);
@@ -168,11 +171,12 @@ viewEvent(eventId: number): void {
 }
 
 viewFinancialReport(financialreport_id: number): void {
+  console.log('viewFinancialReport called with ID:', financialreport_id); // Debug log
   this.http.get(`http://localhost/arco2/arco/api/financialreports/${financialreport_id}`)
     .subscribe(
       (data: any) => {
-        this.financialReport = [data];
-        this['router'].navigate(['/financialreportoutput', financialreport_id]);
+        console.log('Financial report data:', data); // Debug log
+        this['router'].navigate(['formsoutput/financialreportoutput', financialreport_id]);
       },
       error => {
         console.error('Error fetching Financial report:', error);
@@ -180,47 +184,55 @@ viewFinancialReport(financialreport_id: number): void {
     );
 }
 
-    retrieveAnnualReport(){
-      this.http.get('http://localhost/arco2/arco/api/annualreportall/2').subscribe(
-        (resp: any) => {
-          console.log(resp);
-          this.annualReport = resp.data;
-        }, (error) => {
-          console.error('Error fetching data:', error);
-        }
-      );
-    }
 
-    retrieveEventReport(){
-      this.http.get('http://localhost/arco2/arco/api/eventreportall/2').subscribe(
-        (resp: any) => {
-          console.log(resp);
-          this.eventReport = resp.data;
-        }
-      )
+retrieveAnnualReport() {
+  this.http.get('http://localhost/arco2/arco/api/annualreportall/2').subscribe(
+    (resp: any) => {
+      console.log('Annual reports:', resp); // Debug log
+      this.annualReport = resp.data;
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
     }
+  );
+}
 
-    retrieveFinancialReport(){
-      this.http.get('http://localhost/arco2/arco/api/financialreportall/2').subscribe(
-        (resp: any) => {
-          console.log(resp);
-          this.financialReport = resp.data;
-        }, (error) => {
-          console.error('Error fetching data:', error);
-        }
-      );
+retrieveEventReport() {
+  this.http.get('http://localhost/arco2/arco/api/eventreportall/2').subscribe(
+    (resp: any) => {
+      console.log('Event reports:', resp); // Debug log
+      this.eventReport = resp.data;
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
     }
+  );
+}
 
-    retrieveProjectStatusReport() {
-      this.http.get('http://localhost/arco2/arco/api/projectreportall/${projectID}').subscribe(
-        (data: any) => {
-          console.log(data);
-          this.projectStatusReport = data.data;
-        }, (error) => {
-          console.error('Error fetching data:', error);
-        }
-      );
+retrieveFinancialReport() {
+  this.http.get('http://localhost/arco2/arco/api/financialreportall/2').subscribe(
+    (resp: any) => {
+      console.log('Financial reports:', resp); // Debug log
+      this.financialReport = resp.data;
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
     }
+  );
+}
+
+retrieveProjectStatusReport() {
+  this.http.get('http://localhost/arco2/arco/api/projectreportall/1').subscribe(
+    (data: any) => {
+      console.log('Project status reports:', data); // Debug log
+      this.projectStatusReport = data.data;
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
+    }
+  );
+}
+
   
     formatDate(date: string): string | null {
       const transformedDate = this.datePipe.transform(date, 'EEEE'); // Output like "Sunday, May 17, 2023"

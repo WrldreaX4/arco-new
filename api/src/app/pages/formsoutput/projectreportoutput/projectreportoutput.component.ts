@@ -29,7 +29,7 @@ export class ProjectreportoutputComponent implements OnInit {
   }
 
   retrieveProjectStatusReport() {
-    this.http.get('http://localhost/arco2/arco/api/projectreport/113').subscribe(
+    this.http.get('http://localhost/arco2/arco/api/projectreport/${projectID}').subscribe(
       (resp: any) => {
         console.log(resp);
         this.data = resp.payload;

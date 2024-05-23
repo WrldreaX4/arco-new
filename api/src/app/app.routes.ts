@@ -101,11 +101,11 @@ export const routes: Routes = [
         component: EditprojectreportComponent
     }, 
     {
-        path: 'summary/projectreportoutput/:id',      //dito           
+        path: 'formsoutput/projectreportoutput/:id',      //dito           
         component: ProjectreportoutputComponent
     },    
     {
-        path: 'summary/annualreportoutput/:id',      //dito           
+        path: 'formsoutput/annualreportoutput/:id',      //dito           
         component: AnnualreportoutputComponent
     },
     {
