@@ -168,7 +168,7 @@
   }
   
   .stylish-gray-button:hover {
-    background: linear-gradient(135deg, #757575, #424242); /* Darker on hover */
+    background: linear-gradient(135deg, #757575, #828282); /* Darker on hover */
     transform: translateY(-2px); /* Lift the button on hover */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
   }
@@ -182,6 +182,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 8px;
   }
   
   

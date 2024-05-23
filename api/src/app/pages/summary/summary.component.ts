@@ -128,6 +128,57 @@ deleteprojectStatusReport(projectID: number): void {
   }
 }
 
+viewProjectStatusReport(projectID: number): void {
+  this.http.get(`http://localhost/arco2/arco/api/projectreport/${projectID}`)
+    .subscribe(
+      (data: any) => {
+        this.projectStatusReport = [data];
+        this['router'].navigate(['/projectreportoutput', projectID]);
+      },
+      error => {
+        console.error('Error fetching Project report:', error);
+      }
+    );
+}
+
+viewReport(reportId: number): void {
+  this.http.get(`http://localhost/arco2/arco/api/annualreports/${reportId}`)
+    .subscribe(
+      (data: any) => {
+        this.annualReport = [data];
+        this['router'].navigate(['/annualreportoutput', reportId]);
+      },
+      error => {
+        console.error('Error fetching Annual report:', error);
+      }
+    );
+}
+
+viewEvent(eventId: number): void {
+  this.http.get(`http://localhost/arco2/arco/api/eventreports/${eventId}`)
+    .subscribe(
+      (data: any) => {
+        this.eventReport = [data];
+        this['router'].navigate(['/eventreportoutput', eventId]);
+      },
+      error => {
+        console.error('Error fetching Event report:', error);
+      }
+    );
+}
+
+viewFinancialReport(financialreport_id: number): void {
+  this.http.get(`http://localhost/arco2/arco/api/financialreports/${financialreport_id}`)
+    .subscribe(
+      (data: any) => {
+        this.financialReport = [data];
+        this['router'].navigate(['/financialreportoutput', financialreport_id]);
+      },
+      error => {
+        console.error('Error fetching Financial report:', error);
+      }
+    );
+}
 
     retrieveAnnualReport(){
       this.http.get('http://localhost/arco2/arco/api/annualreportall/2').subscribe(
@@ -161,7 +212,7 @@ deleteprojectStatusReport(projectID: number): void {
     }
 
     retrieveProjectStatusReport() {
-      this.http.get('http://localhost/arco2/arco/api/projectreportall/115').subscribe(
+      this.http.get('http://localhost/arco2/arco/api/projectreportall/${projectID}').subscribe(
         (data: any) => {
           console.log(data);
           this.projectStatusReport = data.data;
