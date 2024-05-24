@@ -43,7 +43,7 @@ export class ProjectReportStatusComponent implements OnInit {
     if (this.projectStatusReport.valid) {
       const reportData = this.projectStatusReport.value;
 
-      this.http.post('http://localhost/arco2/arco/api/projectreport/115', reportData)
+      this.http.post('http://localhost/arco2/arco/api/projectreport/${projectID}', reportData)
         .subscribe(
           (resp: any) => {
             console.log('Project Status Report submitted:', resp);

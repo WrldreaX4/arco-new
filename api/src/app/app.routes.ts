@@ -20,8 +20,6 @@ import { ProjectReportStatusComponent } from './pages/forms/projectreportstatus/
 import { ProjectreportoutputComponent } from './pages/formsoutput/projectreportoutput/projectreportoutput.component';
 import { EditprojectreportComponent } from './pages/edit/editprojectreport/editprojectreport.component';
 import { UploadfilesComponent } from './pages/uploadfiles/uploadfiles.component';
-import { FlipbookplusComponent } from './pages/flipbookplus/flipbookplus.component';
-import { FlipbooknewComponent } from './pages/flipbooknew/flipbooknew.component';
 
 export const routes: Routes = [
 
@@ -101,7 +99,15 @@ export const routes: Routes = [
     {
         path: 'summary/projectreportstatus/:id',      //dito           
         component: EditprojectreportComponent
-    },     
+    }, 
+    {
+        path: 'formsoutput/projectreportoutput/:id',      //dito           
+        component: ProjectreportoutputComponent
+    },    
+    {
+        path: 'formsoutput/annualreportoutput/:id',      //dito           
+        component: AnnualreportoutputComponent
+    },
     {
         path: 'summary',
         component: SummaryComponent

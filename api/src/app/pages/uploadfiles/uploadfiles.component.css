@@ -13,33 +13,19 @@ body{
   background: #0f2d7a;
 }
 
-.definedsection {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.app-uploadfiles {
-    width: 100vw;
-}
 ::selection{
   color: #fff;
   background: #6990F2;
 }
 .wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  width: 600px;
+  width: 430px;
   background: #fff;
   border-radius: 5px;
   padding: 30px;
   box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
 }
 .wrapper header{
-  color: #d99e6d;
+  color: #6990F2;
   font-size: 27px;
   font-weight: 600;
   text-align: center;
@@ -53,10 +39,10 @@ body{
   justify-content: center;
   flex-direction: column;
   border-radius: 5px;
-  border: 2px dashed #d99e6d;
+  border: 2px dashed #6990F2;
 }
 form :where(i, p){
-  color: #ec8d3f;
+  color: #6990F2;
 }
 form i{
   font-size: 50px;
@@ -82,7 +68,6 @@ section .row i{
 }
 section .details span{
   font-size: 14px;
-  margin-left: 90px;
 }
 .progress-area .row .content{
   width: 100%;
@@ -104,7 +89,7 @@ section .details span{
 .content .progress-bar .progress{
   height: 100%;
   width: 0%;
-  background: #e74242;
+  background: #6990F2;
   border-radius: inherit;
 }
 .uploaded-area{
@@ -133,33 +118,3 @@ section .details span{
 .uploaded-area i.fa-check{
   font-size: 16px;
 }
-
-.details span {
-    margin-left: 900px;
-}
-
-
-.content {
-    display: flex;
-    flex-direction: center;
-}
-
-
-.button-group {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-  .button-group button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ec8d3f;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .button-group button:hover {
-    background-color: #ec8d3f;
-
-  }

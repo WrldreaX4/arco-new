@@ -25,7 +25,7 @@ export class AnnualreportoutputComponent {
   
 
   retrieveAnnualReport(){
-    this.http.get('http://localhost/arco2/arco/api/annualreport/2').subscribe(
+    this.http.get('http://localhost/arco2/arco/api/annualreport/${reportId}').subscribe(
       (resp: any) => {
         console.log(resp);
         this.data = resp.payload;
