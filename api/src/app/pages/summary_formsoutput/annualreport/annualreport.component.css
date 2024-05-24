@@ -1,0 +1,155 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+}
+
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img img {
+    width: 10vw;
+}
+
+.date-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.date-container .report-info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.date-container .report-info label {
+    margin-bottom: 5px;
+}
+
+.header,
+.section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.header .title-input,
+.header .date-container,
+.section-content {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.header .title-input input,
+.header .date-container input,
+.section-content textarea {
+    width: calc(100% - 22px); 
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+}
+
+.header .title-input input {
+    text-align: center; 
+}
+
+h1 {
+    color: #e29e6a;
+    padding: 5px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+}
+
+h2 {
+    color: #000;
+    font-size: 20px;
+    padding: 10px;
+    font-style: italic;
+}
+
+label {
+    font-weight: bold;
+    font-size: 15px;
+    color: #000;
+}
+
+.download-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f9a825;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #f57f17;
+}
+
+.card {
+    display: flex;
+    width: 50vw;
+    height: 50vh;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 40px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.oneline {
+    display: flex;
+    justify-content: flex-start;
+    flex: 1;
+    gap: 400px;
+    margin-top: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.buttons button {
+    background-color: orange;
+    padding: 15px;
+    border-radius: 10px;
+    outline: 0;
+    border: 0;
+    margin-bottom: 20px;
+    font-style: bold;
+}

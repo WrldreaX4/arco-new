@@ -12,7 +12,7 @@
                 <p><b>Name of the Event:</b></p>
             </div>
             <div class="col-md-6">
-                <p>{{ eventReport.get('event_name').value }}</p>
+                <p>{{ eventReport.event_name }}</p>
             </div>
         </div>
         <div class="row">
@@ -20,7 +20,7 @@
                 <p><b>Date of the Event:</b></p>
             </div>
             <div class="col-md-6">
-                <p>{{ eventReport.get('event_date').value }}</p>
+                <p>{{ eventReport.event_date }}</p>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
                 <p><b>Event Title:</b></p>
             </div>
             <div class="col-md-6">
-                <p>{{ eventReport.get('event_title').value }}</p>
+                <p>{{ eventReport.event_title }}</p>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                 <p><b>Address:</b></p>
             </div>
             <div class="col-md-6">
-                <p>{{ eventReport.get('address').value }}</p>
+                <p>{{ eventReport.address }}</p>
             </div>
         </div>
     </div>
@@ -56,21 +56,19 @@
                 <tr>
                     <td>Office Supplies</td>
                     <td>
-                        <input type="number" []="eventReport.get('expenses').get('office_supplies')"
-                            class="form-control">
+                        <input type="number" [value]="eventReport.expenses?.office_supplies" class="form-control">
                     </td>
                 </tr>
                 <tr>
                     <td>Travel Expenses</td>
                     <td>
-                        <input type="number" []="eventReport.get('expenses').get('travel_expenses')"
-                            class="form-control">
+                        <input type="number" [value]="eventReport.expenses?.travel_expenses" class="form-control">
                     </td>
                 </tr>
                 <tr>
                     <td>Marketing</td>
                     <td>
-                        <input type="number" []="eventReport.get('expenses').get('marketing')" class="form-control">
+                        <input type="number" [value]="eventReport.expenses?.marketing" class="form-control">
                     </td>
                 </tr>
             </tbody>
@@ -83,7 +81,7 @@
                 <p><b>Expected Participants:</b> </p>
             </div>
             <div class="col-md-6">
-                <p>{{ eventReport.get('expected_participants').value }}</p>
+                <p>{{ eventReport.expected_participants }}</p>
             </div>
         </div>
         <div class="row">
@@ -91,7 +89,7 @@
                 <p><b>Total Participants:</b></p>
             </div>
             <div class="col-md-6">
-                <p>{{ eventReport.get('total_participants').value }}</p>
+                <p>{{ eventReport.total_participants }}</p>
             </div>
         </div>
     </div>
@@ -99,7 +97,7 @@
     <div class="summary">
         <h1>Summary</h1>
         <div class="summarydata">
-            <p>{{ eventReport.get('summary').value }}</p>
+            <p>{{ eventReport.summary }}</p>
         </div>
     </div>
 </div>

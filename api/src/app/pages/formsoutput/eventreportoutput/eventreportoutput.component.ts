@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -36,13 +37,13 @@ export class EventreportoutputComponent implements OnInit {
 
     if (reportData) {
       html2canvas(reportData, { scale: 2, useCORS: true }).then((canvas) => {
-        const pdfWidth = canvas.width + 80; // Additional space to prevent cutting
+        const pdfWidth = canvas.width + 80; 
         const pdfHeight = canvas.height + 80;
 
         const pdf = new jsPDF({
           orientation: 'portrait',
           unit: 'px',
-          format: [pdfWidth, pdfHeight], // Ensure ample space to avoid cutting
+          format: [pdfWidth, pdfHeight], 
         });
 
         const margin = 40; // Margin for padding around the content
@@ -55,5 +56,5 @@ export class EventreportoutputComponent implements OnInit {
       console.error('The report data container was not found.');
     }
   }
-}import { FormsModule } from '@angular/forms';
+}
 

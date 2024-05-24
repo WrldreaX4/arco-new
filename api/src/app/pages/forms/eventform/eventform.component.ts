@@ -40,7 +40,7 @@ export class EventformComponent implements OnInit {
         .subscribe(
           (resp) => {
             console.log('Report submitted:', resp);
-            this.router.navigate(['create/eventreport/view']);
+            this.router.navigate(['create/eventreport/uploadmedia']);
             // Navigate to the collage creation route upon succes
             
           },
