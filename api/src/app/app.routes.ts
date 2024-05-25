@@ -65,7 +65,7 @@ export const routes: Routes = [
         component: ProjectReportStatusComponent
     },
     {
-        path: 'create/annualreport/view',  
+        path: 'summary/annualreport',  
         component: AnnualreportoutputComponent
     },   
     {
@@ -73,15 +73,15 @@ export const routes: Routes = [
         component: EventreportoutputComponent
     }, 
     {
-        path: 'eventoutputview',  
+        path: 'summary/eventreport',  
         component: EventreportoutputComponent
     }, 
     {
-        path: 'create/financialreport/view',  
+        path: 'summary/financialreport',  
         component: FinancialreportoutputComponent
     },
     {
-        path: 'create/projectreportstatus/view',  
+        path: 'summary/projectreportstatus',  
         component: ProjectreportoutputComponent
     },
     {
@@ -100,14 +100,6 @@ export const routes: Routes = [
         path: 'summary/projectreportstatus/:id',      //dito           
         component: EditprojectreportComponent
     }, 
-    {
-        path: 'formsoutput/projectreportoutput/:id',      //dito           
-        component: ProjectreportoutputComponent
-    },    
-    {
-        path: 'formsoutput/annualreportoutput/:id',      //dito           
-        component: AnnualreportoutputComponent
-    },
     {
         path: 'summary',
         component: SummaryComponent
