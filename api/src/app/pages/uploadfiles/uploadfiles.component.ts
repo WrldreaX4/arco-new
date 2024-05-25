@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-uploadfiles',
@@ -9,13 +10,31 @@ import { Router } from '@angular/router';
   templateUrl: './uploadfiles.component.html',
   styleUrl: './uploadfiles.component.css'
 })
-export class UploadfilesComponent implements AfterViewInit {
+export class UploadfilesComponent implements AfterViewInit, OnInit {
+  userId: number | null = null;
+
+
+
+
+
+
   @ViewChild('fileInput') fileInput!: ElementRef;
   progressArea!: HTMLElement;
   uploadedArea!: HTMLElement;
-  selectedFiles: File[] = []; // Change to an array of files
+  selectedFiles: File[] = []; 
 
-  constructor(private router: Router) {} // Inject Router
+  constructor(private router: Router, private authService: AuthService) {} 
+
+  ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+      } else {
+        console.log('No user logged in.');
+      }
+    });
+  }
 
   ngAfterViewInit() {
     this.progressArea = document.querySelector('.progress-area') as HTMLElement;
@@ -28,11 +47,11 @@ export class UploadfilesComponent implements AfterViewInit {
 
   onFileChange(event: Event) {
     const target = event.target as HTMLInputElement;
-    this.selectedFiles = Array.from(target.files || []); // Handle multiple files
+    this.selectedFiles = Array.from(target.files || []); 
   }
 
   submitFiles(event: Event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
     if (this.selectedFiles.length > 0) {
       this.selectedFiles.forEach(file => {
         let fileName = file.name;
@@ -42,7 +61,7 @@ export class UploadfilesComponent implements AfterViewInit {
         }
         this.uploadFile(fileName, file);
       });
-      this.router.navigate(['eventoutputview']); // Redirect after upload
+      this.router.navigate(['eventoutputview']); 
     } else {
       alert('No files selected!');
     }
@@ -50,7 +69,7 @@ export class UploadfilesComponent implements AfterViewInit {
 
   uploadFile(name: string, file: File) {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/arco2/arco/api/collage/2");
+    xhr.open("POST", `http://localhost/arco2/arco/api/collage/${this.userId}`);
     xhr.upload.addEventListener("progress", ({ loaded, total }) => {
       const fileLoaded = Math.floor((loaded / total) * 100);
       const fileTotal = Math.floor(total / 1000);
@@ -107,6 +126,6 @@ export class UploadfilesComponent implements AfterViewInit {
 
   skipUpload() {
     alert('Upload skipped!');
-    this.router.navigate(['/skip-upload']); // Redirect on skip
+    this.router.navigate(['/eventoutputview']); 
   }
 }

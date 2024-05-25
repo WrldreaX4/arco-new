@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../../navbar/navbar.component';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-projectreportstatus',
@@ -13,13 +14,14 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 })
 export class ProjectReportStatusComponent implements OnInit {
   projectStatusReport: FormGroup;
+  userId: number | null = null;
 
   @ViewChild('formContent')
   formContent!: ElementRef;
   datePipe: any;
   
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) {
     this.projectStatusReport = this.fb.group({
       projectName: ['', Validators.required],
       projectManager: ['', Validators.required],
@@ -37,13 +39,20 @@ export class ProjectReportStatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+      } else {
+        console.log('No user logged in.');
+      }
+    });
   }
 
   submitAndNavigate() {
     if (this.projectStatusReport.valid) {
       const reportData = this.projectStatusReport.value;
-
-      this.http.post('http://localhost/arco2/arco/api/projectreport/${projectID}', reportData)
+      this.http.post(`http://localhost/arco2/arco/api/projectreport/${this.userId}`, reportData)
         .subscribe(
           (resp: any) => {
             console.log('Project Status Report submitted:', resp);

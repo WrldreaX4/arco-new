@@ -6,6 +6,7 @@ import { DatePipe, NgFor, NgIf } from '@angular/common';
 import  flatpickr  from 'flatpickr';
 import { JsonPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 interface Report {
   report_id: number;
@@ -41,7 +42,12 @@ interface ProjectStatusReport {
   providers: [DatePipe, JsonPipe]
 })
 export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
-[x: string]: any;
+  userId: number | null = null;
+
+  [x: string]: any;
+
+
+
   private dateRangePicker: flatpickr.Instance | null = null; // Initialize with null
     filteredAnnualReport: Report[] = [];
     filteredEventReport: Event[] = [];
@@ -52,7 +58,7 @@ export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
     financialReport: any = {}
     projectStatusReport: any ={}
 
-    constructor(private http: HttpClient, private datePipe: DatePipe, private route: ActivatedRoute) {
+    constructor(private http: HttpClient, private datePipe: DatePipe, private route: ActivatedRoute, private authService: AuthService) {
       this.annualReport = [];
       this.eventReport = [];
       this.financialReport = [];
@@ -65,8 +71,21 @@ export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
 
+
     ngOnInit(): void {
-}
+      this.authService.getCurrentUser().subscribe(user => {
+        if (user) {
+          this.userId = user.id;
+          console.log('User ID:', this.userId);
+          this.retrieveAnnualReport();
+          this.retrieveEventReport();
+          this.retrieveFinancialReport();
+          this.retrieveProjectStatusReport();
+        } else {
+          console.log('No user logged in.');
+        }
+      });
+    }
 
 deleteReport(report_id: number): void {
   const confirmed = confirm('Are you sure you want to delete this report?');
@@ -186,49 +205,49 @@ viewFinancialReport(financialreport_id: number): void {
 
 
 retrieveAnnualReport() {
-  this.http.get('http://localhost/arco2/arco/api/annualreportall/2').subscribe(
+  this.http.get(`http://localhost/arco2/arco/api/annualreportall/${this.userId}`).subscribe(
     (resp: any) => {
-      console.log('Annual reports:', resp); // Debug log
+      console.log('Annual reports:', resp); 
       this.annualReport = resp.data;
     },
     (error) => {
-      console.error('Error fetching data:', error);
+   
     }
   );
 }
 
 retrieveEventReport() {
-  this.http.get('http://localhost/arco2/arco/api/eventreportall/2').subscribe(
+  this.http.get(`http://localhost/arco2/arco/api/eventreportall/${this.userId}`).subscribe(
     (resp: any) => {
-      console.log('Event reports:', resp); // Debug log
+      console.log('Event reports:', resp); 
       this.eventReport = resp.data;
     },
     (error) => {
-      console.error('Error fetching data:', error);
+
     }
   );
 }
 
 retrieveFinancialReport() {
-  this.http.get('http://localhost/arco2/arco/api/financialreportall/2').subscribe(
+  this.http.get(`http://localhost/arco2/arco/api/financialreportall/${this.userId}`).subscribe(
     (resp: any) => {
-      console.log('Financial reports:', resp); // Debug log
+      console.log('Financial reports:', resp); 
       this.financialReport = resp.data;
     },
     (error) => {
-      console.error('Error fetching data:', error);
+
     }
   );
 }
 
 retrieveProjectStatusReport() {
-  this.http.get('http://localhost/arco2/arco/api/projectreportall/1').subscribe(
+  this.http.get(`http://localhost/arco2/arco/api/projectreportall/${this.userId}`).subscribe(
     (data: any) => {
-      console.log('Project status reports:', data); // Debug log
+      console.log('Project status reports:', data); 
       this.projectStatusReport = data.data;
     },
     (error) => {
-      console.error('Error fetching data:', error);
+
     }
   );
 }

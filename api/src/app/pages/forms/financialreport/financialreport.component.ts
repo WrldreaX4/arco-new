@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-financialreport',
@@ -13,9 +14,10 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './financialreport.component.css'
 })
 export class FinancialreportComponent {
+  userId: number | null = null;
   financialReportForm: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.financialReportForm = this.fb.group({
       report_title: ['', Validators.required],
       prepared_by: ['', Validators.required],
@@ -34,31 +36,42 @@ export class FinancialreportComponent {
       expense_amount3: ['']
     });
   }
+
   ngOnInit(): void {
-  
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+      } else {
+        console.log('No user logged in.');
+      }
+    });
   }
-  
+
   submitAndNavigate() {
     if (this.financialReportForm.valid) {
-      const reportData = this.financialReportForm.value; // Use annualForm to extract values
+      const reportData = this.financialReportForm.value; 
 
-      // Post data to the specified endpoint
-      this.http.post('http://localhost/arco2/arco/api/financialreport/2', reportData)
-        .subscribe(
-          (resp) => {
-            console.log('Report submitted:', resp);
-            // Navigate to the collage creation route upon success
-            this.router.navigate(['create/financialreport/view']);
-            
-          },
-          (error) => {
-            console.error('Error Submitting Report', error); // Handle errors
-          }
-        );
+      if (this.userId !== null) {
+        const endpoint = `http://localhost/arco2/arco/api/financialreport/${this.userId}`;
+        
+      
+        this.http.post(endpoint, reportData)
+          .subscribe(
+            (resp) => {
+              console.log('Report submitted:', resp);
+
+              this.router.navigate(['create/financialreport/view']);
+            },
+            (error) => {
+              console.error('Error Submitting Report', error); 
+            }
+          );
+      } else {
+        console.error('User ID is not set.');
+      }
     } else {
       console.warn('Form is not valid. Check required fields.');
     }
   }
-
-
 }

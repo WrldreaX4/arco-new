@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../../navbar/navbar.component';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-annualreport',
@@ -14,7 +15,9 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 })
 export class AnnualreportComponent implements OnInit {
   annualForm: FormGroup;
-    constructor(private http: HttpClient, private router: Router){
+  userId: number | null = null;
+
+    constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
       this.annualForm = new FormGroup({
         title: new FormControl('', Validators.required), // Required field
         year: new FormControl('', [Validators.required, Validators.min(1900), Validators.max(2100)]), // Number validation
@@ -26,30 +29,41 @@ export class AnnualreportComponent implements OnInit {
       });
     }
 
-    ngOnInit(): void {
-      
-    }
+ ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+      } else {
+        console.log('No user logged in.');
+      }
+    });
+  }
 
-    submitAndNavigate() {
-      if (this.annualForm.valid) {
-        const reportData = this.annualForm.value; // Use annualForm to extract values
+  submitAndNavigate() {
+    if (this.annualForm.valid) {
+      const reportData = this.annualForm.value; 
 
-        // Post data to the specified endpoint
-        this.http.post('http://localhost/arco2/arco/api/annualreport/2', reportData)
+      if (this.userId !== null) {
+        const endpoint = `http://localhost/arco2/arco/api/annualreport/${this.userId}`;
+        
+        
+        this.http.post(endpoint, reportData)
           .subscribe(
             (resp) => {
               console.log('Report submitted:', resp);
-              // Navigate to the collage creation route upon success
+
               this.router.navigate(['create/annualreport/view']);
-              
             },
             (error) => {
-              console.error('Error Submitting Report', error); // Handle errors
+              console.error('Error Submitting Report', error); 
             }
           );
       } else {
-        console.warn('Form is not valid. Check required fields.');
+        console.error('User ID is not set.');
       }
+    } else {
+      console.warn('Form is not valid. Check required fields.');
     }
   }
-
+}

@@ -13,7 +13,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
   email: string = '';
   password: string = '';
   errorMessage: string = ''; // To store error message
@@ -22,7 +21,7 @@ export class LoginComponent {
 
   onLogin() {
     if (!this.email || !this.password) {
-      alert('Please fill in all fields');;
+      alert('Please fill in all fields');
       return;
     }
     
@@ -34,6 +33,7 @@ export class LoginComponent {
     this.authService.userLogin(data).subscribe(
       (response: any) => {
         console.log(response.message);
+        this.authService.setToken(response.jwt);
         this.router.navigate(['/dashboard']);
       },
       (error: any) => {

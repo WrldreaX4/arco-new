@@ -16,6 +16,20 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class DashboardComponent implements AfterViewInit {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   ngAfterViewInit() {
     this.initCarousel();
   }

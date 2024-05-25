@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-eventform',
@@ -14,12 +15,9 @@ import { NgIf } from '@angular/common';
 })
 export class EventformComponent implements OnInit {
   eventForm: FormGroup;
+  userId: number | null = null;
 
-  ngOnInit(): void {
-    
-  }
-
-  constructor(private http: HttpClient, private router: Router){
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
     this.eventForm = new FormGroup({
       event_name: new FormControl('', Validators.required),
       event_date: new FormControl(''),
@@ -28,29 +26,43 @@ export class EventformComponent implements OnInit {
       expected_participants: new FormControl('', Validators.required),
       total_participants: new FormControl('', Validators.required),
       summary: new FormControl('', Validators.required)
-    })
+    });
   }
 
+  ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+      } else {
+        console.log('No user logged in.');
+      }
+    });
+  }
   submitAndNavigate() {
     if (this.eventForm.valid) {
-      const reportData = this.eventForm.value; // Use annualForm to extract values
+      const reportData = this.eventForm.value; 
 
-      // Post data to the specified endpoint
-      this.http.post('http://localhost/arco2/arco/api/eventreport/2', reportData)
-        .subscribe(
-          (resp) => {
-            console.log('Report submitted:', resp);
-            this.router.navigate(['create/eventreport/uploadmedia']);
-            // Navigate to the collage creation route upon succes
-            
-          },
-          (error) => {
-            console.error('Error Submitting Report', error); // Handle errors
-          }
-        );
+      if (this.userId !== null) {
+        const endpoint = `http://localhost/arco2/arco/api/eventreport/${this.userId}`;
+        
+
+        this.http.post(endpoint, reportData)
+          .subscribe(
+            (resp) => {
+              console.log('Report submitted:', resp);
+              this.router.navigate(['create/eventreport/uploadmedia']);
+
+            },
+            (error) => {
+              console.error('Error Submitting Report', error); 
+            }
+          );
+      } else {
+        console.error('User ID is not set.');
+      }
     } else {
       console.warn('Form is not valid. Check required fields.');
     }
   }
-
 }

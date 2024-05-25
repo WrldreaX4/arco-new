@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { EditprojectreportComponent } from '../../edit/editprojectreport/editprojectreport.component';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-projectreportoutput',
@@ -20,25 +21,42 @@ export class ProjectreportoutputComponent implements OnInit {
   projectStatusReport: any = {};
   data: any;
 
+  userId: number | null = null;
 
-  constructor(private http: HttpClient){
+
+
+  constructor(private http: HttpClient, private authService: AuthService){
   }
 
+
   ngOnInit(): void {
-    this.retrieveProjectStatusReport();
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+        this.retrieveProjectStatusReport();
+      } else {
+        console.log('No user logged in.');
+      }
+    });
   }
 
   retrieveProjectStatusReport() {
-    this.http.get('http://localhost/arco2/arco/api/projectreport/${projectID}').subscribe(
-      (resp: any) => {
-        console.log(resp);
-        this.data = resp.payload;
-        this.projectStatusReport = resp.data;
-      }, (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
+    if (this.userId !== null) {
+      this.http.get(`http://localhost/arco2/arco/api/projectreport/${this.userId}`).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.data = resp.payload;
+          this.projectStatusReport = resp.data;
+        }, (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+    } else {
+      console.error('User ID is not set.');
+    }
   }
+
 
   downloadPDF() {
     // Use type assertion to ensure the element is an HTMLElement

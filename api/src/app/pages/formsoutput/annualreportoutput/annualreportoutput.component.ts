@@ -3,6 +3,7 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-annualreportoutput',
   standalone: true,
@@ -15,26 +16,41 @@ export class AnnualreportoutputComponent {
   annualReport: any = {};
   data: any;
 
-  constructor(private http: HttpClient){
+  userId: number | null = null;
+
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.retrieveAnnualReport()
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+        this.retrieveAnnualReport();
+      } else {
+        console.log('No user logged in.');
+      }
+    });
   }
 
   
 
-  retrieveAnnualReport(){
-    this.http.get('http://localhost/arco2/arco/api/annualreport/${reportId}').subscribe(
-      (resp: any) => {
-        console.log(resp);
-        this.data = resp.payload;
-        this.annualReport = resp.data;
-      }, (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
+  retrieveAnnualReport() {
+    if (this.userId !== null) {
+      this.http.get(`http://localhost/arco2/arco/api/annualreport/${this.userId}`).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.data = resp.payload;
+          this.annualReport = resp.data;
+        }, (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+    } else {
+      console.error('User ID is not set.');
+    }
   }
+
 
 
   downloadPDF() {

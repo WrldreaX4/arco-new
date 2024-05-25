@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../../services/auth.service';
 
 
 @Component({
@@ -16,22 +17,40 @@ import { HttpClient } from '@angular/common/http';
 export class EventreportoutputComponent implements OnInit {
 
   eventReport: any = {}
+  userId: number | null = null;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.retrieveEventReport();
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+        this.retrieveEventReport();
+      } else {
+        console.log('No user logged in.');
+      }
+    });
   }
 
-  retrieveEventReport(){
-    this.http.get('http://localhost/arco2/arco/api/eventreport/2').subscribe(
-      (resp: any) => {
-        console.log(resp);
-        this.eventReport = resp.data;
-      }
-    )
+  retrieveEventReport() {
+    if (this.userId !== null) {
+      this.http.get(`http://localhost/arco2/arco/api/eventreport/${this.userId}`).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.eventReport = resp.data;
+        },
+        (error) => {
+          console.error('Error fetching event report:', error);
+        }
+      );
+    } else {
+      console.error('User ID is not set.');
+    }
   }
+
+  
   downloadPDF() {
     const reportData = document.querySelector('.reportdata') as HTMLElement;
 
