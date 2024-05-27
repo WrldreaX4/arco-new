@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe, NgFor, NgIf } from '@angular/common';
@@ -58,7 +58,7 @@ export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
     financialReport: any = {}
     projectStatusReport: any ={}
 
-    constructor(private http: HttpClient, private datePipe: DatePipe, private route: ActivatedRoute, private authService: AuthService) {
+    constructor(private http: HttpClient, private router: Router, private datePipe: DatePipe, private route: ActivatedRoute, private authService: AuthService) {
       this.annualReport = [];
       this.eventReport = [];
       this.financialReport = [];
@@ -104,7 +104,7 @@ deleteReport(report_id: number): void {
 deleteEvent(event_id: number): void {
   const confirmed = confirm('Are you sure you want to delete this event?');
   if (confirmed) {
-    this.http.post(`http://localhost/arco2/api/delete_eventreport/${event_id}`, {})
+    this.http.post(`http://localhost/arco2/arco/api/delete_eventreport/${event_id}`, {})
       .subscribe(
         () => {
           this.eventReport = this.eventReport.filter((event: any) => event.event_id !== event_id);
@@ -120,7 +120,7 @@ deleteEvent(event_id: number): void {
 deleteFinancialReport(financialreport_id: number): void {
   const confirmed = confirm('Are you sure you want to delete this financial report?');
   if (confirmed) {
-    this.http.post(`http://localhost/arco2/api/delete_financialreport/${financialreport_id}`, {})
+    this.http.post(`http://localhost/arco2/arco/api/delete_financialreport/${financialreport_id}`, {})
       .subscribe(
         () => {
           this.financialReport = this.financialReport.filter((entry: any) => entry.financialreport_id !== financialreport_id);
@@ -145,62 +145,6 @@ deleteprojectStatusReport(projectID: number): void {
         }
       );
   }
-}
-
-viewProjectStatusReport(projectID: number): void {
-  console.log('viewProjectStatusReport called with ID:', projectID); // Debug log
-  this.http.get(`http://localhost/arco2/arco/api/projectreport/${projectID}`)
-    .subscribe(
-      (data: any) => {
-        console.log('Project report data:', data); // Debug log
-        this['router'].navigate(['formsoutput/projectreportoutput', projectID]);
-      },
-      error => {
-        console.error('Error fetching Project report:', error);
-      }
-    );
-}
-
-viewReport(reportId: number): void {
-  console.log('viewReport called with ID:', reportId); // Debug log
-  this.http.get(`http://localhost/arco2/arco/api/annualreports/${reportId}`)
-    .subscribe(
-      (data: any) => {
-        console.log('Annual report data:', data); // Debug log
-        this['router'].navigate(['formsoutput/annualreportoutput', reportId]);
-      },
-      error => {
-        console.error('Error fetching Annual report:', error);
-      }
-    );
-}
-
-viewEvent(eventId: number): void {
-  console.log('viewEvent called with ID:', eventId); // Debug log
-  this.http.get(`http://localhost/arco2/arco/api/eventreports/${eventId}`)
-    .subscribe(
-      (data: any) => {
-        console.log('Event report data:', data); // Debug log
-        this['router'].navigate(['formsoutput/eventreportoutput', eventId]);
-      },
-      error => {
-        console.error('Error fetching Event report:', error);
-      }
-    );
-}
-
-viewFinancialReport(financialreport_id: number): void {
-  console.log('viewFinancialReport called with ID:', financialreport_id); // Debug log
-  this.http.get(`http://localhost/arco2/arco/api/financialreports/${financialreport_id}`)
-    .subscribe(
-      (data: any) => {
-        console.log('Financial report data:', data); // Debug log
-        this['router'].navigate(['formsoutput/financialreportoutput', financialreport_id]);
-      },
-      error => {
-        console.error('Error fetching Financial report:', error);
-      }
-    );
 }
 
 

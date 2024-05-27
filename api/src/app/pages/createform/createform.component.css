@@ -24,6 +24,7 @@ body {
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   margin-left: 60px;
+  margin-top: 97px;
 }
 
 .card img {
