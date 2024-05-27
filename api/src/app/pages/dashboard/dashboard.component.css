@@ -20,6 +20,7 @@
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
   background-color: #fff;
 }
@@ -57,7 +58,7 @@ h1 {
 
 .progress {
   height: 20px;
-  background-color: #d99e6d;
+  background-color: #76c7c0;
   border-radius: 5px;
   text-align: center;
   color: white;
