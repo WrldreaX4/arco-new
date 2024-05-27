@@ -24,6 +24,7 @@ import { ViewannualreportComponent } from './pages/view/viewannualreport/viewann
 import { VieweventreportComponent } from './pages/view/vieweventreport/vieweventreport.component';
 import { ViewfinancialrepertComponent } from './pages/view/viewfinancialrepert/viewfinancialrepert.component';
 import { ViewprojectreportComponent } from './pages/view/viewprojectreport/viewprojectreport.component';
+import { CollageComponent } from './pages/collage/collage.component';
 
 export const routes: Routes = [
 
@@ -143,5 +144,9 @@ export const routes: Routes = [
     {
         path: 'report',
         component: ReportComponent
+    },
+    {
+        path: 'collage',
+        component: CollageComponent
     }
 ];
