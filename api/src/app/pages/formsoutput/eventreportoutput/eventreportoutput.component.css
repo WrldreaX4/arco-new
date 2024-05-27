@@ -1,164 +1,98 @@
-
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
-
-
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    box-sizing: border-box;
-}
-
-.reportdata {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-}
-
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-.img {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
 }
-
-.img img {
-    width: 10vw;
-}
-
-
-.header {
-    color: #e29e6a;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    color: #000;
-    margin-bottom: 20px;
-}
-
-label {
-    font-weight: bold;
-    font-size: 15px;
-    color: #000;
-}
-
-.input .form-control {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-
-    text-align: center; /* Add this line to align text in the middle */
-}
-.form-control,
-.summarydata textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.inputdata {
+.container {
     display: flex;
-    justify-content: space-around;
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.laman {
+.sidebar {
+    background-color:  #e29e6a;
+    color: white;
+    padding: 20px;
+    width: 250px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
-
-.tabledata {
+.sidebar h1 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin: 0;
+}
+.sidebar .contact {
+    margin-top: auto;
+    text-align: center;
+}
+.content {
+    width: 80%;
+    padding: 20px;
+    flex-grow: 1;
+}
+.section {
+    margin-bottom: 20px;
+}
+.section h2 {
+    background-color: #e29e6a;
+    color: white;
+    padding: 2px;
+    display: inline-block;
+}
+.team {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.team img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
 }
-
-.table thead th {
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+th {
     background-color: #e29e6a;
     color: white;
 }
-
-.table td,
-.table th {
-    text-align: center;
+.participants {
+    display: flex;
+    justify-content: space-around;
 }
-
-
-.summary {
-    text-align: center;  
+.participants2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-
-.summary h1 {
-    font-size: 22px;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 10px;
-}
-
-.summarydata textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-
 .button-container {
     text-align: center;
     margin-top: 20px;
 }
-
-.download-btn {
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
+.formbold-btn {
     background-color: #e29e6a;
-    color: #fff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
-
-.download-btn:hover {
-    background-color: #cf7c4d;
-}
-.summary-title {
-    font-weight: bold;
-}
-.summary-textbox {
-    width: 100%;
-    height: 150px; 
-    resize: vertical; 
-}
-.button-container button {
-    background-color: #ffa500; 
-    color: #fff; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-}
-
-.button-container button:hover {
-    background-color: #ff7f00;
-}
-
-.totalexpenses {
-    text-align: right;
-}
-
-.summarypage {
-    margin-left: 15px;
+.formbold-btn:hover {
+    background-color: #34495e;
 }

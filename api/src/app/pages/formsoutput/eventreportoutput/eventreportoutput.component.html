@@ -1,92 +1,46 @@
 <app-navbar></app-navbar>
-<div class="img">
-    <img src="../../assets/Logo.png" alt="Arco">
-</div>
-<div class="reportdata container mt-5">
-    <img src="../../assets/header.png" alt="header" class="img-fluid">
-    <h1 class="header">Event Report</h1>
-    <link rel="stylesheet" href="eventreportoutput.component.css">
-    <div class="input container">
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Name of the Event:</b></p>
-            </div>
-            <div class="col-md-6">
-                <p>{{ eventReport.event_name }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Date of the Event:</b></p>
-            </div>
-            <div class="col-md-6">
-                <p>{{ eventReport.event_date }}</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Event Title:</b></p>
-            </div>
-            <div class="col-md-6">
-                <p>{{ eventReport.event_title }}</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Address:</b></p>
-            </div>
-            <div class="col-md-6">
-                <p>{{ eventReport.address }}</p>
-            </div>
-        </div>
+<div class="lagayan container reportdata">
+    <div class="sidebar">
+        <h1>Event Report</h1>
     </div>
-
-    <div class="summary">
-        <h1>Summary</h1>
-        <div class="summarydata">
-            <p>{{ eventReport.summary }}</p>
+    <div class="content">
+        <div class="section">
+            <div class="participants2">
+                <h2>{{ eventReport.event_title }}</h2>
+                <img src="../../assets/Logo.png" alt="Logo" style="width: 100px; height: 100px;">
+            </div>
+            <div class="participants2">
+                <p><strong>Event Name:</strong> {{ eventReport.event_name }}</p>
+                <p><strong>Location:</strong> {{ eventReport.address }}</p>
+            </div>
+            <div class="participants2">
+                <p><strong>Expected Participants:</strong> {{ eventReport.expected_participants }}</p>
+                <p><strong>Total Participants:</strong> {{ eventReport.total_participants }}</p>
+            </div>
+            <p><strong>Summary:</strong> {{ eventReport.summary }}</p>
         </div>
-    </div>
-
-    <h5 class="summarypage"><i>Summary of Expenses in the Event</i></h5>
-    <div class="container tabledata">
-        <table class="table table-striped table-bordered">
-            <thead>
+        <div class="section">
+            <div class="participants2">
+                <h2>Event Expenses</h2>
+                <p><strong>Date:</strong> {{ eventReport.event_date }}</p>
+            </div>
+            <table>
                 <tr>
-                    <th>Expense Item</th>
-                    <th>Amount</th>
+                    <th>Item</th>
+                    <th>Amount ($)</th>
                 </tr>
-            </thead>
-            <tbody>
                 <tr *ngFor="let expense of eventExpenses">
-                    <td>{{ expense.item }}</td>
-                    <td>{{ expense.amount | currency:'PHP'}}</td>
+                    <td><b>{{ expense.item }}</b></td>
+                    <td>{{ expense.amount | currency:'PHP' }}</td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="totalexpenses">
-        <p>Total Expenses: <b>{{ totalExpenses | currency: 'PHP' }}</b></p>
-    </div>
-
-    <div class="inputdata">
-        <div class="laman row">
-                <p><b>Expected Participants:</b> </p>
-                <p>{{ eventReport.expected_participants }}</p>
-        </div>
-        <div class="laman row">
-            
-                <p><b>Total Participants:</b></p>
-
-                <p>{{ eventReport.total_participants }}</p>
-
+                <tr>
+                    <th>Total</th>
+                    <th>{{ totalExpenses | currency:'PHP' }}</th>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
-
 <div class="button-container">
     <button class="formbold-btn" (click)="downloadPDF()">Download as PDF</button>
 </div>

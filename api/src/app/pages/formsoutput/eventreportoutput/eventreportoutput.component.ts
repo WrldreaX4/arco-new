@@ -91,16 +91,27 @@ export class EventreportoutputComponent implements OnInit {
     downloadPDF(): void {
       const element = document.querySelector('.reportdata') as HTMLElement;
       if (element) {
-        html2canvas(element, { scale: 2 }).then((canvas) => {
+        html2canvas(element, { scale: 3 }).then((canvas) => {
           const imgData = canvas.toDataURL('image/png');
-          const pdf = new jsPDF('p', 'mm', 'a4');
-          const imgProps = pdf.getImageProperties(imgData);
+          const pdf = new jsPDF('l', 'mm', 'a4'); // 'l' for landscape
           const pdfWidth = pdf.internal.pageSize.getWidth();
-          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-    
-          pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imgProps = pdf.getImageProperties(imgData);
+          const imgWidth = pdfWidth;
+          const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+          // Check if the height of the image exceeds the height of the PDF page
+          if (imgHeight > pdfHeight) {
+            const scale = pdfHeight / imgHeight;
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth * scale, imgHeight * scale);
+          } else {
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+          }
+  
           pdf.save('event_report.pdf');
         });
       }
     }
+    
+    
   }

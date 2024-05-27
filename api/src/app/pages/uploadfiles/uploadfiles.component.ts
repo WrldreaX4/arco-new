@@ -61,7 +61,7 @@ export class UploadfilesComponent implements AfterViewInit, OnInit {
         }
         this.uploadFile(fileName, file);
       });
-      this.router.navigate(['eventoutputview']); 
+      this.router.navigate(['create/eventreport/uploadmedia/view']); 
     } else {
       alert('No files selected!');
     }
@@ -126,6 +126,6 @@ export class UploadfilesComponent implements AfterViewInit, OnInit {
 
   skipUpload() {
     alert('Upload skipped!');
-    this.router.navigate(['/eventoutputview']); 
+    this.router.navigate(['/create/eventreport/uploadmedia/view']); 
   }
 }
