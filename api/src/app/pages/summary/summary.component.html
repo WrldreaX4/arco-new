@@ -31,7 +31,7 @@
                         <div class="day">{{ report.created_at | date: 'MMMM d, y' }}</div>
                         <div class="date">{{ report.report_id }}</div>
                         <div class="activity">{{ report.title }}</div>
-                        <button class="stylish-gray-button" [routerLink]="['annualreport', report.report_id]">View</button>
+                        <button class="stylish-gray-button" [routerLink]="['viewannualreport/view', report.report_id]">View</button>
                         <button class="stylish-gray-button" [routerLink]="['annualreport', report.report_id]">Edit</button>
                         <button class="stylish-gray-button" (click)="deleteReport(report.report_id)">Delete</button>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="day"> {{ report.created_at | date: 'MMMM d, y' }}</div>
                         <div class="date"> {{ report.report_id }}</div>
                         <div class="activity"> {{ report.title }}</div>
-                        <button class="stylish-gray-button" [routerLink]="['annualreportoutput', report.report_id]">View</button>
+                        <button class="stylish-gray-button" [routerLink]="['viewannualreport/view', report.report_id]">View</button>
                         <button class="stylish-gray-button" [routerLink]="['annualreport', report.report_id]">Edit</button>
                         <button class="stylish-gray-button" (click)="deleteReport(report.report_id)">Delete</button>
                     </div>
@@ -57,7 +57,7 @@
             <div class="day"> {{ event.event_date | date: 'MMMM d, y' }}</div>
             <div class="date"> {{ event.event_id }}</div>
             <div class="activity"> {{ event.event_name }}</div>
-            <button class="stylish-gray-button" [routerLink]="['eventreportoutput', event.event_id]">View</button>
+            <button class="stylish-gray-button" [routerLink]="['vieweventreport/view', event.event_id]">View</button>
             <button class="stylish-gray-button" [routerLink]="['eventreport', event.event_id]">Edit</button>
             <button class="stylish-gray-button" (click)="deleteReport(event.event_id)">Delete</button>
 
@@ -71,7 +71,7 @@
             <div class="day"> {{ finance.start_date | date: 'MMMM d, y' }}</div>
             <div class="date"> {{ finance.financialreport_id }}</div>
             <div class="activity"> {{ finance.report_title }}</div>
-            <button class="stylish-gray-button" [routerLink]="['financialreportoutput', finance.financialreport_id]">View</button>
+            <button class="stylish-gray-button" [routerLink]="['viewfinancialreport/view', finance.financialreport_id]">View</button>
             <button class="stylish-gray-button" [routerLink]="['financialreport', finance.financialreport_id]">Edit</button>
             <button class="stylish-gray-button" (click)="deleteFinancialReport(finance.financialreport_id)">Delete</button>            
         </div>
@@ -85,7 +85,7 @@
             <div class="day">{{ projectStatusReport.startDate | date: 'MMMM d, y' }}</div>
             <div class="date">{{ projectStatusReport.projectID }}</div>
             <div class="activity">{{ projectStatusReport.projectName }}</div>
-            <button class="stylish-gray-button" [routerLink]="['projectreportoutput', projectStatusReport.projectID]">View</button>
+            <button class="stylish-gray-button" [routerLink]="['viewprojectreport/view', projectStatusReport.projectID]">View</button>
             <button class="stylish-gray-button" [routerLink]="['projectreportstatus', projectStatusReport.projectID]">Edit</button>
             <button class="stylish-gray-button" (click)="deleteprojectStatusReport(projectStatusReport.projectID)">Delete</button>
         </div>
@@ -118,7 +118,7 @@
                 <p>{{ annual.report_id }}</p>
             </div>
             <div class="displaybutton col-md-3 text-right">
-                <button class="stylish-gray-button" [routerLink]="['annualreport', annual.report_id]">View</button>
+                <button class="stylish-gray-button" [routerLink]="['viewannualreport/view', annual.report_id]">View</button>
                 <button class="stylish-gray-button" [routerLink]="['annualreport', annual.report_id]">Edit</button>
                 <button class="stylish-gray-button" (click)="deleteReport(annual.report_id)">Delete</button>
             </div>
@@ -133,7 +133,7 @@
                 <p>{{ event.summary }}</p>
             </div>
             <div class="displaybutton col-md-3 text-right">
-                <button class="stylish-gray-button" [routerLink]="['eventreport', event.event_id]">View</button>
+                <button class="stylish-gray-button" [routerLink]="['vieweventreport/view', event.event_id]">View</button>
                 <button class="stylish-gray-button" [routerLink]="['eventreport', event.event_id]">Edit</button>
                 <button class="stylish-gray-button" (click)="deleteEvent(event.event_id)">Delete</button>
             </div>
@@ -148,7 +148,7 @@
                 <p>{{ entry.executive_summary }}</p>
             </div>
             <div class="displaybutton col-md-3 text-right">
-                <button class="stylish-gray-button" [routerLink]="['financialreport', entry.financialreport_id]">View</button>
+                <button class="stylish-gray-button" [routerLink]="['viewfinancialreport/view', entry.financialreport_id]">View</button>
                 <button class="stylish-gray-button" [routerLink]="['financialreport', entry.financialreport_id]">Edit</button>
                 <button class="stylish-gray-button" (click)="deleteFinancialReport(entry.financialreport_id)">Delete</button>
             </div>
@@ -169,7 +169,7 @@
                 <p>{{ entry.projectManager }}</p>
             </div>
             <div class="displaybutton col-md-3 text-right">
-                <button class="stylish-gray-button" [routerLink]="['projectreportstatus', entry.projectID]">View</button>
+                <button class="stylish-gray-button" [routerLink]="['viewprojectreport/view', entry.projectID]">View</button>
                 <button class="stylish-gray-button" [routerLink]="['projectreportstatus', entry.projectID]">Edit</button>
                 <button class="stylish-gray-button" (click)="deleteprojectStatusReport(entry.projectID)">Delete</button>
             </div>

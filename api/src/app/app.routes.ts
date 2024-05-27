@@ -20,7 +20,10 @@ import { ProjectReportStatusComponent } from './pages/forms/projectreportstatus/
 import { ProjectreportoutputComponent } from './pages/formsoutput/projectreportoutput/projectreportoutput.component';
 import { EditprojectreportComponent } from './pages/edit/editprojectreport/editprojectreport.component';
 import { UploadfilesComponent } from './pages/uploadfiles/uploadfiles.component';
-import { AaaaaComponent } from './aaaaa/aaaaa.component';
+import { ViewannualreportComponent } from './pages/view/viewannualreport/viewannualreport.component';
+import { VieweventreportComponent } from './pages/view/vieweventreport/vieweventreport.component';
+import { ViewfinancialrepertComponent } from './pages/view/viewfinancialrepert/viewfinancialrepert.component';
+import { ViewprojectreportComponent } from './pages/view/viewprojectreport/viewprojectreport.component';
 
 export const routes: Routes = [
 
@@ -74,7 +77,7 @@ export const routes: Routes = [
         component: ProjectReportStatusComponent
     },
     {
-        path: 'summary/annualreport',  
+        path: 'summary/annualreport/view',  
         component: AnnualreportoutputComponent
     },   
     {
@@ -82,15 +85,15 @@ export const routes: Routes = [
         component: EventreportoutputComponent
     }, 
     {
-        path: 'summary/eventreport',  
+        path: 'summary/eventreport/view/:id',  
         component: EventreportoutputComponent
     }, 
     {
-        path: 'summary/financialreport',  
+        path: 'summary/financialreport/view/:id',  
         component: FinancialreportoutputComponent
     },
     {
-        path: 'summary/projectreportstatus',  
+        path: 'summary/projectreportstatus/view',  
         component: ProjectreportoutputComponent
     },
     {
@@ -108,6 +111,22 @@ export const routes: Routes = [
     {
         path: 'summary/projectreportstatus/:id',      //dito           
         component: EditprojectreportComponent
+    },
+    {
+        path: 'summary/vieweventreport/view/:id',        //dito done
+        component: VieweventreportComponent
+    },  
+    {
+        path: 'summary/viewfinancialreport/view/:id',           //dito done 
+        component: ViewfinancialrepertComponent
+    },
+    {
+        path: 'summary/viewannualreport/view/:id',      //dito           
+        component: ViewannualreportComponent
+    }, 
+    {
+        path: 'summary/viewprojectreport/view/:id',      //dito           
+        component: ViewprojectreportComponent
     }, 
     {
         path: 'summary',
@@ -124,9 +143,5 @@ export const routes: Routes = [
     {
         path: 'report',
         component: ReportComponent
-    },
-    {
-        path: 'testrun',
-        component: AaaaaComponent
     }
 ];
