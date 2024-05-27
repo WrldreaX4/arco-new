@@ -7,115 +7,51 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  overflow: hidden;
 }
-
-
-/* data styling */
-.chart-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  background-color: #fff;
-}
-
-h1 {
-  color: #333;
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.summary-text {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-
-.dashboard-container {
-  padding: 20px;
-}
-
-.project-report {
-  margin-bottom: 20px;
-}
-
-.progress-bar {
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 10px;
-  position: relative;
-}
-
-.progress {
-  height: 20px;
-  background-color: #76c7c0;
-  border-radius: 5px;
-  text-align: center;
-  color: white;
-  line-height: 20px; /* Center the text vertically */
-}
-
-.datasadashboard {
-  margin-top: 100px;
-  display:  flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* data end styling */
-
 
 body {
   min-height: 100vh;
   transition: all 0.4s ease;
   background-image: url("/assets/background.png");
-  overflow-x: hidden; /* Changed from "overflow: hidden;" */
+  overflow-x: hidden;
 }
+
 /**---------------------------------carousel------------------------------**/
 
 #carousel {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 90px auto 0;
-  height: 40vh;
+  margin-top: 90px;
+  margin-left: 80px; /* Adjust as needed */
+  height: 45vh; /* Adjust as needed */
   width: 90%;
-  overflow-x: hidden; /* Changed from "overflow: hidden;" */
-  overflow-y: hidden;
+  overflow: hidden;
   border-radius: 5px;
+  z-index: 0; /* Ensure it's below navbar */
 }
 
-iframe{
+#carousel iframe {
   height: 350px;
   width: 450px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 #carousel div {
   position: absolute;
   transition: transform 400ms, left 400ms, opacity 400ms, z-index 0s;
   opacity: 1;
   border-radius: 5px;
+  overflow: hidden; /* Ensures no overflow in the div */
 }
 
 #carousel div img {
   width: 200px;
   transition: width 400ms;
-   -webkit-user-drag: none;
-   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-   border-radius: 10px;
-   overflow: hidden;
+  -webkit-user-drag: none;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  border-radius: 10px;
 }
 
 #carousel div.hideLeft {
@@ -178,34 +114,18 @@ iframe{
   width: 200px;
 }
 
-.buttonL{
-  position: absolute;
-  text-align: center;
-  align-items: left;
-  object-position: left;
-  text-decoration: none !important;
-  font-weight: 600;
-  font-size: large;
-  padding: 18px 28px;
-  background-color: white;
-  color: #d99e6d;
-  border: solid 3px #d99e6d;
-  border-radius: 30px;
-  margin-top: 30px;
-  left: 100px;
-  }
 
 /*previous or next buttons css*/
 
 .buttons {
-  position: absolute; /* Change from "fixed" to "absolute" */
+  position: absolute;
   left: 50%;
   bottom: 50px;
   transform: translateX(-50%);
   display: grid;
   grid-auto-flow: column;
   column-gap: 10px;
-  z-index: 999; /* Ensure buttons are above other content */
+  z-index: 0;
 }
 
 .button-82-pushable {
@@ -232,10 +152,7 @@ iframe{
   background: hsl(0deg 0% 0% / 0.25);
   will-change: transform;
   transform: translateY(2px);
-  transition:
-    transform
-    600ms
-    cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
 }
 
 .button-82-edge {
@@ -245,13 +162,7 @@ iframe{
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  background: linear-gradient(
-    to left,
-    #e5c1a3 0%,
-    #eabe9b 8%,
-    #e9ae7e 92%,
-    #e8a269 100%
-  );
+  background: linear-gradient(to left, #e5c1a3 0%, #eabe9b 8%, #e9ae7e 92%, #e8a269 100%);
 }
 
 .button-82-front {
@@ -260,14 +171,11 @@ iframe{
   padding: 8px 23px;
   border-radius: 23px;
   font-size: 1.1rem;
-  color: white; 
+  color: white;
   background: #eea971;
   will-change: transform;
   transform: translateY(-4px);
-  transition:
-    transform
-    600ms
-    cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
 }
 
 @media (min-width: 768px) {
@@ -284,10 +192,7 @@ iframe{
 
 .button-82-pushable:hover .button-82-front {
   transform: translateY(-6px);
-  transition:
-    transform
-    250ms
-    cubic-bezier(.3, .7, .4, 1.5);
+  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
 
 .button-82-pushable:active .button-82-front {
@@ -297,10 +202,7 @@ iframe{
 
 .button-82-pushable:hover .button-82-shadow {
   transform: translateY(4px);
-  transition:
-    transform
-    250ms
-    cubic-bezier(.3, .7, .4, 1.5);
+  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
 
 .button-82-pushable:active .button-82-shadow {
@@ -314,39 +216,40 @@ iframe{
 
 /*----------------------------------- Main Body Section ----------------------------------------- */
 .main-body {
-    padding-top: 1rem;
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-    text-align: center;
-    transition: all 0.4s ease; 
+  padding-top: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 3.5rem;
+  text-align: center;
+  transition: all 0.4s ease;
 }
 
 .sidebar:hover .main-body {
-  margin-left: 250px; /* adjust this value based on your sidebar's width */
+  margin-left: 250px;
 }
-  
+
 body:not(.sidebar-hovered) .main-body {
-    margin-left: 75px;
-  }
-  
+  margin-left: 75px;
+}
+
 .main-body h2 {
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 40px;
   color: #d99e6d;
   font-size: 30px;
   font-weight: 600;
 }
 
 .promo_card {
-  background-image: url(/assets/orange.jpg); 
+  background-image: url(/assets/orange.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
   border-radius: 10px;
   height: 220px;
   padding: 1.5rem;
-  margin-left: 400px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+  margin-left: 600px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: auto;
 }
 
 .promo_card span {
@@ -357,27 +260,29 @@ body:not(.sidebar-hovered) .main-body {
   font-size: 35px;
   justify-content: center;
 }
-.promo_card button {
+.promo_card a {
+  text-decoration: none;
+  color: #d99e6d;
+  background-color: white;
   display: block;
   padding: 15px;
   width: 150px;
   margin-top: 20px;
   border-radius: 20px;
   cursor: pointer;
-  border: none;
   font-size: 15px;
   font-weight: 500;
-  
+  text-align: center; /* Ensure the text is centered */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for smooth animation */
 }
 
-.promo_card button:hover {
-  background-color: #e5c1a3;
-  border: none;
+.promo_card a:hover {
+  background-color: #e8a269;
+  color: white; /* Change text color on hover for better contrast */
 }
 
 /*---------------------------- Carousel -------------------------------------*/
 
-/* Styles for mobile and tablets */
 @media only screen and (max-width: 1023px) {
   .slider-wrapper .slide-button {
     display: none !important;
@@ -395,12 +300,21 @@ body:not(.sidebar-hovered) .main-body {
     width: 20%;
   }
 }
-/* Responsive */
+
 @media screen and (max-width: 1100px) {
   .navbar {
     left: 65%;
   }
 }
+
+
+@media screen and (max-width:886px) {
+  .promo_card a{
+    padding: 10px;
+    margin-top: 1px;
+  }
+}
+  
 
 @media screen and (max-width: 800px) {
   .sidebar {
@@ -443,7 +357,7 @@ body:not(.sidebar-hovered) .main-body {
 
   .container {
     flex-direction: row;
-    align-items: flex-start; /* Align items at the top */
+    align-items: flex-start;
   }
 
   .side_navbar {
@@ -458,8 +372,136 @@ body:not(.sidebar-hovered) .main-body {
 
   .promo_card {
     margin-top: 20px;
-    margin-left: 0;
+    margin-left: 40px;
+  }
+
+}
+
+/* Additional Media Queries for Responsiveness */
+
+@media only screen and (max-width: 1201px) {
+  .promo_card {
+    width: 100%;
+    margin-left: 30px;
+  }
+
+}
+
+@media only screen and (max-width: 1259px) {
+  .promo_card {
+    width: 98%;
+    margin-left: 30px;
+  }
+
+  .promo_card a {
+    margin-top: 8px;
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .main-body h2 {
+    text-align: left;
+    margin-left: 50px;
+  }
 
+  #carousel {
+ 
+    margin-left: 107px;
+    width: 80%; /* Adjust the width as needed */
+  }
+  
+  .promo_card {
+    margin-left: 50px;
+    height: 180px;
+    width: 95%;
+    text-align: left;
+   
+  }
+  
+  .promo_card .title {
+    font-size: 23px;
+  }
+
+  .promo_card a {
+    display: none;
+  }
+
+  .promo_card span {
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .promo_card {
+    margin-top: -5px;
+    margin-left: 40px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .main-body h2 {
+    text-align: left;
+    margin-left: 50px;
+  }
+
+  .promo_card .title {
+    font-size: 23px;
+    text-align: left;
+  }
+
+  .promo_card span {
+    font-size: 13px; /* Adjust the font size as needed */
+    letter-spacing: -0.5px; /* Adjust the letter-spacing as needed */
+    text-align: left;
+  }
+  #carousel {
+    margin-left: 80px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .promo_card {
+    margin-top: -5px;
+    margin-left: 40px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .promo_card .title {
+    font-size: 20px;
+    text-align: left;
+  }
+
+  .promo_card button {
+    width: 100px;
+    font-size: 12px;
+    z-index: 0;
+  }
+
+  .promo_card span {
+    font-size: 11px; /* Adjust the font size as needed */
+    text-align: left;
+  }
+
+  #carousel {
+    margin-left: 78px;
+  }
+
+  #carousel div img {
+    width: 100px;
+  }
+
+  #carousel div.prev img, #carousel div.next img {
+    width: 250px;
+  }
+  .main-body h2 {
+    text-align: left;
+    margin-left: 50px;
+  }
+
+  .buttons{
+    z-index: 0;
+  }
+
+}

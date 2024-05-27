@@ -2,10 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 @import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 
-
-
-
-
 body {
   min-height: 100vh;
   background-color: #eeeeee;
@@ -24,7 +20,6 @@ body {
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   margin-left: 60px;
-  margin-top: 97px;
 }
 
 .card img {
@@ -36,24 +31,21 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-.createf{
+.createf {
   font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-size: 30px;
-    margin-top: 15px;
-    margin-left: 90px;
-    box-sizing: border-box;
-    color: #d99e6d;
+  font-weight: 600;
+  font-size: 30px;
+  margin-top: 15px;
+  margin-left: 90px;
+  box-sizing: border-box;
+  color: #d99e6d;
 }
-
 
 .card {
   border: transparent;
   background-color: white;
   width: 220px;
   margin-right: 50px; /* Adjust the right margin to control spacing */
-  
 }
 
 .card img {
@@ -93,9 +85,7 @@ body {
   transform: scale(1.05); /* Scale up the button on hover */
 }
 
-
-
-.title{
+.title {
   font-family: "Poppins", sans-serif;
   color: black;
   margin-left: auto;
@@ -120,14 +110,12 @@ body {
   padding-bottom: 3rem; /* Equivalent to py-12 */
 }
 
-
-
-.cardy mt-4{
+.cardy.mt-4 {
   background-color: #d99e6d;
 }
 
 .title {
-    text-align: center;
+  text-align: center;
 }
 
 .gitna {
@@ -135,6 +123,7 @@ body {
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
 }
+
 @media (min-width: 1024px) {
   .full-container {
     padding-left: 6rem; /* Equivalent to lg:px-24 */
@@ -165,9 +154,10 @@ body {
     padding-left: 6rem;
     padding-right: 6rem;
   }
-  .title{
-  font-size: 1.875rem;
-}
+  
+  .title {
+    font-size: 1.875rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -175,12 +165,12 @@ body {
     padding-left: 3rem;
     padding-right: 3rem;
   }
+  
   .full-container {
     padding-left: 3rem; /* Equivalent to md:px-12 */
     padding-right: 3rem; /* Equivalent to md:px-12 */
   }
 }
-
 
 .max-w-7xl {
   max-width: 80rem; /* Adjust as needed */
@@ -195,5 +185,27 @@ body {
 @media (min-width: 640px) {
   .picture {
     height: 9rem; /* Equivalent to md:h-36 */
+  }
+}
+
+/* Responsive Spacing for .card elements */
+@media (max-width: 1024px) {
+  .card {
+    margin-right: 20px; /* Reduce right margin on smaller screens */
+    margin-bottom: 20px; /* Add bottom margin for spacing between rows */
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin-right: 10px; /* Further reduce right margin on smaller screens */
+    margin-bottom: 10px; /* Add bottom margin for spacing between rows */
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    margin-right: 0; /* Remove right margin on smallest screens */
+    margin-bottom: 20px; /* Add bottom margin for spacing between rows */
   }
 }
