@@ -22,7 +22,7 @@ body {
 .card {
     position: relative;
     right: 300px;
-    border: 1px solid transparent;
+    border: transparent;
     border-radius: 0.25rem;
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -35,6 +35,7 @@ body {
 
 .form-group {
     margin-left: 90px;
+    
 }
 
 .card-container {
@@ -170,4 +171,14 @@ label.btn {
         flex: 0 0 25%;
         max-width: 25%;
     }
+}
+
+.logOut
+{
+    background-color: #d99e6d;
+    color: white;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    margin:auto;
+    right: 20vh;
 }

@@ -4,7 +4,7 @@
     <app-navbar></app-navbar>
 
     <div class="container">
-        <h2 class="title">Profile Page</h2>
+        <h2 class="title">Profile Page</h2> 
         <div class="card">
             <div class="card-container">
                 <div class="card-container-container">
@@ -24,12 +24,25 @@
                                 
                                     <button type="button" class="btn btn-default md-btn-flat">Reset</button>
                                     <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                    <button type="button" class="logOut">Log out</button> <!--Di pa nagana-->
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="form-label">Username</label>
                                     <input type="text" class="form" [(ngModel)]="profileData.username">
+
+                                    <label class="form-label">Email</label>
+                                    <input type="text" class="form" [(ngModel)]="profileData.email"> <!--wala pa sa ng model-->
+
+                                    <!--<label class="form-label">Age</label>
+                                    <input type="text" class="form" [(ngModel)]="profileData.age"> wala pa sa ng model-->
+
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form" [(ngModel)]="profileData.address"> <!--wala pa sa ng model-->
+
+                                    <label class="form-label">Department</label>
+                                    <input type="text" class="form" [(ngModel)]="profileData.department"> <!--wala pa sa ng model-->
                                        
                                     <label class="form-label">Current Password</label>
                                     <input type="password" class="form" [(ngModel)]="currentPassword">
@@ -52,7 +65,7 @@
         <div class="button-container">
             <button type="button" class="buttons" (click)="validatePasswords()">Save changes</button>&nbsp;
             <button type="button" class="buttons-cancel">Cancel</button>
-        </div>
+        </div>    
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
