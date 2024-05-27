@@ -43,8 +43,15 @@
         </div>
     </div>
 
-    <p><i>Summary of Expenses in the Event</i></p>
-    <div class="container tabledata mt-4">
+    <div class="summary">
+        <h1>Summary</h1>
+        <div class="summarydata">
+            <p>{{ eventReport.summary }}</p>
+        </div>
+    </div>
+
+    <h5 class="summarypage"><i>Summary of Expenses in the Event</i></h5>
+    <div class="container tabledata">
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
@@ -53,51 +60,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Office Supplies</td>
-                    <td>
-                        <input type="number" [value]="eventReport.expenses?.office_supplies" class="form-control">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Travel Expenses</td>
-                    <td>
-                        <input type="number" [value]="eventReport.expenses?.travel_expenses" class="form-control">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Marketing</td>
-                    <td>
-                        <input type="number" [value]="eventReport.expenses?.marketing" class="form-control">
-                    </td>
+                <tr *ngFor="let expense of eventExpenses">
+                    <td>{{ expense.item }}</td>
+                    <td>{{ expense.amount | currency:'PHP'}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="inputdata container">
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Expected Participants:</b> </p>
-            </div>
-            <div class="col-md-6">
-                <p>{{ eventReport.expected_participants }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <p><b>Total Participants:</b></p>
-            </div>
-            <div class="col-md-6">
-                <p>{{ eventReport.total_participants }}</p>
-            </div>
-        </div>
+    <div class="totalexpenses">
+        <p>Total Expenses: <b>{{ totalExpenses | currency: 'PHP' }}</b></p>
     </div>
 
-    <div class="summary">
-        <h1>Summary</h1>
-        <div class="summarydata">
-            <p>{{ eventReport.summary }}</p>
+    <div class="inputdata">
+        <div class="laman row">
+                <p><b>Expected Participants:</b> </p>
+                <p>{{ eventReport.expected_participants }}</p>
+        </div>
+        <div class="laman row">
+            
+                <p><b>Total Participants:</b></p>
+
+                <p>{{ eventReport.total_participants }}</p>
+
         </div>
     </div>
 </div>

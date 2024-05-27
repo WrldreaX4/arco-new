@@ -1,68 +1,117 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-eventform',
   standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule, NgIf],
+  imports: [NavbarComponent, ReactiveFormsModule, NgIf, CommonModule],
   templateUrl: './eventform.component.html',
   styleUrl: './eventform.component.css'
 })
 export class EventformComponent implements OnInit {
-  eventForm: FormGroup;
-  userId: number | null = null;
-
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
-    this.eventForm = new FormGroup({
-      event_name: new FormControl('', Validators.required),
-      event_date: new FormControl(''),
-      event_title: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
-      expected_participants: new FormControl('', Validators.required),
-      total_participants: new FormControl('', Validators.required),
-      summary: new FormControl('', Validators.required)
-    });
-  }
-
-  ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe(user => {
-      if (user) {
-        this.userId = user.id;
-        console.log('User ID:', this.userId);
-      } else {
-        console.log('No user logged in.');
-      }
-    });
-  }
-  submitAndNavigate() {
-    if (this.eventForm.valid) {
-      const reportData = this.eventForm.value; 
-
-      if (this.userId !== null) {
+    userId: number | null = null;
+    eventForm: FormGroup;
+  
+    constructor(private fb: FormBuilder, private router: Router, private http: HttpClient, private authService: AuthService) {
+      this.eventForm = this.fb.group({
+        event_name: ['', Validators.required],
+        event_date: ['', Validators.required],
+        event_title: ['', Validators.required],
+        address: ['', Validators.required],
+        expected_participants: ['', Validators.required],
+        total_participants: ['', Validators.required],
+        items: this.fb.array([]),
+        summary: ['', Validators.required]
+      });
+    }
+  
+    ngOnInit(): void {
+      this.authService.getCurrentUser().subscribe(user => {
+        if (user) {
+          this.userId = user.id;
+          console.log('User ID:', this.userId);
+        } else {
+          console.log('No user logged in.');
+        }
+      });
+  
+      this.addItem();
+    }
+  
+    get items(): FormArray {
+      return this.eventForm.get('items') as FormArray;
+    }
+  
+    addItem(): void {
+      this.items.push(this.fb.group({
+        item: ['', Validators.required],
+        amount: ['', Validators.required]
+      }));
+    }
+  
+    removeItem(index: number): void {
+      this.items.removeAt(index);
+    }
+  
+    submitAndNavigate() {
+      if (this.eventForm.valid) {
+        const eventData = {
+          event_name: this.eventForm.value.event_name,
+          event_date: this.eventForm.value.event_date,
+          event_title: this.eventForm.value.event_title,
+          address: this.eventForm.value.address,
+          expected_participants: this.eventForm.value.expected_participants,
+          total_participants: this.eventForm.value.total_participants,
+          summary: this.eventForm.value.summary,
+          user_id: this.userId
+        };
+  
         const endpoint = `http://localhost/arco2/arco/api/eventreport/${this.userId}`;
-        
-
-        this.http.post(endpoint, reportData)
+  
+        this.http.post(endpoint, eventData)
           .subscribe(
-            (resp) => {
-              console.log('Report submitted:', resp);
-              this.router.navigate(['create/eventreport/uploadmedia']);
-
+            (resp: any) => {
+              console.log('Event report submitted:', resp);
+              const eventId = resp.event_id;
+              this.submitEventExpenses(eventId);
             },
             (error) => {
-              console.error('Error Submitting Report', error); 
+              console.error('Error Submitting Event Report', error);
             }
           );
       } else {
-        console.error('User ID is not set.');
+        console.warn('Form is not valid. Check required fields.');
       }
-    } else {
-      console.warn('Form is not valid. Check required fields.');
+    }
+  
+    mapExpenses(expenses: any[]): any {
+      const expenseData: any = {};
+      for (let i = 0; i < 10; i++) {
+        expenseData[`expense_item${i + 1}`] = expenses[i]?.item || '';
+        expenseData[`expense_amount${i + 1}`] = expenses[i]?.amount || '';
+      }
+      return expenseData;
+    }
+  
+    submitEventExpenses(eventId: number) {
+      const expensesData = this.mapExpenses(this.items.controls.map(control => control.value));
+  
+      const endpoint = `http://localhost/arco2/arco/api/eventreportplus/${this.userId}`;
+  
+      this.http.post(endpoint, { event_id: eventId, ...expensesData })
+        .subscribe(
+          (resp) => {
+            console.log('Event expenses submitted:', resp);
+            this.router.navigate(['create/eventreport/uploadmedia']);
+          },
+          (error) => {
+            console.error('Error Submitting Event Expenses', error);
+          }
+        );
     }
   }
-}

@@ -10,6 +10,10 @@ body {
     box-sizing: border-box;
 }
 
+.reportdata {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
 
 .container {
     max-width: 800px;
@@ -17,7 +21,6 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .img {
@@ -56,7 +59,7 @@ label {
 
     text-align: center; /* Add this line to align text in the middle */
 }
-.inputdata .form-control,
+.form-control,
 .summarydata textarea {
     width: 100%;
     padding: 10px;
@@ -64,6 +67,16 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+.inputdata {
+    display: flex;
+    justify-content: space-around;
+}
+
+.laman {
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -83,7 +96,6 @@ label {
 
 
 .summary {
-    margin-top: 40px;
     text-align: center;  
 }
 
@@ -141,4 +153,12 @@ label {
 
 .button-container button:hover {
     background-color: #ff7f00;
+}
+
+.totalexpenses {
+    text-align: right;
+}
+
+.summarypage {
+    margin-left: 15px;
 }

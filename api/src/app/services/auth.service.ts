@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -11,23 +12,25 @@ export class AuthService {
   private tokenKey = 'jwt';
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private http: HttpClient) {
-    const token = this.getToken();
-    if (token) {
-      this.currentUserSubject.next(this.decodeToken(token).data);
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
+    if (this.isBrowser()) {
+      const token = this.getToken();
+      if (token) {
+        this.currentUserSubject.next(this.decodeToken(token).data);
+      }
     }
   }
 
   userLogin(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/login.php`, data)
-      .pipe(
+     .pipe(
         catchError(this.handleError)
       );
   }
 
   userSignUp(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/signup.php`, data)
-      .pipe(
+     .pipe(
         catchError(this.handleError)
       );
   }
@@ -38,17 +41,22 @@ export class AuthService {
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
-    this.currentUserSubject.next(this.decodeToken(token).data);
+    if (this.isBrowser()) {
+      localStorage.setItem(this.tokenKey, token);
+      this.currentUserSubject.next(this.decodeToken(token).data);
+    }
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    if (this.isBrowser()) {
+      return localStorage.getItem(this.tokenKey);
+    }
+    return null;
   }
 
   isAuthenticated(): boolean {
     const token = this.getToken();
-    return token ? !this.isTokenExpired(token) : false;
+    return token?!this.isTokenExpired(token) : false;
   }
 
   getAuthHeaders(): HttpHeaders {
@@ -60,8 +68,14 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    this.currentUserSubject.next(null);
+    if (this.isBrowser()) {
+      localStorage.removeItem(this.tokenKey);
+      this.currentUserSubject.next(null);
+    }
+  }
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
 
   // Decode the JWT token

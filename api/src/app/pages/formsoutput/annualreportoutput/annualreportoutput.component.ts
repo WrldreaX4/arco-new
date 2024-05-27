@@ -53,29 +53,19 @@ export class AnnualreportoutputComponent {
 
 
 
-  downloadPDF() {
-    // Use type assertion to ensure the element is an HTMLElement
-    const reportData = document.querySelector('.reportdata') as HTMLElement;
-
-    if (reportData) {
-      html2canvas(reportData, { scale: 2, useCORS: true }).then((canvas) => {
-        const pdfWidth = canvas.width + 80; // Additional space to prevent cutting
-        const pdfHeight = canvas.height + 80;
-
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'px',
-          format: [pdfWidth, pdfHeight], // Ensure ample space to avoid cutting
-        });
-
-        const margin = 40; // Margin for padding around the content
+  downloadPDF(): void {
+    const element = document.querySelector('.report-container') as HTMLElement;
+    if (element) {
+      html2canvas(element, { scale: 2 }).then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-        pdf.addImage(imgData, 'PNG', margin, margin, canvas.width, canvas.height);
-        pdf.save('Financial_Report.pdf');
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('annual_report.pdf');
       });
-    } else {
-      console.error('The report data container was not found.');
     }
   }
 }
