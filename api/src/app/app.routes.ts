@@ -28,16 +28,10 @@ import { CollageComponent } from './pages/collage/collage.component';
 
 export const routes: Routes = [
 
-      {
-        path: '',
-        redirectTo: '/login',
-        pathMatch: 'full'
-      },
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'app', children:[ { path: 'dashboard', component: DashboardComponent } ] },
+    /*{
         path: 'signup',
         component: SignupComponent
     },
@@ -148,5 +142,5 @@ export const routes: Routes = [
     {
         path: 'collage',
         component: CollageComponent
-    }
+    }*/
 ];

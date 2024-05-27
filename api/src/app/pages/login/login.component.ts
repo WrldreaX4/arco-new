@@ -14,13 +14,22 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   email: string = '';
-  password: string = '';
+  password = '';
   errorMessage: string = ''; // To store error message
   
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
-    if (!this.email || !this.password) {
+
+    this.authService.userLogin(this.email, this.password).subscribe(
+      data=>{
+        console.log('Login Successfull.', data);
+        this.router.navigate(['/app/dashboard'])
+      }
+    )
+
+    }
+    /*if (!this.email || !this.password) {
       alert('Please fill in all fields');
       return;
     }
@@ -34,7 +43,7 @@ export class LoginComponent {
       (response: any) => {
         console.log(response.message);
         this.authService.setToken(response.jwt);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/app/dashboard']);
       },
       (error: any) => {
         if (error.status === 401) {
@@ -43,6 +52,5 @@ export class LoginComponent {
           alert('An unexpected error occurred. Please try again later.');
         }
       }
-    );
+    );*/
   }
-}
