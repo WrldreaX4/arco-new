@@ -1,129 +1,133 @@
 body {
-    background-image: url('/assets/background.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  
-  #upload-section .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  #upload-section .title {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  #fileInputLabel {
-    cursor: pointer;
-    color: #007bff;
-    text-decoration: underline;
-    margin-bottom: 20px;
-    display: inline-block;
-    position: absolute;
-    font-family: "Poppins", sans-serif;
-    font-weight: 1000;
-    font-size: 20px;
-    background-color: rgba(245, 245, 245, 0.116);
-    color: #4F4A45;
-    border: none;
-    cursor: pointer;
-    border-radius: 30px;
-    margin: -20vh auto;
-    left: 43vh;
-  }
-  
-  .title h1 {
-    position: absolute; 
-    display: flex;
-    padding: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 1000;
-    color: #4F4A45;
-    font-size: 35px;
-    text-align: left;
-    margin-left: 37vh;
-    bottom: 70vh;
-  }
-  
-  .title2 h2 {
-    position: absolute;
-    display: flex;
-    text-align: left;
-    font-size: 35px;
-    bottom: 55vh;
-    color: #4F4A45;
-    font-family: "Poppins", sans-serif;
-    font-weight: 1000;
-    margin-left: 40vh;
-    padding-bottom: 30px;
-  }
-  
-  .image-upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .uploaded-images {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .uploaded-images img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin: 0 10px 10px 0;
-    border-radius: 3px;
-    transition: opacity 1s ease;
-    cursor: pointer;
-  }
-  
-  .uploaded-images img:hover {
-    opacity: 0.3;
-  }
-  
-  .button-container {
-    margin-top: 20px;
-  }
-  
-  .create-btn, .cancel-btn {
-    margin: 0 10px;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-family: "Poppins", sans-serif;
-    font-weight: 1000;
-    font-size: 20px;
-    border-radius: 100px;
-  }
-  
-  .create-btn {
-    background-color: #ED7D31;
-    color: white;
-  }
-  
-  .cancel-btn {
-    background-color: whitesmoke;
-    color: #4F4A45;
-  }
-  
-  canvas {
-    margin-top: 20px;
-    border: 1px solid #000;
-  }
+  background-image: url('/assets/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#upload-section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#upload-section .title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#fileInputLabel {
+  cursor: pointer;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  display: inline-block;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-weight: 1000;
+  font-size: 20px;
+  background-color: rgba(245, 245, 245, 0.116);
+  color: #4F4A45;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.title h1 {
+  display: flex;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 1000;
+  color: #4F4A45;
+  font-size: 35px;
+  text-align: center;
+  margin: 0;
+}
+
+.title2 h2 {
+  display: flex;
+  text-align: center;
+  font-size: 35px;
+  color: #4F4A45;
+  font-family: "Poppins", sans-serif;
+  font-weight: 1000;
+  margin: 10px 0;
+}
+
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.uploaded-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+.uploaded-images img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 3px;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.uploaded-images img:hover {
+  opacity: 0.7;
+}
+
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.create-btn, .cancel-btn {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 1000;
+  font-size: 20px;
+  border-radius: 100px;
+}
+
+.create-btn {
+  background-color: #ED7D31;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: whitesmoke;
+  color: #4F4A45;
+}
+
+canvas {
+  margin-top: 20px;
+  border: 1px solid #000;
+}

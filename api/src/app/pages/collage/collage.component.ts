@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -7,15 +7,9 @@ import { NavbarComponent } from '../navbar/navbar.component';
   standalone: true,
   imports: [CommonModule, NavbarComponent],
   templateUrl: './collage.component.html',
-  styleUrl: './collage.component.css'
+  styleUrls: ['./collage.component.css']
 })
-export class CollageComponent implements OnInit {
-  title = 'collage';
-
-  constructor(private location: Location) {}
-
-  ngOnInit(): void {}
-
+export class CollageComponent {
   imageUrls: string[] = []; // Initialize an empty array to store image URLs
 
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
@@ -70,7 +64,13 @@ export class CollageComponent implements OnInit {
   }
 
   cancelCollage() {
-    window.location.reload(); // Reload the page
+    this.imageUrls = []; // Clear the images array
+    this.imageInput.nativeElement.value = ''; // Reset the file input
+    const canvas: HTMLCanvasElement = this.collageCanvas.nativeElement;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    }
   }
 
   loadImage(src: string): Promise<HTMLImageElement> {
