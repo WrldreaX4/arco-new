@@ -53,3 +53,37 @@
   <button class="button-82-pushable" role="button" id="prev"><span class="button-82-shadow"></span><span class="button-82-edge"></span><span class="button-82-front text">Previous</span></button>
   <button class="button-82-pushable" role="button" id="next"><span class="button-82-shadow"></span><span class="button-82-edge"></span><span class="button-82-front text">Next</span></button>
 </div>
+
+
+<div class="datasadashboard">
+  <div class="container">
+    <div class="dashboard-container">
+     <h1>Financial Reports</h1>
+     <div class="summary-text">
+       Here is an overview of your financial performance.
+     </div>
+     <div class="chart-container">
+       <google-chart 
+         [type]="chart.type" 
+         [data]="chart.data" 
+         [options]="chart.options" 
+         [columns]="chart.columns">
+       </google-chart>
+     </div>
+    </div>
+     </div>
+ 
+ 
+   <div class="container">
+     <div class="dashboard-container">
+         <h1>Project Reports</h1>
+         <div *ngFor="let report of projectReports" class="project-report">
+           <h3>{{ report.projectName }}</h3>
+           <div class="progress-bar">
+             <div class="progress" [style.width.%]="report.overallProgress">{{ report.overallProgress }}%</div>
+           </div>
+           <p>Status: {{ report.statusDesc }}</p>
+         </div>
+       </div>
+   </div>
+</div>

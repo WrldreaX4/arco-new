@@ -20,6 +20,7 @@ import { ProjectReportStatusComponent } from './pages/forms/projectreportstatus/
 import { ProjectreportoutputComponent } from './pages/formsoutput/projectreportoutput/projectreportoutput.component';
 import { EditprojectreportComponent } from './pages/edit/editprojectreport/editprojectreport.component';
 import { UploadfilesComponent } from './pages/uploadfiles/uploadfiles.component';
+import { AaaaaComponent } from './aaaaa/aaaaa.component';
 
 export const routes: Routes = [
 
@@ -47,6 +48,14 @@ export const routes: Routes = [
     {
         path: 'create/annualreport', 
         component: AnnualreportComponent
+    },
+    {
+        path: 'create/annualreport/view', 
+        component: AnnualreportoutputComponent
+    },
+    {
+        path: 'create/financialreport/view', 
+        component: FinancialreportoutputComponent
     },
     {
         path: 'create/eventreport', 
@@ -116,4 +125,8 @@ export const routes: Routes = [
         path: 'report',
         component: ReportComponent
     },
+    {
+        path: 'testrun',
+        component: AaaaaComponent
+    }
 ];

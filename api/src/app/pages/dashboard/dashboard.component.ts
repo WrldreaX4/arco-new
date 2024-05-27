@@ -1,4 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { CreateformComponent } from '../createform/createform.component';
 import { SummaryComponent } from '../summary/summary.component';
@@ -6,15 +7,192 @@ import { ProfileComponent } from '../profile/profile.component';
 import { FlipbookComponent } from '../flipbook/flipbook.component';
 import { ReportComponent } from '../report/report.component';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+import { GoogleChartsModule, ChartType } from 'angular-google-charts';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterOutlet, NavbarComponent, CreateformComponent, ProfileComponent, FlipbookComponent, ReportComponent],
+  imports: [RouterLink, RouterModule, RouterOutlet, NavbarComponent, CreateformComponent, ProfileComponent, FlipbookComponent, ReportComponent, CommonModule, GoogleChartsModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'] // corrected to styleUrls
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements AfterViewInit {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
+
+  
+
+  // data start
+
+  
+  projectReports: any[] = [];  // Array to hold project reports
+
+
+
+
+  userId: number | null = null;
+  financialReports: any[] = [];  // Array to hold multiple reports
+  chart = {
+    type: ChartType.ColumnChart,
+    data: [] as any[][],
+    columns: ['Category', 'Amount'] as string[],
+    options: {}  // Initialize options
+  };
+
+
+   // Define chart options
+   chartOptions = {
+    title: 'Financial Overview',
+    colors: ['#1c91c0', '#e7711b', '#f1ca3a'],
+    hAxis: {
+      title: 'Category',
+      titleTextStyle: { color: '#333' }
+    },
+    vAxis: {
+      minValue: 0,
+      title: 'Amount',
+      titleTextStyle: { color: '#333' }
+    },
+    chartArea: { width: '70%', height: '70%' },
+    legend: { position: 'bottom' }
+  };
+  
+
+  ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+        console.log('User ID:', this.userId);
+        this.retrieveFinancialReports();
+        this.retrieveProjectReports();
+      } else {
+        console.log('No user logged in.');
+      }
+    });
+  }
+
+  retrieveFinancialReports() {
+    if (this.userId !== null) {
+      this.http.get(`http://localhost/arco2/arco/api/financialreportall/${this.userId}`).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.financialReports = resp.data;  // Assuming resp.data is an array of reports
+          this.updateChartData();
+        },
+        (error) => {
+          console.error('Error fetching financial reports:', error);
+        }
+      );
+    } else {
+      console.error('User ID is not set.');
+    }
+  }
+
+  retrieveProjectReports() {
+    if (this.userId !== null) {
+      this.http.get(`http://localhost/arco2/arco/api/projectreportall/${this.userId}`).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.projectReports = resp.data.map((report: any) => ({
+            ...report,
+            overallProgress: this.parseProgress(report.overallProgress) // Ensure it's a number
+          }));
+        },
+        (error) => {
+          console.error('Error fetching project reports:', error);
+        }
+      );
+    } else {
+      console.error('User ID is not set.');
+    }
+  }
+
+  parseProgress(progress: string): number {
+    // Remove the percentage sign and convert to number
+    const cleanedProgress = progress.replace('%', '');
+    const parsed = parseFloat(cleanedProgress);
+    return isNaN(parsed) ? 0 : parsed; // Return 0 if parsing fails
+  }
+
+
+  updateChartData() {
+    let totalIncome = 0;
+    let totalSpendings = 0;
+
+    this.financialReports.forEach(report => {
+      totalIncome += this.calculateTotalIncome(report);
+      totalSpendings += this.calculateTotalSpendings(report);
+    });
+
+    this.chart.data = [
+      ['Total Income', totalIncome],
+      ['Total Spending', totalSpendings],
+      ['Net Income', totalIncome - totalSpendings]
+    ];
+    this.chart.options = this.chartOptions; // Apply styling options to the chart
+  }
+
+  extractIncomes(data: any): any[] {
+    const incomes = [];
+    for (let i = 1; i <= 10; i++) {
+      if (data[`income${i}`] && data[`income_salary${i}`]) {
+        incomes.push({ source: data[`income${i}`], amount: data[`income_salary${i}`] });
+      }
+    }
+    return incomes;
+  }
+  
+  extractExpenses(data: any): any[] {
+    const expenses = [];
+    for (let i = 1; i <= 10; i++) {
+      if (data[`expense_item${i}`] && data[`expense_amount${i}`]) {
+        expenses.push({ item: data[`expense_item${i}`], amount: data[`expense_amount${i}`] });
+      }
+    }
+    return expenses;
+  }
+  
+  calculateTotalIncome(data: any): number {
+    let total = 0;
+    for (let i = 1; i <= 10; i++) {
+      total += parseFloat(data[`income_salary${i}`]) || 0;
+    }
+    return total;
+  }
+  
+  calculateTotalSpendings(data: any): number {
+    let total = 0;
+    for (let i = 1; i <= 10; i++) {
+      total += parseFloat(data[`expense_amount${i}`]) || 0;
+    }
+    return total;
+  }
+
+
+
+// data end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -31,7 +209,9 @@ export class DashboardComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    this.initCarousel();
+    if (isPlatformBrowser(this.platformId)) {
+      this.initCarousel();
+    }
   }
 
   initCarousel() {
@@ -201,33 +381,35 @@ export class DashboardComponent implements AfterViewInit {
         return; // Ensure that the function always returns a value
     },
       init() {
-        document.addEventListener('keydown', carousel.keypress);
-        const carouselElement = document.getElementById('carousel');
-        if (carouselElement) {
-            carouselElement.addEventListener('mousedown', carousel.doDown);
-            carouselElement.addEventListener('touchstart', carousel.doDown);
-            carouselElement.addEventListener('mouseup', carousel.doUp);
-            carouselElement.addEventListener('touchend', carousel.doUp);
-            carousel.reorder();
-        } else {
-            console.error('Carousel element not found.');
+        if (typeof document !== 'undefined') {
+          document.addEventListener('keydown', carousel.keypress);
+          const carouselElement = document.getElementById('carousel');
+          if (carouselElement) {
+              carouselElement.addEventListener('mousedown', carousel.doDown);
+              carouselElement.addEventListener('touchstart', carousel.doDown);
+              carouselElement.addEventListener('mouseup', carousel.doUp);
+              carouselElement.addEventListener('touchend', carousel.doUp);
+              carousel.reorder();
+          } else {
+              console.error('Carousel element not found.');
+          }
+      
+          const prevButton = document.getElementById('prev');
+          const nextButton = document.getElementById('next');
+          if (prevButton) {
+              prevButton.addEventListener('click', carousel.previous);
+          } else {
+              console.error('Previous button not found.');
+          }
+          if (nextButton) {
+              nextButton.addEventListener('click', carousel.next);
+          } else {
+              console.error('Next button not found.');
+          }
+      
+          carouselState.selected = document.querySelector('.selected') as HTMLElement;
         }
-    
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
-        if (prevButton) {
-            prevButton.addEventListener('click', carousel.previous);
-        } else {
-            console.error('Previous button not found.');
-        }
-        if (nextButton) {
-            nextButton.addEventListener('click', carousel.next);
-        } else {
-            console.error('Next button not found.');
-        }
-    
-        carouselState.selected = document.querySelector('.selected') as HTMLElement;
-    }
+      }
     };
 
     const carouselState: { selected: HTMLElement | null, downX: number } = {

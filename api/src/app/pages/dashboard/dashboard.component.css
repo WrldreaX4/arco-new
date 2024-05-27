@@ -11,6 +11,70 @@
 }
 
 
+/* data styling */
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+h1 {
+  color: #333;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.summary-text {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+.dashboard-container {
+  padding: 20px;
+}
+
+.project-report {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.progress {
+  height: 20px;
+  background-color: #d99e6d;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  line-height: 20px; /* Center the text vertically */
+}
+
+.datasadashboard {
+  margin-top: 100px;
+  display:  flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* data end styling */
+
+
 body {
   min-height: 100vh;
   transition: all 0.4s ease;
