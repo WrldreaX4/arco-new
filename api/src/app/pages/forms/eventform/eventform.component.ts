@@ -107,7 +107,7 @@ export class EventformComponent implements OnInit {
         .subscribe(
           (resp) => {
             console.log('Event expenses submitted:', resp);
-            this.router.navigate(['create/eventreport/uploadmedia']);
+            this.router.navigate(['collage']);
           },
           (error) => {
             console.error('Error Submitting Event Expenses', error);
