@@ -13,16 +13,16 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
-    /*if (this.isBrowser()) {
+    if (this.isBrowser()) {
       const token = this.getToken();
       if (token) {
         this.currentUserSubject.next(this.decodeToken(token).data);
       }
-    }*/
+    }
   }
 
-  userLogin(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/login`, {email, password})
+  userLogin(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/login.php`, data)
      .pipe(
         catchError(this.handleError)
       );
