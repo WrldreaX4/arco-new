@@ -34,7 +34,7 @@ export class LoginComponent {
       (response: any) => {
         console.log('Login Successful.', response);
         this.authService.setToken(response.jwt);
-        this.router.navigate(['/app/dashboard']);
+        this.router.navigate(['/dashboard']);
       },
       (error: any) => {
         if (error.status === 401) {
