@@ -1,10 +1,8 @@
-
-
 <body style="font-family: 'Poppins', sans-serif;">
     <app-navbar></app-navbar>
 
     <div class="container">
-        <h2 class="title">Profile Page</h2> 
+        <h2 class="title">Profile Page</h2>
         <div class="card">
             <div class="card-container">
                 <div class="card-container-container">
@@ -14,17 +12,19 @@
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body media align-items-center">
                                 <div class="profile-picture-container">
-                                    <img src="https://via.placeholder.com/150" alt="" class="d-block ui-w-80">
+                                    <img [src]="url" id="profilePicture" src="https://via.placeholder.com/150" alt=""
+                                        class="d-block ui-w-80">
                                 </div>
                                 <div class="media-body ml-4">
                                     <label class="btn btn-outline-primary">
                                         Upload new photo
-                                        <input type="file" id="fileInput" class="account-settings-fileinput">
+                                        <input type="file" id="fileInput" class="account-settings-fileinput"
+                                            (change)="onSelectFile($event)">
                                     </label> &nbsp;
-                                
-                                    <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+
+
+
                                     <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
-                                    <button type="button" class="logOut">Log out</button> <!--Di pa nagana-->
                                 </div>
                             </div>
                             <div class="card-body">
@@ -33,24 +33,29 @@
                                     <input type="text" class="form" [(ngModel)]="profileData.username">
 
                                     <label class="form-label">Email</label>
-                                    <input type="text" class="form" [(ngModel)]="profileData.email"> <!--wala pa sa ng model-->
+                                    <input type="text" class="form" [(ngModel)]="profileData.email">
+                                    <!--wala pa sa ng model-->
 
                                     <!--<label class="form-label">Age</label>
                                     <input type="text" class="form" [(ngModel)]="profileData.age"> wala pa sa ng model-->
 
                                     <label class="form-label">Address</label>
-                                    <input type="text" class="form" [(ngModel)]="profileData.address"> <!--wala pa sa ng model-->
+                                    <input type="text" class="form" [(ngModel)]="profileData.address">
+                                    <!--wala pa sa ng model-->
 
                                     <label class="form-label">Department</label>
-                                    <input type="text" class="form" [(ngModel)]="profileData.department"> <!--wala pa sa ng model-->
-                                       
+                                    <input type="text" class="form" [(ngModel)]="profileData.department">
+                                    <!--wala pa sa ng model-->
+                                </div>
+                                <div class="password-input">
                                     <label class="form-label">Current Password</label>
                                     <input type="password" class="form" [(ngModel)]="currentPassword">
-                                    <div *ngIf="currentPasswordError" class="text-danger">{{ currentPasswordError }}</div>
-                                       
+                                    <div *ngIf="currentPasswordError" class="text-danger">{{ currentPasswordError }}
+                                    </div>
+
                                     <label class="form-label">New Password</label>
                                     <input type="password" class="form" [(ngModel)]="newPassword">
-                                       
+
                                     <label class="form-label">Confirm New Password</label>
                                     <input type="password" class="form" [(ngModel)]="confirmNewPassword">
                                     <div *ngIf="newPasswordError" class="text-danger">{{ newPasswordError }}</div>
@@ -65,7 +70,7 @@
         <div class="button-container">
             <button type="button" class="buttons" (click)="validatePasswords()">Save changes</button>&nbsp;
             <button type="button" class="buttons-cancel">Cancel</button>
-        </div>    
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>

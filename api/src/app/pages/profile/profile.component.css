@@ -20,57 +20,57 @@ body {
 }
 
 .card {
-    position: relative;
-    right: 300px;
+    margin: 0 auto;
     border: transparent;
     border-radius: 0.25rem;
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    max-width: 800px;
 }
 
 .card-body {
-    margin-left: 70px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 .form-group {
-    margin-left: 90px;
-    
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
 .card-container {
     display: flex;
-    flex-wrap: wrap;
-    margin: 0 0 0 300px;
-    width: 100%;
-    border-color: #f8f9fa;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card-container-container {
     padding-top: 0;
-    position: absolute;
+    width: 100%;
 }
 
 .form {
-    display: block;
+    display: flex;
     width: 100%;
-    max-width: 610px;
-    padding: 0.375rem 0.75rem;
+    max-width: 100%;
+    padding: 0.5rem 1rem;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    border: 1px transparent;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
 }
 
 .button-container {
     text-align: right;
-    margin: 1rem 200px 0 0;
+    margin: 1rem;
 }
 
 .buttons {
@@ -118,17 +118,6 @@ label.btn {
     color: #babbbc !important;
 }
 
-.btn-facebook {
-    border-color: rgba(0, 0, 0, 0);
-    background: #fa8e2a;
-    color: #fff;
-}
-
-.btn-instagram {
-    border-color: rgba(0, 0, 0, 0);
-    background: #000;
-    color: #fff;
-}
 
 .card {
     background-clip: padding-box;
@@ -157,13 +146,19 @@ label.btn {
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid #ED7D31;
+    margin-bottom: 20px;
+    position: relative; /* Add this to make positioning relative to the container */
 }
 
 .profile-picture-container img {
-    width: 150%;
-    height: 115%;
-    display: block;
-    flex-wrap: wrap;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    margin:auto ;
 }
 
 @media (min-width: 768px) {
@@ -173,12 +168,10 @@ label.btn {
     }
 }
 
-.logOut
-{
-    background-color: #d99e6d;
-    color: white;
-    border: 3px solid transparent;
-    border-radius: 5px;
-    margin:auto;
-    right: 20vh;
+.password-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
 }
+
