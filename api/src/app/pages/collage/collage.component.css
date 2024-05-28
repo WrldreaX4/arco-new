@@ -1,7 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 body {
-  background-image: url('/assets/background.png');
-  background-size: cover;
-  background-repeat: no-repeat;
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
@@ -9,6 +8,15 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.collagi h2 {
+  position: absolute;
+  color: #d99e6d;
+  font-weight: 600;
+  font-size: 30px;
+  top: 17px;
+  left: 80px;
 }
 
 .container {
@@ -28,23 +36,28 @@ body {
 }
 
 #upload-section .title {
-  text-align: center;
-  margin-bottom: 20px;
+  position: absolute;
+  text-align: left;
+  left: 140px;
+  top: 100px;
+  margin-bottom: 40px;
 }
 
 #fileInputLabel {
+  text-decoration: none !important;
   cursor: pointer;
   text-decoration: underline;
   margin-bottom: 20px;
+  margin-left: 18px;
   display: inline-block;
   position: relative;
   font-family: "Poppins", sans-serif;
-  font-weight: 1000;
-  font-size: 20px;
-  background-color: rgba(245, 245, 245, 0.116);
-  color: #4F4A45;
-  border: none;
-  border-radius: 30px;
+  font-weight: 600;
+  font-size: 17px;
+  background-color: #d99e6d;
+  color: white;
+  border: solid 1px transparent;
+  border-radius: 20px;
   padding: 10px 20px;
 }
 
@@ -52,36 +65,40 @@ body {
   display: flex;
   padding: 20px;
   font-family: 'Poppins', sans-serif;
-  font-weight: 1000;
+  font-weight: 700;
   color: #4F4A45;
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
   margin: 0;
 }
 
 .title2 h2 {
+  position: absolute;
   display: flex;
   text-align: center;
-  font-size: 35px;
+  font-size: 25px;
   color: #4F4A45;
   font-family: "Poppins", sans-serif;
-  font-weight: 1000;
-  margin: 10px 0;
+  font-weight: 700;
+  left: 160px;
+  top: 250px;
 }
 
 .image-upload-container {
+  position: absolute;
+  top: 300px;
+  right: 620px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  align-items: left;
+  justify-content: left;
+  width: 50%;
 }
 
 .uploaded-images {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
+  justify-content: left;
   width: 80%;
 }
 
@@ -89,7 +106,7 @@ body {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  margin: 10px;
+  margin: 5px;
   border-radius: 3px;
   transition: opacity 0.3s ease;
   cursor: pointer;
@@ -100,34 +117,143 @@ body {
 }
 
 .button-container {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.create-btn, .cancel-btn {
+.create-btn,
+.cancel-btn {
+  text-decoration: none;
   margin: 0 10px;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
-  font-weight: 1000;
-  font-size: 20px;
-  border-radius: 100px;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 20px;
+  margin-top: 100px;
 }
 
 .create-btn {
-  background-color: #ED7D31;
+  position: absolute;
+  margin-right: 660px;
+  background-color: #d99e6d;
   color: white;
 }
 
 .cancel-btn {
+  position: absolute;
+  margin-right: 450px;
   background-color: whitesmoke;
   color: #4F4A45;
 }
 
 canvas {
-  margin-top: 20px;
-  border: 1px solid #000;
+  margin-left: 700px;
+  margin-top: 0px;
+  border: 3px solid #d99e6d;
+  border-radius: 20px;
+}
+
+@media (max-width: 1300px) {
+  .title,
+  .title2 {
+    position: static;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .title2 h2,
+  canvas {
+    margin: 20px auto;
+  }
+
+  canvas{
+    margin-top: 300px;
+  }
+
+  .image-upload-container {
+    position: static;
+    top: auto;
+    right: auto;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .uploaded-images {
+    justify-content: center;
+    top: 300px;
+    width: 100%;
+  }
+
+  .button-container {
+    position: relative;
+    top: 280px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+
+  }
+
+  .create-btn,
+  .cancel-btn {
+    position: static;
+    margin: 0 10px;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .title h1 {
+    text-align: center;
+    position: static;
+    margin-top: 20px;
+  }
+
+  .title2 h2 {
+    left: 0;
+    top: auto;
+    position: static;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .image-upload-container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  #upload-section .title {
+    position: static;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  #fileInputLabel {
+    display: block;
+    margin: 0 auto 20px auto;
+    text-align: center;
+  }
+
+  .button-container,
+  canvas {
+    position: static;
+    margin: 20px 0;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .create-btn,
+  .cancel-btn {
+    margin: 0 10px;
+  }
 }
