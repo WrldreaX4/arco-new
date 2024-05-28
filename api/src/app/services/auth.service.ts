@@ -22,6 +22,20 @@ export class AuthService {
     }
   }
 
+  submitCollage(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/api/collage`, formData)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  
+  getCollage(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/api/getImage`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   userLogin(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/login.php`, data)
      .pipe(

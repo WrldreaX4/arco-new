@@ -123,7 +123,8 @@ body {
 }
 
 .create-btn,
-.cancel-btn {
+.cancel-btn,
+.save-btn {
   text-decoration: none;
   margin: 0 10px;
   padding: 10px 20px;

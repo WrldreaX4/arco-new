@@ -26,11 +26,12 @@
                 </div>
                 <div class="image-upload-container">
                     <div class="uploaded-images">
-                        <img *ngFor="let imageUrl of imageUrls" [src]="imageUrl" height="100" (click)="removeImage(imageUrl)">
+                        <img [(ngModel)]="image" [ngModelOptions]="{standalone:true}" *ngFor="let imageUrl of imageUrls" [src]="imageUrl" height="100" (click)="removeImage(imageUrl)">
                     </div>
                     <div class="button-container">
                         <button class="create-btn" (click)="createCollage()">Create</button>
                         <button class="cancel-btn" (click)="cancelCollage()">Cancel</button>
+                        <button class="save-btn" (click)="submitCollage()">Save</button>
                     </div>
                 </div>
                 <canvas #collageCanvas>Collage will be displayed here</canvas>

@@ -2,19 +2,22 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BrowserService } from '../../services/browser.service';
+import { AuthService } from '../../services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-collage',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, FormsModule],
   templateUrl: './collage.component.html',
   styleUrls: ['./collage.component.css']
 })
 export class CollageComponent {
   imageUrls: string[] = []; // Initialize an empty array to store image URLs
 
+  image: File|null=null;
 
-  constructor(private browserService: BrowserService) {}
+  constructor(private browserService: BrowserService, private auth:AuthService) {}
 
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
   @ViewChild('collageCanvas') collageCanvas!: ElementRef<HTMLCanvasElement>;
@@ -33,6 +36,32 @@ export class CollageComponent {
     }
   }
 
+  submitCollage() {
+    if (this.imageUrls.length > 0) {
+      const formData = new FormData();
+  
+      const fetchPromises = this.imageUrls.map((url, index) =>
+        fetch(url)
+          .then(res => res.blob())
+          .then(blob => {
+            const file = new File([blob], `image${index}.png`, { type: 'image/png' });
+            formData.append('images[]', file, `image${index}.png`);
+          })
+      );
+  
+      Promise.all(fetchPromises).then(() => {
+        this.auth.submitCollage(formData).subscribe(
+          data => {
+            console.log('Collage added successfully', data);
+          },
+          error => {
+            console.log('Error', error);
+          }
+        );
+      });
+    }
+  }   
+  
   removeImage(imageUrl: string) {
     this.imageUrls = this.imageUrls.filter(url => url !== imageUrl);
   }
@@ -64,6 +93,7 @@ export class CollageComponent {
             const y = Math.floor(index / gridSize) * cellHeight;
             ctx.drawImage(img, x, y, cellWidth, cellHeight);
           });
+          const collageImage = canvas.toDataURL('image/png');
         });
       }
     }

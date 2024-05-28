@@ -56,6 +56,8 @@ export class DashboardComponent implements OnInit {
     legend: { position: 'bottom' }
   };
 
+records:any[]=[];
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private http: HttpClient,
@@ -73,6 +75,22 @@ export class DashboardComponent implements OnInit {
         console.log('No user logged in.');
       }
     });
+    this.getImage();
+  }
+
+  getImage() {
+    this.authService.getCollage().subscribe(
+      (data) => {
+        console.log('Server response:', data); // Log server response
+        if (data.status === 'success') {
+          this.records = data.data;
+          console.log('Records:', this.records); // Log records
+        }
+      },
+      (error) => {
+        console.error('Error fetching images:', error);
+      }
+    );
   }
 
   retrieveFinancialReports() {
