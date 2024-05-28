@@ -25,6 +25,7 @@
     "angular-google-charts": "^2.2.3",
     "angularx-flatpickr": "^7.3.0",
     "chart.js": "^4.4.3",
+    "core-js": "^3.37.1",
     "express": "^4.18.2",
     "flatpickr": "^4.6.13",
     "html2canvas": "^1.4.1",

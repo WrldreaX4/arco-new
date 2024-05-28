@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { BrowserService } from '../../services/browser.service';
 
 @Component({
   selector: 'app-collage',
@@ -11,6 +12,9 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class CollageComponent {
   imageUrls: string[] = []; // Initialize an empty array to store image URLs
+
+
+  constructor(private browserService: BrowserService) {}
 
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
   @ViewChild('collageCanvas') collageCanvas!: ElementRef<HTMLCanvasElement>;
@@ -34,44 +38,49 @@ export class CollageComponent {
   }
 
   createCollage() {
-    const canvas: HTMLCanvasElement = this.collageCanvas.nativeElement;
-    const ctx = canvas.getContext('2d');
+    if (this.browserService.document) { // Use BrowserService to safely access the document
+      const canvas: HTMLCanvasElement = this.collageCanvas.nativeElement;
+      const ctx = canvas.getContext('2d');
 
-    if (ctx) {
-      const imageCount = this.imageUrls.length;
-      const collageWidth = 400; // Define the width of the collage
-      const collageHeight = 400; // Define the height of the collage
+      if (ctx) {
+        const imageCount = this.imageUrls.length;
+        const collageWidth = 400;
+        const collageHeight = 400;
 
-      canvas.width = collageWidth;
-      canvas.height = collageHeight;
+        canvas.width = collageWidth;
+        canvas.height = collageHeight;
 
-      const gridSize = Math.ceil(Math.sqrt(imageCount));
-      const cellWidth = collageWidth / gridSize;
-      const cellHeight = collageHeight / gridSize;
+        const gridSize = Math.ceil(Math.sqrt(imageCount));
+        const cellWidth = collageWidth / gridSize;
+        const cellHeight = collageHeight / gridSize;
 
-      ctx.clearRect(0, 0, collageWidth, collageHeight); // Clear the canvas
+        ctx.clearRect(0, 0, collageWidth, collageHeight);
 
-      let imagePromises = this.imageUrls.map((imageUrl) => this.loadImage(imageUrl));
+        let imagePromises = this.imageUrls.map((imageUrl) => this.loadImage(imageUrl));
 
-      Promise.all(imagePromises).then(images => {
-        images.forEach((img, index) => {
-          const x = (index % gridSize) * cellWidth;
-          const y = Math.floor(index / gridSize) * cellHeight;
-          ctx.drawImage(img, x, y, cellWidth, cellHeight);
+        Promise.all(imagePromises).then(images => {
+          images.forEach((img, index) => {
+            const x = (index % gridSize) * cellWidth;
+            const y = Math.floor(index / gridSize) * cellHeight;
+            ctx.drawImage(img, x, y, cellWidth, cellHeight);
+          });
         });
-      });
+      }
     }
   }
 
   cancelCollage() {
-    this.imageUrls = []; // Clear the images array
-    this.imageInput.nativeElement.value = ''; // Reset the file input
-    const canvas: HTMLCanvasElement = this.collageCanvas.nativeElement;
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    this.imageUrls = [];
+    this.imageInput.nativeElement.value = '';
+    if (this.browserService.document) { // Use BrowserService to safely access the document
+      const canvas: HTMLCanvasElement = this.collageCanvas.nativeElement;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
     }
   }
+
 
   loadImage(src: string): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {

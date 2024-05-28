@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { SummaryComponent } from '../summary/summary.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
@@ -9,23 +9,42 @@ import { CollageComponent } from '../collage/collage.component';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-flipbook',
   standalone: true,
-  imports: [SummaryComponent, NavbarComponent, RouterLink, RouterOutlet, RouterModule, ReportComponent, ProfileComponent,NavbarComponent, CommonModule],
+  imports: [SummaryComponent, NavbarComponent, RouterLink, RouterOutlet, RouterModule, ReportComponent, ProfileComponent, CommonModule],
   templateUrl: './flipbook.component.html',
-  styleUrl: './flipbook.component.css'
+  styleUrls: ['./flipbook.component.css']
 })
-export class FlipbookComponent implements OnInit {
+export class FlipbookComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('book') bookElement!: ElementRef<HTMLElement>;
+  @ViewChild('prevBtn') prevBtnElement!: ElementRef<HTMLElement>;
+  @ViewChild('nextBtn') nextBtnElement!: ElementRef<HTMLElement>;
 
   userId: number | null = null;
-
   currentLocation = 1;
   collageData: any[] = [];
   paginatedData: any[] = [];
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Only execute this code on the client side
+      if (this.bookElement && this.prevBtnElement && this.nextBtnElement) {
+        // Perform any necessary initialization here
+      }
+    }
+  }
+
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe(user => {
@@ -38,25 +57,35 @@ export class FlipbookComponent implements OnInit {
       }
     });
   }
-  
+
 
   retrieveEventReport() {
     if (this.userId !== null) {
       const endpoint = `http://localhost/arco2/arco/api/collage_all/${this.userId}`;
       this.http.get(endpoint).subscribe(
         (resp: any) => {
-          console.log(resp);
-          this.collageData = resp.data;
+          this.collageData = resp.data.map((item: any) => {
+            // Ensure the image path starts without ../
+            const cleanedImagePath = item.image_path.replace(/^\.\.\//, '');
+            const imageUrl = `http://localhost/arco2/arco/${cleanedImagePath}`;
+            
+            // Log the URL to the console
+            console.log('Generated Image URL:', imageUrl);
+  
+            return {
+              ...item,
+              imageUrl
+            };
+          });
           this.paginateData();
         },
-        (error) => {
-          console.error('Error fetching data:', error);
-        }
+        error => console.error('Error fetching data:', error)
       );
-    } else {
-      console.error('User ID is not set.');
     }
   }
+
+  
+  
 
   paginateData() {
     this.paginatedData = [];
@@ -67,27 +96,21 @@ export class FlipbookComponent implements OnInit {
       });
     }
   }
-
   openBook() {
-    const book = document.querySelector("#book") as HTMLElement;
-    const prevBtn = document.querySelector("#prev-btn") as HTMLElement;
-    const nextBtn = document.querySelector("#next-btn") as HTMLElement;
-    book.style.transform = "translateX(50%)";
-    prevBtn.style.transform = "translateX(-180px)";
-    nextBtn.style.transform = "translateX(180px)";
+    if (isPlatformBrowser(this.platformId)) {
+      this.bookElement.nativeElement.style.transform = "translateX(50%)";
+      this.prevBtnElement.nativeElement.style.transform = "translateX(-180px)";
+      this.nextBtnElement.nativeElement.style.transform = "translateX(180px)";
+    }
   }
 
   closeBook(isAtBeginning: boolean) {
-    const book = document.querySelector("#book") as HTMLElement;
-    const prevBtn = document.querySelector("#prev-btn") as HTMLElement;
-    const nextBtn = document.querySelector("#next-btn") as HTMLElement;
-    if (isAtBeginning) {
-      book.style.transform = "translateX(0%)";
-    } else {
-      book.style.transform = "translateX(100%)";
+    if (isPlatformBrowser(this.platformId)) {
+      const translateX = isAtBeginning ? "0%" : "100%";
+      this.bookElement.nativeElement.style.transform = `translateX(${translateX})`;
+      this.prevBtnElement.nativeElement.style.transform = "translateX(0px)";
+      this.nextBtnElement.nativeElement.style.transform = "translateX(0px)";
     }
-    prevBtn.style.transform = "translateX(0px)";
-    nextBtn.style.transform = "translateX(0px)";
   }
 
   goNextPage() {
@@ -95,8 +118,6 @@ export class FlipbookComponent implements OnInit {
       switch (this.currentLocation) {
         case 1:
           this.openBook();
-          break;
-        case 2:
           break;
         case 3:
           this.closeBook(false);
@@ -113,8 +134,6 @@ export class FlipbookComponent implements OnInit {
       switch (this.currentLocation) {
         case 2:
           this.closeBook(true);
-          break;
-        case 3:
           break;
         case 4:
           this.openBook();

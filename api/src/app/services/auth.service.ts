@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { isBrowser, isLocalStorageAvailable } from '../shared/environment.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
-    if (this.isBrowser()) {
+    if (isPlatformBrowser(this.platformId)) {
       const token = this.getToken();
       if (token) {
         this.currentUserSubject.next(this.decodeToken(token).data);
@@ -36,19 +37,27 @@ export class AuthService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.error('Http failure during parsing:', error);
-    return throwError('Something went wrong during parsing. Please try again later.');
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 
   setToken(token: string): void {
-    if (this.isBrowser()) {
+    if (isPlatformBrowser(this.platformId) && isLocalStorageAvailable()) {
       localStorage.setItem(this.tokenKey, token);
       this.currentUserSubject.next(this.decodeToken(token).data);
     }
   }
 
   getToken(): string | null {
-    if (this.isBrowser()) {
+    if (isPlatformBrowser(this.platformId) && isLocalStorageAvailable()) {
       return localStorage.getItem(this.tokenKey);
     }
     return null;
@@ -56,7 +65,7 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = this.getToken();
-    return token?!this.isTokenExpired(token) : false;
+    return token ? !this.isTokenExpired(token) : false;
   }
 
   getAuthHeaders(): HttpHeaders {
@@ -68,7 +77,7 @@ export class AuthService {
   }
 
   logout(): void {
-    if (this.isBrowser()) {
+    if (isPlatformBrowser(this.platformId) && isLocalStorageAvailable()) {
       localStorage.removeItem(this.tokenKey);
       this.currentUserSubject.next(null);
     }

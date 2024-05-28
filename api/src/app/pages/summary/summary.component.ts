@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
-import { DatePipe, NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf, isPlatformBrowser } from '@angular/common';
 import  flatpickr  from 'flatpickr';
 import { JsonPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -58,7 +58,7 @@ export class SummaryComponent implements AfterViewInit, OnDestroy, OnInit {
     financialReport: any = {}
     projectStatusReport: any ={}
 
-    constructor(private http: HttpClient, private router: Router, private datePipe: DatePipe, private route: ActivatedRoute, private authService: AuthService) {
+    constructor(private http: HttpClient, private router: Router, private datePipe: DatePipe, private route: ActivatedRoute, private authService: AuthService, @Inject(PLATFORM_ID) private platformId: Object) {
       this.annualReport = [];
       this.eventReport = [];
       this.financialReport = [];
@@ -212,14 +212,16 @@ retrieveProjectStatusReport() {
       return transformedDate !== null ? transformedDate : null;
     }
     ngAfterViewInit(): void {
-      const pickerInstance = flatpickr('#date-range-icon', {
-        mode: 'range',
-        dateFormat: 'F j, Y',
-        onChange: (selectedDates: Date[]) => {
-          this.updateSelectedRangeText(selectedDates);
-        },
-      });
-      this.dateRangePicker = Array.isArray(pickerInstance) ? pickerInstance[0] : pickerInstance;
+      if (isPlatformBrowser(this.platformId)) {
+        const pickerInstance = flatpickr('#date-range-icon', {
+          mode: 'range',
+          dateFormat: 'F j, Y',
+          onChange: (selectedDates: Date[]) => {
+            this.updateSelectedRangeText(selectedDates);
+          },
+        });
+        this.dateRangePicker = Array.isArray(pickerInstance) ? pickerInstance[0] : pickerInstance;
+      }
     }
   
     ngOnDestroy() {
