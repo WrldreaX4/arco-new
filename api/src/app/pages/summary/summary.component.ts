@@ -186,9 +186,9 @@ retrieveFinancialReport() {
 
 retrieveProjectStatusReport() {
   this.http.get(`http://localhost/arco2/arco/api/projectreportall/${this.userId}`).subscribe(
-    (data: any) => {
-      console.log('Project status reports:', data); 
-      this.projectStatusReport = data.data;
+    (resp: any) => {
+      console.log('Project status reports:', resp); 
+      this.projectStatusReport = resp.data;
     },
     (error) => {
 
