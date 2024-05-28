@@ -147,11 +147,18 @@ label.btn {
     overflow: hidden;
     border: 2px solid #ED7D31;
     margin-bottom: 20px;
+    position: relative; /* Add this to make positioning relative to the container */
 }
 
 .profile-picture-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 120%;
-    height: 120%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    margin:auto ;
 }
 
 @media (min-width: 768px) {
