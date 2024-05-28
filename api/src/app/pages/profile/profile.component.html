@@ -14,10 +14,14 @@
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body media align-items-center">
                                 <div class="profile-picture-container">
-                                    <button class="btn">Upload New Photo</button>
-                                    <input type="file" name="myfile" accept="image/*" onchange="previewFile()">
-
-                                    <img id="preview" class="preview-img" src="https://via.placeholder.com/150" alt="Profile Picture">
+                                    <img src="https://via.placeholder.com/150" alt="" class="d-block ui-w-80">
+                                </div>
+                                <div class="media-body ml-4">
+                                    <label class="btn btn-outline-primary">
+                                        Upload new photo
+                                        <input type="file" id="fileInput" class="account-settings-fileinput">
+                                    </label> &nbsp;
+                                    <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                 </div>
                             </div>
                             <div class="card-body">

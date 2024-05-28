@@ -168,30 +168,3 @@ label.btn {
     margin-left: 10px;
 }
 
-.upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    
-}
-
-.btn-up {
-    border: 2px solid #d99e6d;
-    color: white;
-    background-color: #d99e6d;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    height: 100%;
-    width: 100%;
-    font-family: sans-serif, 'Popins';
-}
-.preview-img {
-    margin-top: 20px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #d99e6d;
-}
