@@ -4,6 +4,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { BrowserService } from '../../services/browser.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-collage',
@@ -17,7 +19,7 @@ export class CollageComponent {
 
   image: File|null=null;
 
-  constructor(private browserService: BrowserService, private auth:AuthService) {}
+  constructor(private browserService: BrowserService, private auth: AuthService) {}
 
   @ViewChild('imageInput') imageInput!: ElementRef<HTMLInputElement>;
   @ViewChild('collageCanvas') collageCanvas!: ElementRef<HTMLCanvasElement>;
@@ -93,7 +95,6 @@ export class CollageComponent {
             const y = Math.floor(index / gridSize) * cellHeight;
             ctx.drawImage(img, x, y, cellWidth, cellHeight);
           });
-          const collageImage = canvas.toDataURL('image/png');
         });
       }
     }
@@ -111,13 +112,26 @@ export class CollageComponent {
     }
   }
 
-
   loadImage(src: string): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
       const img = new Image();
       img.onload = () => resolve(img);
       img.onerror = reject;
       img.src = src;
+    });
+  }
+
+  downloadPDF(): void {
+    const canvas: HTMLCanvasElement = this.collageCanvas.nativeElement;
+    html2canvas(canvas, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('collage.pdf');
     });
   }
 }

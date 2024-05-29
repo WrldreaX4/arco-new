@@ -279,3 +279,23 @@ canvas {
     margin: 0 10px;
   }
 }
+
+.download-btn {
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 20px;
+  background-color: #a4c639; /* Green color for the download button */
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #8fbf30; /* Darker shade on hover */
+  color: #fff; /* Maintain text color */
+}
