@@ -79,6 +79,8 @@ export class EventformComponent implements OnInit {
               console.log('Event report submitted:', resp);
               const eventId = resp.event_id;
               this.submitEventExpenses(eventId);
+              this.router.navigate(['create/eventreport/view']);
+
             },
             (error) => {
               console.error('Error Submitting Event Report', error);
