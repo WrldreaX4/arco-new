@@ -67,8 +67,7 @@ export class EditannualreportComponent implements OnInit{
         .subscribe(
           (resp) => {
             console.log('Updated:', resp);
-            // Navigate to the collage creation route upon success
-            // this.router.navigate(['create/annualreport/view']);
+            this.router.navigate(['create/annualreport/view']);
             
           },
           (error) => {

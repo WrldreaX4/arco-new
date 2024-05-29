@@ -78,7 +78,7 @@ export const routes: Routes = [
         component: ProjectReportStatusComponent
     },
     {
-        path: 'summary/annualreport/view',  
+        path: 'create/annualreport/view',  
         component: AnnualreportoutputComponent
     },   
     {
@@ -86,15 +86,15 @@ export const routes: Routes = [
         component: EventreportoutputComponent
     }, 
     {
-        path: 'summary/eventreport/view/:id',  
+        path: 'create/eventreport/view',  
         component: EventreportoutputComponent
     }, 
     {
-        path: 'summary/financialreport/view/:id',  
+        path: 'create/financialreport/view',  
         component: FinancialreportoutputComponent
     },
     {
-        path: 'summary/projectreportstatus/view',  
+        path: 'create/projectreport/view',  
         component: ProjectreportoutputComponent
     },
     {

@@ -56,7 +56,7 @@ export class ProjectReportStatusComponent implements OnInit {
         .subscribe(
           (resp: any) => {
             console.log('Project Status Report submitted:', resp);
-            this.router.navigate(['create/projectreportstatus/view']);
+            this.router.navigate(['create/projectreport/view']);
           },
           (error: any) => {
             console.error('Error submitting project status report:', error);

@@ -67,7 +67,6 @@ export class EditfinancialreportComponent implements OnInit {
         .subscribe(
           (resp) => {
             console.log('Report submitted:', resp);
-            // Navigate to the collage creation route upon success
             this.router.navigate(['create/financialreport/view']);
           },
           (error) => {
