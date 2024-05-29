@@ -135,6 +135,7 @@ body {
   font-size: 15px;
   border-radius: 20px;
   margin-top: 100px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for smooth effect */
 }
 
 .create-btn {
@@ -144,11 +145,33 @@ body {
   color: white;
 }
 
+.create-btn:hover {
+  background-color: #c88656; /* Darker shade on hover */
+  color: #fff; /* Maintain text color */
+}
+
 .cancel-btn {
   position: absolute;
-  margin-right: 450px;
+  margin-right: 240px;
   background-color: whitesmoke;
   color: #4F4A45;
+}
+
+.cancel-btn:hover {
+  background-color: #cbc9c9; /* Change background on hover */
+  color: white; /* Change text color on hover */
+}
+
+.save-btn {
+  position: absolute;
+  margin-right: 450px;
+  background-color: #e7b78f;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #d99e6d; /* Change background on hover */
+  color: white; /* Maintain text color */
 }
 
 canvas {
@@ -171,13 +194,13 @@ canvas {
     margin: 20px auto;
   }
 
-  canvas{
+  canvas {
     margin-top: 300px;
   }
 
   .image-upload-container {
     position: static;
-    top: auto;
+    top: 300px;
     right: auto;
     width: 90%;
     margin: 0 auto;
@@ -197,7 +220,6 @@ canvas {
     width: 100%;
     flex-direction: row;
     align-items: center;
-
   }
 
   .create-btn,
@@ -205,7 +227,6 @@ canvas {
     position: static;
     margin: 0 10px;
   }
-
 }
 
 @media (max-width: 600px) {

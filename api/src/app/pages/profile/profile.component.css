@@ -3,10 +3,13 @@ body {
 }
 
 .title {
-    margin: -5px 0 50px -120px;
+    position: absolute;
     color: #d99e6d;
-    font-size: 35px;
     font-weight: 600;
+    font-size: 30px;
+    top: 17px;
+    left: 80px;
+    z-index: 1;
 }
 
 .container {
@@ -62,7 +65,7 @@ body {
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px transparent;
+    border: 1px solid #d99e6d;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     margin-bottom: 1rem;
@@ -70,7 +73,7 @@ body {
 
 .button-container {
     text-align: right;
-    margin: 1rem;
+    margin-top: 0px;
 }
 
 .buttons {
@@ -78,6 +81,7 @@ body {
     color: white;
     border: 3px solid transparent;
     border-radius: 5px;
+    margin-top: -10px;
     padding: 10px 30px;
 }
 

@@ -26,7 +26,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
-    background-image: url("/assets/background.png");
 }
 .login-box{
     display: flex;

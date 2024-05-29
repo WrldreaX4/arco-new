@@ -1,9 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 .body {
     min-height: 100vh;
     transition: all 0.4s ease;
-    background-image: url("/assets/background.png");
     overflow-x: hidden;
+    font-family: 'Poppins', 'sans-serif';
   }
+
+.body h2{
+  position: absolute;
+  color: #d99e6d;
+  font-weight: 600;
+  font-size: 30px;
+  top: 17px;
+  left: 80px;
+}
+
 .chart-container {
     display: flex;
     justify-content: center;
@@ -25,13 +37,13 @@
   }
   
   .dashboard-container {
-    width: 695px;
+    width: 650px;
     padding: 20px;
-    border: 5px solid #d99e6d;
-    border-radius: 20px;
+    border: 8px solid #d99e6d;
+    border-radius: 40px;
     background-color: transparent;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: -50px;
+    margin-top: 40px;
     margin-right: 5px;
     margin-left: 20px;
     margin-bottom: 15px;
@@ -43,7 +55,7 @@
   } 
   
   .dashboard-container h1{
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     margin-left: 0px;
     color: #d99e6d;
     font-size: 30px;
