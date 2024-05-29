@@ -1,4 +1,4 @@
-<div class="container">
+<!-----<div class="container">
     <img class="wave" src="/assets/Bg.png">
     <div class="login-box">
         <img src="assets/Logo.png" alt="logo" class="logo">
@@ -6,7 +6,7 @@
             <header>Login</header>
             <p class="desc">Please sign up and login to continue using our app.</p>
         </div>
-        <form method="POST"> <!-- Add form tag here -->
+        <form method="POST"> 
             <div class="input-box">
                 <input type="text" class="input-field" name="email" placeholder="Email" [(ngModel)]="email" required>
             </div>
@@ -20,9 +20,40 @@
                 <button class="submit-btn" type="submit" id="submit" (click)="onLogin()"></button>
                 <label for="submit">Login</label>
             </div>
-        </form> <!-- Close form tag here -->
+        </form> 
         <div class="sign-up-link">
             <p>Don't have account? <a href="/signup">Sign Up</a></p>
         </div>
     </div>
+</div>--->
+<div class="body">
+    <div class="back-image">
+        <img src="./assets/bk.png" alt="background image">
+    </div>
+
+    <section class="left">
+        <section class="side login">
+            <p class="titles">Don't have an account?</p>
+            <p class="message">Annual Report with Picture Collage (ARCO).</p>
+            <a href="/signup">Sign Up</a>
+            <img src="/assets/v.svg" alt="">
+        </section>
+
+        <section class="main login">
+            <div class="container">
+                <img src="assets/Logo.png" alt="logo" class="logo">
+                <p class="title">Login</p>
+                <p class="desc">Please sign up and login to continue using our app.</p>
+                <form>
+                    <div class="form-control">
+                        <input type="text" placeholder="Email" name="email" [(ngModel)]="email" required="">
+                    </div>
+                    <div class="form-control">
+                        <input type="password" placeholder="Password" name="password" [(ngModel)]="password" required="">
+                    </div>
+                    <button class="submit" type="submit" id="submit" (click)="onLogin()">Login</button>
+                </form>
+            </div>
+        </section>
+    </section>
 </div>

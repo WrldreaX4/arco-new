@@ -1,4 +1,4 @@
-<div class="parent">
+<!---<div class="parent">
     <img class="wave" src="/assets/Bg.png">
     <div class="login-box">
         <img src="assets/Logo.png" alt="logo" class="logo">
@@ -6,7 +6,7 @@
             <header>Create Account</header>
             <p class="desc">Please sign up and login to continue using our app.</p>
         </div>
-        <form (ngSubmit)="onSignup()" method="POST"> <!-- Add form tag here -->
+        <form (ngSubmit)="onSignup()" method="POST"> 
             <div class="input-box">
                 <input type="username" class="input-field" name="username" [(ngModel)]="username"  placeholder="Username" required>
             </div>
@@ -23,8 +23,48 @@
                 <button class="submit-btn" type="submit" id="submit"></button>
                 <label for="submit">Signup</label>
             </div>
-        </form> <!-- Close form tag here -->
+        </form> 
         <div class="sign-up-link">
             <p>I have an account? <a href="/login">Sign In</a></p>
         </div>
+    </div>---->
+
+
+    <div class="body">
+        <div class="back-image">
+            <img src="/assets/bk.png" alt="background image">
+         </div>
+        <section class="right">
+
+            <section class="side register">
+                <p class="titles">Already have an account?</p>
+                <p class="message">Annual Report with Picture Collage (ARCO).</p>
+                <a href="/login">Login</a>
+                <img src="./assets/e.svg" alt="">
+            </section>
+
+            <section class="main register">
+                <div class="container">
+                    <img src="assets/Logo.png" alt="logo" class="logo">
+                    <p class="title">Sign Up</p>
+                    <p class="desc">Please sign up and login to continue using our app.</p>
+                    <form (ngSubmit)="onSignup()" method="POST">
+                        <div class="form-control">
+                            <input type="text" placeholder="Username" name="username" [(ngModel)]="username">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="form-control">
+                            <input type="password" placeholder="Email" name="email" [(ngModel)]="email" required>
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                        <div class="form-control">
+                            <input type="password" placeholder="Password" name="password" [(ngModel)]="password"  placeholder="Password">
+                            <i class="fas fa-lock"></i>
+                        </div>
+    
+                        <button class="submit" type="submit" id="submit">Sign up</button>
+                    </form>
+                </div>
+            </section>
+        </section>
     </div>
