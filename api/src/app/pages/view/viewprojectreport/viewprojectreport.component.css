@@ -151,18 +151,19 @@ th {
 
 
 .formbold-btn {
-    font-size: 16px;
-    border-radius: 5px;
-    padding: 12px 25px;
-    border: none;
-    font-weight: 500;
-    background: #d99e6d;
-    color: white;
-    cursor: pointer;
-    margin-top: 25px;
-    margin-left: 250px;
+    display: block;
+    width: 200px;
+    margin: 20px auto;
     margin-bottom: 20px;
-  }
+    padding: 10px;
+    background-color: #e29e6a;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    outline: 0;
+    border: 1px solid #e29e6a;
+}
   .formbold-btn:hover {
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
   }

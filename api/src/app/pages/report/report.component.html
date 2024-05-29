@@ -1,1 +1,56 @@
 <app-navbar></app-navbar>
+<div class="body">
+<div class="datasadashboard">
+    <div class="container">
+      <div class="dashboard-container">
+       <h1>Financial Reports</h1>
+       <div class="summary-text">
+         Here is an overview of your financial performance.
+       </div>
+       <div class="chart-container">
+         <google-chart 
+           [type]="chart.type" 
+           [data]="chart.data" 
+           [options]="chart.options" 
+           [columns]="chart.columns">
+         </google-chart>
+       </div>
+      </div>
+       </div>
+   
+   
+     <div class="container">
+       <div class="dashboard-container">
+           <h1>Project Reports</h1>
+           <div *ngFor="let report of projectReports" class="project-report">
+             <h3>{{ report.projectName }}</h3>
+             <div class="progress-bar">
+               <div class="progress" [style.width.%]="report.overallProgress">{{ report.overallProgress }}%</div>
+             </div>
+             <p>Status: {{ report.statusDesc }}</p>
+           </div>
+         </div>
+     </div>
+  </div>
+  
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Image Name</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of records">
+          <td>{{ record.id }}</td>
+          <td>{{ record.image_name }}</td>
+          <td>
+            <img [src]="'data:image/png;base64,' + record.image_data" alt="{{ record.image_name }}" width="100" height="100">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

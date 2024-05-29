@@ -11,6 +11,7 @@ body {
 .container {
     display: flex;
     width: 80%;
+    top: 200px;
     max-width: 1200px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
